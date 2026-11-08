@@ -945,7 +945,7 @@
 "sig": "4283117e62",
 "stages": {
 "starters": {
-"scene": "A single wooden school desk with a book on it."
+"scene": "A simplified classroom interior showing a blackboard on the wall, a teacher's podium, and a few student desks."
 },
 "movers": {
 "scene": "A simple classroom interior with a teacher's desk, a chair, a green chalkboard, and a window, without any people."
@@ -1026,7 +1026,7 @@
 "scene": "A simple, bright red wooden door."
 },
 "ket": {
-"scene": "Close-up of a hand turning a shiny brass doorknob to open a door."
+"scene": "A simple, colorful wooden door with a handle, slightly open, showing a hint of light from the other side."
 }
 }
 },
@@ -1034,13 +1034,13 @@
 "sig": "a6deb9d38a",
 "stages": {
 "starters": {
-"scene": "A cute, smiling cartoon baby crawling."
+"scene": "A young boy and an old man standing side-by-side to clearly contrast 'young' and 'old'."
 },
 "movers": {
 "scene": "A young boy standing next to a tall, old grandfather with a cane."
 },
 "ket": {
-"scene": "Close-up of a young girl's face with smooth skin, wearing a bright birthday party hat."
+"scene": "A young girl with a bright smile standing next to an elderly grandmother with grey hair, clearly contrasting young and old."
 }
 }
 },
@@ -1048,7 +1048,7 @@
 "sig": "de9265bf83",
 "stages": {
 "starters": {
-"scene": "A simple wooden school desk."
+"scene": "A simple wooden school desk with a flat top and a shelf underneath, without any letter-shaped hooks."
 },
 "ket": {
 "scene": "Close-up of a desk surface with a lamp shining light on an open textbook."
@@ -1059,7 +1059,7 @@
 "sig": "f8e12cc264",
 "stages": {
 "starters": {
-"scene": "A colorful playground swing hanging from a frame."
+"scene": "A school playground with a red running track, green sports field, and soccer goals under a blue sky."
 },
 "ket": {
 "scene": "Close-up of a child's hands holding the chains of a swing, feet dangling off the ground."
@@ -1076,7 +1076,7 @@
 "scene": "A shiny new red shoe next to a worn-out, patched brown shoe."
 },
 "ket": {
-"scene": "Close-up of a wrinkled hand holding an old, cracked pocket watch."
+"scene": "An old, friendly grandfather with white hair, wrinkles, and a walking cane, smiling."
 }
 }
 },
@@ -1115,7 +1115,7 @@
 "scene": "A simple, bright blue wooden chair."
 },
 "ket": {
-"scene": "Close-up of a person's hands placing a soft yellow cushion onto a wooden chair."
+"scene": "A simple, complete wooden chair shown clearly from a three-quarters view on a plain background."
 }
 }
 },
@@ -1161,7 +1161,7 @@
 "scene": "A cute cartoon boy jumping over a skipping rope."
 },
 "movers": {
-"scene": "A cute girl happily skipping over a blue puddle on the ground."
+"scene": "A cute girl happily skipping rope in a park."
 }
 }
 },
@@ -1216,7 +1216,7 @@
 "sig": "73d4cc96a1",
 "stages": {
 "starters": {
-"scene": "A clean, shiny brown wooden floor panel."
+"scene": "A perspective view of a clean wooden floor with a pair of simple slippers on it, clearly showing it is a floor."
 },
 "ket": {
 "scene": "Close-up of a child's hands using a colorful mop to clean a wooden floor."
