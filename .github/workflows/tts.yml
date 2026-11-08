@@ -1,5 +1,9 @@
 name: 生成发音
 on:
+  # 游戏加了新词、改了例句（部署时会更新 audio/texts.json），自动补生成新增的录音
+  push:
+    branches: [main]
+    paths: ['audio/texts.json']
   workflow_dispatch:
     inputs:
       mode:
@@ -15,7 +19,7 @@ on:
       rate:
         description: '语速，1 是正常，0.9 稍慢'
         required: false
-        default: '0.9'
+        default: '1.0'
 permissions:
   contents: write
 concurrency: tts
@@ -28,9 +32,10 @@ jobs:
       - name: 生成
         env:
           GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
-          MODE: ${{ inputs.mode }}
-          VOICE: ${{ inputs.voice }}
-          RATE: ${{ inputs.rate }}
+          # 自动触发时没有输入，用正式选定的声音和语速（改这里要和手动生成时一致，否则会全部重新生成）
+          MODE: ${{ inputs.mode || 'full' }}
+          VOICE: ${{ inputs.voice || 'en-US-Chirp3-HD-Leda' }}
+          RATE: ${{ inputs.rate || '1.0' }}
         run: python3 tools/tts.py
       - name: 提交音频
         if: always()
@@ -39,6 +44,6 @@ jobs:
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
           git add audio
           git diff --cached --quiet && echo "没有变化" && exit 0
-          git commit -m "生成发音（${{ inputs.mode }} ${{ inputs.voice }}）"
+          git commit -m "生成发音（${{ inputs.mode || 'full' }} ${{ inputs.voice || 'en-US-Chirp3-HD-Leda' }}）"
           git pull --rebase
           git push
