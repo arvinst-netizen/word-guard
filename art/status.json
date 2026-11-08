@@ -1,28 +1,28 @@
 {
  "result": "more",
- "message": "night@ket：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource has been exhausted (e.g. check quota).\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
+ "message": "body@ket：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource has been exhausted (e.g. check quota).\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
  "planned": 2993,
  "words": 2993,
- "drawn": 133,
+ "drawn": 170,
  "jobs": 3639,
- "covered": 156,
+ "covered": 193,
  "pairs": 3818,
- "flagged": 3,
+ "flagged": 4,
  "failed": 5,
- "this_round": 30,
+ "this_round": 37,
  "complete": false,
  "mode": "full",
- "spend": 14.87,
+ "spend": 16.8,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.0581,
-  "draw": 7.8608,
-  "check": 0.9501
+  "draw": 9.5794,
+  "check": 1.1612
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-08 16:32:30 UTC"
+ "at": "2026-11-08 17:18:19 UTC"
 }
