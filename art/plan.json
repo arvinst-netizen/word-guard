@@ -32,7 +32,7 @@
 "sig": "f4bf6e619c",
 "stages": {
 "starters": {
-"scene": "A tiny, cute ladybug sitting on a single blade of green grass."
+"scene": "A big red apple next to a very small red apple to clearly contrast big and small."
 },
 "movers": {
 "scene": "A tiny yellow chick standing next to a giant, massive brown bear."
@@ -500,7 +500,7 @@
 "scene": "A cute blue cartoon wristwatch with a round face."
 },
 "ket": {
-"scene": "A close-up of a child's face, eyes wide with interest, looking at a glowing tablet screen."
+"scene": "A colorful cartoon wristwatch with a clear clock face, shown closely on a wrist."
 }
 }
 },
@@ -519,7 +519,7 @@
 "sig": "45cf48a4ca",
 "stages": {
 "starters": {
-"scene": "A cute cartoon dog wearing a red collar with a shiny gold name tag."
+"scene": "A cute cartoon dog wearing a collar with a blank bone-shaped name tag, pointing at it with its paw."
 },
 "ket": {
 "scene": "A close-up of a smiling child pointing to a white name tag pinned to their shirt."
@@ -533,7 +533,7 @@
 "scene": "A classic red alarm clock with two bells on top."
 },
 "movers": {
-"scene": "A cartoon boy pointing his finger at a large round wall clock."
+"scene": "A cartoon boy pointing at a large round wall clock with simple tick marks instead of numbers."
 },
 "ket": {
 "scene": "A close-up of a person's wrist wearing a watch, with a finger pointing at the watch face."
@@ -577,7 +577,7 @@
 "sig": "2d2bdc5920",
 "stages": {
 "starters": {
-"scene": "A large, solid grey rock with a rough texture."
+"scene": "A hand trying to squeeze a solid grey rock, showing it cannot be compressed, to clearly represent the adjective 'hard'."
 },
 "movers": {
 "scene": "A small cartoon boy struggling to lift a very large cardboard box."
@@ -621,7 +621,7 @@
 "sig": "43a53130a5",
 "stages": {
 "starters": {
-"scene": "A close-up of a piece of brown, bumpy tree bark."
+"scene": "A hand touching a very bumpy, uneven stone or rough sandpaper to clearly show the texture."
 },
 "movers": {
 "scene": "A cartoon hand touching a bumpy, rough grey stone."
@@ -660,7 +660,7 @@
 "sig": "69e034c376",
 "stages": {
 "starters": {
-"scene": "A perfectly round, smooth, shiny grey river pebble."
+"scene": "A hand gently touching a shiny, perfectly smooth billiard ball, showing a bright reflection to emphasize its sleek, polished surface."
 },
 "movers": {
 "scene": "A cartoon hand sliding easily across a smooth, shiny glass tabletop."
@@ -677,7 +677,7 @@
 "scene": "A small child's hand gently holding a much larger adult's hand."
 },
 "ket": {
-"scene": "A close-up of two hands shaking warmly in agreement."
+"scene": "A single open hand showing the palm and fingers clearly against a plain background."
 }
 }
 },
@@ -710,7 +710,7 @@
 "sig": "1d5fced858",
 "stages": {
 "starters": {
-"scene": "A fluffy, white, cloud-like toy teddy bear."
+"scene": "A hand pressing down into a very soft, fluffy white pillow, showing it sinking in easily."
 },
 "movers": {
 "scene": "A child's hand pressing down into a very fluffy, soft white pillow."
@@ -730,7 +730,7 @@
 "scene": "Two legs, one long adult leg and one short child leg, standing side-by-side."
 },
 "ket": {
-"scene": "A close-up of a hand wrapping a white bandage around a knee."
+"scene": "A simple, clear drawing of a whole human leg, with an arrow pointing to it, on a plain background."
 }
 }
 },
@@ -752,7 +752,7 @@
 "scene": "A cute, colorful toy steam train engine."
 },
 "ket": {
-"scene": "A close-up of a coach's hand blowing a whistle, while a child's foot is poised on a running track."
+"scene": "A colorful steam train traveling on a railway track."
 }
 }
 },
@@ -763,10 +763,10 @@
 "scene": "A single bare cartoon foot with five toes."
 },
 "movers": {
-"scene": "A small child's foot stepping directly on top of a giant adult's foot."
+"scene": "A bare foot of a child stepping directly on top of a larger bare foot of an adult, showing the contrast clearly without socks."
 },
 "ket": {
-"scene": "A close-up of a hand tying the shoelaces of a sneaker on a foot."
+"scene": "A simple illustration of a bare foot, clearly showing the toes, sole, and ankle, with no shoes or socks."
 }
 }
 },
@@ -794,7 +794,7 @@
 "scene": "A yellow bus stopped next to a tall green bus stop sign."
 },
 "ket": {
-"scene": "A close-up of a hand dropping a coin into a bus fare box."
+"scene": "A colorful cartoon school bus driving on a road under a sunny sky."
 }
 }
 },
