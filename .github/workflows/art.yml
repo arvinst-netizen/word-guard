@@ -44,7 +44,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
           if [ "${{ github.event_name }}" = schedule ]; then
-            go=$(python3 -c "import json,os;a=json.load(open('art/autopilot.json')) if os.path.exists('art/autopilot.json') else {};s=json.load(open('art/status.json')) if os.path.exists('art/status.json') else {};print('yes' if a.get('enabled') and s.get('result')=='more' else 'no')")
+            go=$(python3 -c "import json,os;a=json.load(open('art/autopilot.json')) if os.path.exists('art/autopilot.json') else {};s=json.load(open('art/status.json')) if os.path.exists('art/status.json') else {};print('yes' if a.get('enabled') and (s.get('result')=='more' or (s.get('result')=='error' and '429' in s.get('message',''))) else 'no')")
             if [ "$go" != yes ]; then echo "自动续画没打开或已画完，不用跑"; exit 0; fi
             cp art/autopilot.json art/run.json
           fi
