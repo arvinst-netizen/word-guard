@@ -1271,7 +1271,7 @@
 "scene": "A bright yellow sun partially covered by a fluffy white cloud."
 },
 "movers": {
-"scene": "A smiling girl holding a bright red umbrella under a blue rain cloud."
+"scene": "A circle divided into four sections showing different weather types: a bright sun, a rain cloud, a white snowflake, and a blowing wind."
 },
 "ket": {
 "scene": "Close-up of a hand holding a smartphone showing a simple weather icon of a sun and rain cloud."
@@ -1535,7 +1535,7 @@
 "sig": "20d0c12da1",
 "stages": {
 "starters": {
-"scene": "A happy cartoon boy pointing to himself with a big smile."
+"scene": "Two cartoon brothers standing side-by-side with their arms around each other's shoulders, smiling happily."
 },
 "movers": {
 "scene": "Two cartoon brothers, one tall and one short, smiling with their arms around each other."
@@ -1829,10 +1829,10 @@
 "sig": "7b0c7daa75",
 "stages": {
 "starters": {
-"scene": "A cute cartoon puppy sitting down."
+"scene": "A group of cute cartoon animals standing together, such as a small dog, a cat, a rabbit, and a bear."
 },
 "ket": {
-"scene": "Close-up of a hand petting a fluffy cat."
+"scene": "A group of diverse cartoon animals, like a lion, elephant, giraffe, and monkey, standing together friendly."
 }
 }
 },
