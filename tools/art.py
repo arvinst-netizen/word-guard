@@ -10,7 +10,11 @@
 两步：
 1. plan（文字模型，便宜）：给每个"词×阶段"写一句画面描述，并判断跨阶段的词哪些阶段复用。写 art/plan.json。
    art/hints.json 里可以手写 {"词@阶段": "画面描述"} 覆盖模型写的。
-2. 画图（图像模型 Nano Banana 2）：按画面描述画。
+2. 画图（图像模型 Nano Banana 2.1，不可用时换 Nano Banana 2）：按画面描述画。
+3. 自动检查（文字模型看图）：图里有没有文字、能不能看出词义；不合格的按建议的新画面重画一次，还不行就在审核页标出来。
+花费：按 Google 返回的实际 token 数和官方价格累计在 art/spend.json，到 BUDGET（默认 $250）就停。
+每次运行结束写 art/status.json（模式、结果、进度、花费、出错信息）。
+自动触发：推送 art/run.json（{"mode": ..., "redo": ..., "n": 序号}）就会运行，方便不打开网页也能启动。
 模式：
 - plan：只做第 1 步（全部词），审核页 art/review.html 能看到每个画面描述
 - sample：挑十几个词（含跨阶段的）规划并画出来，看画风和递进效果
@@ -28,14 +32,28 @@ from PIL import Image, ImageDraw
 KEY = os.environ.get('VERTEX_API_KEY', '').strip()
 PROJECT = os.environ.get('GCP_PROJECT', '').strip()
 MODE = os.environ.get('MODE', 'sample')
-MODEL = os.environ.get('MODEL', '').strip() or 'gemini-3.1-flash-image'
+# 图像模型（按顺序试，第一个能用的整轮都用它）：Nano Banana 2.1 1K 约 $0.034/张；Nano Banana 2 512 约 $0.045/张
+IMAGE_MODELS = [(os.environ['MODEL'].strip(), os.environ.get('SIZE', '').strip() or '1K')] if os.environ.get('MODEL', '').strip() else \
+    [('gemini-nano-banana-2.1', '1K'), ('gemini-3.1-flash-image', '512')]
 PLANNERS = [m for m in [os.environ.get('PLANNER', '').strip(), 'gemini-3.5-flash', 'gemini-3-flash', 'gemini-3-flash-preview', 'gemini-2.5-flash'] if m]
-SIZE = os.environ.get('SIZE', '').strip() or '512'
 REDO = [w.strip() for w in os.environ.get('REDO', '').split(',') if w.strip()]
-LIMIT = int(os.environ.get('LIMIT', '') or '400')
-WORKERS = int(os.environ.get('WORKERS', '') or '3')
+LIMIT = int(os.environ.get('LIMIT', '') or '150')
+WORKERS = int(os.environ.get('WORKERS', '') or '4')
+BUDGET = float(os.environ.get('BUDGET', '') or '250')
+CHECK = os.environ.get('CHECK', '1') != '0'
 MIN_INTERVAL = float(os.environ.get('MIN_INTERVAL', '') or '2')
-PRICE = float(os.environ.get('PRICE', '') or '0.045')  # 每张大约多少美元，只用来估算
+# 官方价格（Vertex AI Global，美元 / 百万 token，2026-11）：输入、输出
+PRICES = {
+    'gemini-nano-banana-2.1': (1.5, 30.0),
+    'gemini-3.1-flash-image': (0.5, 60.0),
+    'gemini-3.1-flash-lite-image': (0.25, 30.0),
+    'gemini-3.5-flash': (1.5, 9.0),
+    'gemini-3-flash': (0.5, 3.0),
+    'gemini-3-flash-preview': (0.5, 3.0),
+    'gemini-2.5-flash': (0.3, 2.5),
+}
+UNKNOWN_PRICE = (2.0, 60.0)  # 不认识的模型按贵的算
+EST_IMAGE = 0.05  # 估算用：每张图（含参考图输入和检查）
 PLAN_BATCH = 20
 ROOT = Path(__file__).resolve().parent.parent
 ART = ROOT / 'art'
@@ -88,32 +106,59 @@ def throttle():
         _last[0] = time.monotonic()
 
 
+class BudgetExceeded(Exception):
+    pass
+
+
+SPEND_PATH = ART / 'spend.json'
+_spend = json.loads(SPEND_PATH.read_text()) if SPEND_PATH.exists() else {'total': 0.0, 'by': {}, 'calls': 0}
+
+
+def add_spend(model, usage, kind):
+    pin, pout = PRICES.get(model, UNKNOWN_PRICE)
+    tin = usage.get('promptTokenCount', 0)
+    tout = usage.get('candidatesTokenCount', 0) + usage.get('thoughtsTokenCount', 0)
+    cost = (tin * pin + tout * pout) / 1e6
+    with _lock:
+        _spend['total'] = round(_spend['total'] + cost, 4)
+        _spend['by'][kind] = round(_spend['by'].get(kind, 0) + cost, 4)
+        _spend['calls'] += 1
+        if _spend['calls'] % 20 == 0:
+            SPEND_PATH.write_text(json.dumps(_spend))
+
+
 def endpoint(model):
     base = os.environ.get('VERTEX_BASE') or 'https://aiplatform.googleapis.com/v1'
     path = f'/projects/{PROJECT}/locations/global' if PROJECT else ''
     return f'{base}{path}/publishers/google/models/{model}:generateContent'
 
 
-def call(model, body, label):
-    """调一次 generateContent，429/5xx 自动退避重试；返回 JSON。404 抛 LookupError（模型不存在）。"""
+def call(model, body, label, kind):
+    """调一次 generateContent，429/5xx 自动退避重试；返回 JSON。404 抛 LookupError（模型不存在）。花费超过 BUDGET 抛 BudgetExceeded。"""
     last = ''
     for attempt in range(8):
+        if _spend['total'] >= BUDGET:
+            raise BudgetExceeded(f'已花 ${_spend["total"]:.2f}，到了上限 ${BUDGET:.0f}')
         throttle()
         req = urllib.request.Request(endpoint(model), data=json.dumps(body).encode(),
                                      headers={'Content-Type': 'application/json', 'x-goog-api-key': KEY})
         try:
             with urllib.request.urlopen(req, timeout=240) as r:
-                return json.load(r)
+                data = json.load(r)
+            add_spend(model, data.get('usageMetadata') or {}, kind)
+            return data
         except urllib.error.HTTPError as e:
             msg = e.read().decode(errors='replace')[:500]
-            if e.code == 404:
+            if e.code == 404 or (e.code == 400 and 'not supported' in msg.lower() and 'model' in msg.lower()):
                 raise LookupError(f'{model}：{msg[:200]}')
             if e.code == 400 and 'imageSize' in json.dumps(body.get('generationConfig', {})) and ('imageSize' in msg or 'image_size' in msg):
                 del body['generationConfig']['imageConfig']['imageSize']
                 if _size_ok[0]:
                     _size_ok[0] = False
-                    print(f'  模型不支持 imageSize={SIZE}，改用默认尺寸')
+                    print(f'  模型不支持这个尺寸，改用默认尺寸')
                 continue
+            if e.code in (401, 403):
+                raise PermissionError(f'密钥或权限有问题（{e.code}）：{msg[:300]}')
             if e.code in (429, 500, 502, 503, 504) and attempt < 7:
                 wait = min(10 * 2 ** attempt, 300)
                 print(f'  {e.code}，等 {wait} 秒：{label}')
@@ -141,22 +186,28 @@ def sig(t):
 _planner = [None]
 
 
-def plan_batch(batch):
-    req = [{'id': t['id'], 'meaning_zh': t['zh'], 'stages': t['stages'], **({'example': t['ex']} if t.get('ex') else {})} for t in batch]
-    body = {'contents': [{'role': 'user', 'parts': [{'text': PLAN_RULES + '\n\nWords:\n' + json.dumps(req, ensure_ascii=False)}]}],
+def ask_text(parts, label, kind):
+    """用文字模型（按 PLANNERS 顺序试第一个能用的）回答，返回解析好的 JSON"""
+    body = {'contents': [{'role': 'user', 'parts': parts}],
             'generationConfig': {'responseMimeType': 'application/json', 'temperature': 0.4}}
     models = [_planner[0]] if _planner[0] else PLANNERS
     for m in models:
         try:
-            data = call(m, body, f'规划 {batch[0]["id"]}…')
+            data = call(m, body, label, kind)
         except LookupError as e:
             print(f'  文字模型不可用，换下一个：{e}')
             continue
         _planner[0] = m
         text = ''.join(p.get('text', '') for p in parts_of(data))
         text = re.sub(r'^```(?:json)?|```$', '', text.strip()).strip()
-        return {w['id']: w.get('stages', {}) for w in json.loads(text).get('words', [])}
+        return json.loads(text)
     raise RuntimeError('没有可用的文字模型：' + ', '.join(PLANNERS))
+
+
+def plan_batch(batch):
+    req = [{'id': t['id'], 'meaning_zh': t['zh'], 'stages': t['stages'], **({'example': t['ex']} if t.get('ex') else {})} for t in batch]
+    got = ask_text([{'text': PLAN_RULES + '\n\nWords:\n' + json.dumps(req, ensure_ascii=False)}], f'规划 {batch[0]["id"]}…', 'plan')
+    return {w['id']: w.get('stages', {}) for w in got.get('words', [])}
 
 
 def clean_plan(t, stages):
@@ -244,21 +295,60 @@ def prompt(job):
     return p
 
 
-def generate(job) -> bytes:
-    gen = {'responseModalities': ['IMAGE'], 'imageConfig': {'aspectRatio': '1:1'}}
-    if _size_ok[0]:
-        gen['imageConfig']['imageSize'] = SIZE
-    body = {'contents': [{'role': 'user', 'parts': REFS + [{'text': prompt(job)}]}], 'generationConfig': gen}
+_img = [None]  # (模型, 尺寸)：第一个能用的
+
+
+def generate(job, scene=None) -> bytes:
     reason = ''
-    for _ in range(3):  # 偶尔只回文字不回图，再试
-        data = call(MODEL, body, job['key'])
-        for part in parts_of(data):
-            inline = part.get('inlineData') or part.get('inline_data')
-            if inline and inline.get('data'):
-                return base64.b64decode(inline['data'])
-        cands = data.get('candidates') or []
-        reason = cands[0].get('finishReason') if cands else (data.get('promptFeedback') or {}).get('blockReason')
-    raise RuntimeError(f'没有返回图片（{reason}）')
+    while True:
+        models = [_img[0]] if _img[0] else IMAGE_MODELS
+        model, size = models[0]
+        gen = {'responseModalities': ['IMAGE'], 'imageConfig': {'aspectRatio': '1:1'}}
+        if _size_ok[0]:
+            gen['imageConfig']['imageSize'] = size
+        body = {'contents': [{'role': 'user', 'parts': REFS + [{'text': prompt(dict(job, scene=scene or job['scene']))}]}], 'generationConfig': gen}
+        try:
+            for _ in range(3):  # 偶尔只回文字不回图，再试
+                data = call(model, body, job['key'], 'draw')
+                for part in parts_of(data):
+                    inline = part.get('inlineData') or part.get('inline_data')
+                    if inline and inline.get('data'):
+                        with _lock:
+                            _img[0] = _img[0] or (model, size)
+                        return base64.b64decode(inline['data'])
+                cands = data.get('candidates') or []
+                reason = cands[0].get('finishReason') if cands else (data.get('promptFeedback') or {}).get('blockReason')
+            raise RuntimeError(f'没有返回图片（{reason}）')
+        except LookupError as e:
+            with _lock:
+                if (model, size) in IMAGE_MODELS and _img[0] is None:
+                    print(f'  图像模型不可用，换下一个：{e}')
+                    IMAGE_MODELS.remove((model, size))
+                if (model, size) != _img[0] and (_img[0] or IMAGE_MODELS):
+                    continue  # 别的线程可能已经换好了，用换好的或列表里剩下的再试
+            raise RuntimeError(f'没有可用的图像模型：{e}')
+
+
+CHECK_RULES = """You are checking a picture for a children's English vocabulary game (Chinese primary-school pupils).
+The picture should teach the word "{id}" (Chinese meaning: {zh}) at the {stage} level. The intended scene: {scene}
+Reply JSON only: {{"ok": true/false, "text_in_image": true/false, "problem": "<short, empty if ok>", "better_scene": "<if not ok: a clearer scene, at most 35 words, no text in the picture>"}}
+ok is false if the picture contains any letters, words or numbers, if the meaning of the word cannot be guessed from it by a child at this level, if it shows something else, or if it is scary or inappropriate. Small stylistic flaws are fine."""
+
+
+def check(job, png: bytes):
+    """文字模型看图检查；返回 (合格, 问题, 建议的新画面)"""
+    im = Image.open(io.BytesIO(png)).convert('RGB')
+    im.thumbnail((384, 384))
+    buf = io.BytesIO()
+    im.save(buf, 'JPEG', quality=85)
+    rules = CHECK_RULES.format(id=job['id'], zh=job['zh'], stage=job['stage'], scene=job['scene'])
+    try:
+        r = ask_text([{'inlineData': {'mimeType': 'image/jpeg', 'data': base64.b64encode(buf.getvalue()).decode()}}, {'text': rules}],
+                     job['key'], 'check')
+    except (ValueError, KeyError):
+        return True, '', ''  # 检查本身出错就算过，审核页还能人工看
+    ok = bool(r.get('ok')) and not r.get('text_in_image')
+    return ok, str(r.get('problem') or ('图里有文字' if r.get('text_in_image') else '')), str(r.get('better_scene') or '')
 
 
 def to_webp(png: bytes) -> bytes:
@@ -282,7 +372,7 @@ def to_webp(png: bytes) -> bytes:
 
 
 def fname(job) -> str:
-    key = f'{MODEL}|{SIZE}|{REF_TAG}|{job["key"]}|{job["zh"]}|{job["scene"]}|{job.get("v", 0)}'
+    key = f'{REF_TAG}|{job["key"]}|{job["zh"]}|{job["scene"]}|{job.get("v", 0)}'
     return hashlib.sha1(key.encode()).hexdigest()[:16] + '.webp'
 
 
@@ -320,7 +410,7 @@ def resolve_index(targets, plan, hints, drawn):
     return files
 
 
-def review_page(targets, plan, hints, drawn, reject, title):
+def review_page(targets, plan, hints, drawn, reject, flags, title):
     rows = []
     for t in targets:
         p = plan['words'].get(t['id'])
@@ -336,18 +426,29 @@ def review_page(targets, plan, hints, drawn, reject, title):
             f = drawn.get(key)
             bad = key in reject or t['id'] in reject
             img = f'<img src="{f}" loading="lazy">' if f else '<div class="none">还没画</div>'
-            cells.append(f'<td class="{"bad" if bad else ""}">{img}<b>{STAGE_ZH[st]}</b>{" · 不用" if bad else ""}'
+            flag = flags.get(key)
+            cls = 'bad' if bad else ('flag' if flag else '')
+            note = f'<em>自动检查：{html.escape(flag)}</em>' if flag and not bad else ''
+            cells.append(f'<td class="{cls}">{img}<b>{STAGE_ZH[st]}</b>{" · 不用" if bad else ""}{note}'
                          f'<small>{html.escape(hints.get(key) or sp.get("scene", ""))}</small></td>')
         rows.append(f'<tr><th>{html.escape(t["id"])}<br><span>{html.escape(t["zh"].split("；")[0])}</span></th>{"".join(cells)}</tr>')
     page = f'''<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>插画审核</title>
 <style>body{{font-family:-apple-system,sans-serif;background:#fff8ea;color:#4a3426;margin:12px}}table{{border-collapse:separate;border-spacing:6px}}
 th{{text-align:left;font-size:15px;min-width:90px;vertical-align:top}}th span{{font-weight:normal;font-size:13px}}
 td{{background:#fff;border:2px solid #d9cbb0;border-radius:12px;padding:6px;width:150px;vertical-align:top;font-size:13px}}
-td.bad{{opacity:.35}}td.re{{color:#9a8a70;text-align:center;vertical-align:middle;background:#f6efe0}}img,.none{{width:150px;height:150px;display:block}}
+td.bad{{opacity:.35}}td.flag{{border-color:#e0484d}}em{{display:block;color:#e0484d;font-style:normal}}td.re{{color:#9a8a70;text-align:center;vertical-align:middle;background:#f6efe0}}img,.none{{width:150px;height:150px;display:block}}
 .none{{display:grid;place-items:center;color:#b7a88c;background:#faf5ea;border-radius:8px}}small{{display:block;color:#7a6a58;margin-top:4px}}</style>
-<h2>{html.escape(title)}</h2><p>每行一个词，按阶段从左到右。画得不像、看不懂、递进不对的，把"词@阶段"（比如 run@ket）发给 Claude，会改画面描述重画或放进"不用"。</p>
+<h2>{html.escape(title)}</h2><p>红框是自动检查两次都没通过的，优先看。每行一个词，按阶段从左到右。画得不像、看不懂、递进不对的，把"词@阶段"（比如 run@ket）发给 Claude，会改画面描述重画或放进"不用"。</p>
 <table>{"".join(rows)}</table>'''
     (ART / 'review.html').write_text(page)
+
+
+def write_status(**kw):
+    kw.update(mode=MODE, spend=round(_spend['total'], 2), budget=BUDGET, spend_by=_spend['by'],
+              image_model=(_img[0] or IMAGE_MODELS[0] if IMAGE_MODELS else None), text_model=_planner[0],
+              at=time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()) + ' UTC')
+    (ART / 'status.json').write_text(json.dumps(kw, ensure_ascii=False, indent=1))
+    SPEND_PATH.write_text(json.dumps(_spend))
 
 
 def main():
@@ -357,6 +458,7 @@ def main():
     old = json.loads((ART / 'index.json').read_text()) if (ART / 'index.json').exists() else {}
     drawn = dict(old.get('drawn', {}))  # 词@阶段 → 实际画的文件（不含复用）
     reject = set(json.loads((ART / 'reject.json').read_text())) if (ART / 'reject.json').exists() else set()
+    flags = json.loads((ART / 'flags.json').read_text()) if (ART / 'flags.json').exists() else {}
 
     if MODE == 'sample':
         words = {w for w in SAMPLE if w in by_id}
@@ -383,30 +485,62 @@ def main():
     remaining_after = max(0, len(todo) - LIMIT) if MODE == 'full' else 0
     if MODE == 'full':
         todo = todo[:LIMIT]
-    print(f'图像模型 {MODEL}（{SIZE}），画风参考 {len(REFS)} 张；规划好的词要画 {total_jobs} 张；这一轮画 {len(todo)} 张，约 ${len(todo) * PRICE:.2f}')
+    left = BUDGET - _spend['total']
+    print(f'图像模型 {IMAGE_MODELS[0][0]} 起，画风参考 {len(REFS)} 张；规划好的词要画 {total_jobs} 张；这一轮画 {len(todo)} 张，'
+          f'约 ${len(todo) * EST_IMAGE:.2f}；已花 ${_spend["total"]:.2f} / 上限 ${BUDGET:.0f}')
+    stop = []  # 预算用完或密钥有问题时，别的线程也停
 
     def work(job):
+        if stop:
+            return job['key'], None, '已停止', None
         try:
-            f = fname(job)
-            (ART / f).write_bytes(to_webp(generate(job)))
-            return job['key'], f, None
+            png = generate(job)
+            scene_used, note = None, None
+            if CHECK:
+                ok, problem, better = check(job, png)
+                if not ok:
+                    print(f'  检查没通过 {job["key"]}：{problem[:120]}')
+                    if better and job['key'] not in hints:
+                        png2 = generate(job, better)
+                        ok2, problem2, _ = check(dict(job, scene=better), png2)
+                        png, scene_used = png2, better
+                        note = None if ok2 else (problem2 or problem)
+                    else:
+                        note = problem
+            f = fname(dict(job, scene=scene_used) if scene_used else job)
+            (ART / f).write_bytes(to_webp(png))
+            return job['key'], f, None, (scene_used, note)
+        except (BudgetExceeded, PermissionError) as e:
+            stop.append(str(e))
+            return job['key'], None, str(e), None
         except Exception as e:
-            return job['key'], None, str(e)
+            return job['key'], None, str(e), None
 
     failed, done = [], 0
     with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        for key, f, err in ex.map(work, todo):
+        for key, f, err, extra in ex.map(work, todo):
             if err:
-                failed.append((key, err))
-                print(f'  失败 {key}：{err[:200]}')
+                if err != '已停止':
+                    failed.append((key, err))
+                    print(f'  失败 {key}：{err[:200]}')
+                continue
+            drawn[key] = f
+            done += 1
+            scene_used, note = extra
+            wid, st = key.split('@')
+            if scene_used:  # 换了画面描述，记进规划，下次不会因为描述变了又重画
+                plan['words'][wid]['stages'][st] = {'scene': scene_used}
+            if note:
+                flags[key] = note
             else:
-                drawn[key] = f
-                done += 1
-                if done % 25 == 0:
-                    print(f'  已完成 {done}/{len(todo)}')
+                flags.pop(key, None)
+            if done % 25 == 0:
+                print(f'  已完成 {done}/{len(todo)}，已花 ${_spend["total"]:.2f}')
+    (ART / 'plan.json').write_text(json.dumps(plan, ensure_ascii=False, indent=0))
 
     valid = {j['key'] for j in jobs_for(targets, plan, hints)}
     drawn = {k: v for k, v in drawn.items() if k in valid and (ART / v).exists()}
+    flags = {k: v for k, v in flags.items() if k in drawn}
     keep = set(drawn.values())
     for p in ART.glob('*.webp'):
         if p.name not in keep:
@@ -414,18 +548,31 @@ def main():
     files = resolve_index(targets, plan, hints, drawn)
     pairs = sum(len(t['stages']) for t in targets)
     complete = len(files) == pairs
-    (ART / 'index.json').write_text(json.dumps({'model': MODEL, 'complete': complete, 'files': files, 'drawn': drawn},
+    model = (_img[0] or IMAGE_MODELS[0])[0] if (_img[0] or IMAGE_MODELS) else ''
+    (ART / 'index.json').write_text(json.dumps({'model': model, 'complete': complete, 'files': files, 'drawn': drawn},
                                                ensure_ascii=False, separators=(',', ':')))
     (ART / 'reject.json').write_text(json.dumps(sorted(reject), ensure_ascii=False))
+    (ART / 'flags.json').write_text(json.dumps(flags, ensure_ascii=False, indent=0))
     planned = sum(1 for t in targets if t['id'] in plan['words'])
-    review_page(targets, plan, hints, drawn, reject,
-                f'插画审核：规划 {planned}/{len(targets)} 词 · 画了 {len(drawn)}/{total_jobs} 张 · 覆盖 {len(files)}/{pairs} 个"词×阶段" · {MODEL}')
-    print(f'这一轮：新画 {done} 张，失败 {len(failed)} 张；已画 {len(drawn)}/{total_jobs}；覆盖 {len(files)}/{pairs}；审核页 art/review.html')
+    review_page(targets, plan, hints, drawn, reject, flags,
+                f'插画审核：规划 {planned}/{len(targets)} 词 · 画了 {len(drawn)}/{total_jobs} 张 · 覆盖 {len(files)}/{pairs} 个"词×阶段" · '
+                f'自动检查待看 {len(flags)} 张 · 已花 ${_spend["total"]:.2f}')
+    print(f'这一轮：新画 {done} 张，失败 {len(failed)} 张；已画 {len(drawn)}/{total_jobs}；覆盖 {len(files)}/{pairs}；已花 ${_spend["total"]:.2f}')
+    more = MODE == 'full' and (remaining_after > 0 or (failed and done > 0) or (planned < len(targets) and newly_planned > 0))
+    result = 'stopped' if stop else ('error' if failed and done == 0 else ('more' if more else 'done'))
+    write_status(result=result, message=(stop[0] if stop else (f'{failed[0][0]}：{failed[0][1][:400]}' if failed else '')),
+                 planned=planned, words=len(targets), drawn=len(drawn), jobs=total_jobs, covered=len(files), pairs=pairs,
+                 flagged=len(flags), failed=len(failed), this_round=done, complete=complete)
+    if stop:
+        sys.exit(f'停止：{stop[0]}')
     if failed and done == 0:
         sys.exit(f'全部失败，示例：{failed[0][0]}：{failed[0][1][:400]}')
-    # 退出码 10 = 还有要画的，workflow 提交后接着画
-    if MODE == 'full' and (remaining_after > 0 or (failed and done > 0) or (planned < len(targets) and newly_planned > 0)):
-        sys.exit(10)
+    if more:
+        sys.exit(10)  # 还有要画的，workflow 提交后接着画
 
 
-main()
+try:
+    main()
+except (BudgetExceeded, PermissionError, RuntimeError) as e:
+    write_status(result='stopped' if isinstance(e, (BudgetExceeded, PermissionError)) else 'error', message=str(e)[:600])
+    sys.exit(f'停止：{e}')

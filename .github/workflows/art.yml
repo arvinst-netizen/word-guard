@@ -1,9 +1,12 @@
 name: 生成插画
 on:
+  # Claude 推送 art/run.json 就会运行（内容如 {"mode": "sample", "redo": "", "n": 1}）
+  push:
+    paths: ['art/run.json']
   workflow_dispatch:
     inputs:
       mode:
-        description: 'sample = 先规划并画 16 个词看画风和递进；plan = 只写画面描述（便宜，可先审）；full = 规划并画完全部（可中断，再跑接着画）；redo = 重画指定的'
+        description: 'sample = 规划并画 16 个词看画风和递进；plan = 只写画面描述；full = 规划并画完全部（可中断，再跑接着画）；redo = 重画指定的'
         required: true
         default: sample
         type: choice
@@ -12,25 +15,17 @@ on:
         description: 'redo 模式：要重画的，用逗号分隔；"run" 重画这个词所有阶段，"run@ket" 只重画 KET 阶段'
         required: false
         default: ''
-      model:
-        description: 'Vertex AI 图像模型'
+      budget:
+        description: '花费上限（美元，累计），到了就停'
         required: false
-        default: gemini-3.1-flash-image
-      planner:
-        description: '写画面描述的文字模型（留空自动选可用的）'
-        required: false
-        default: ''
-      size:
-        description: '生成尺寸 512 / 1K（游戏里用 256，512 足够也更便宜）'
-        required: false
-        default: '512'
+        default: '250'
 permissions:
   contents: write
 concurrency: art
 jobs:
   art:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
       - name: 安装 Pillow
@@ -39,23 +34,31 @@ jobs:
         env:
           VERTEX_API_KEY: ${{ secrets.VERTEX_API_KEY }}
           GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
-          MODE: ${{ inputs.mode }}
-          REDO: ${{ inputs.redo }}
-          MODEL: ${{ inputs.model }}
-          SIZE: ${{ inputs.size }}
-          PLANNER: ${{ inputs.planner }}
+          IN_MODE: ${{ inputs.mode }}
+          IN_REDO: ${{ inputs.redo }}
+          IN_BUDGET: ${{ inputs.budget }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          if [ "${{ github.event_name }}" = push ]; then
+            eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))))")"
+          else
+            export MODE="$IN_MODE" REDO="$IN_REDO" BUDGET="$IN_BUDGET"
+          fi
+          echo "模式 $MODE，上限 \$$BUDGET"
           commit() {
             git add art
             git diff --cached --quiet && return 0
-            git commit -q -m "生成插画（${MODE} ${MODEL}）"
-            git pull -q --rebase && git push -q
+            git commit -q -m "插画：$MODE $(python3 -c "import json;s=json.load(open('art/status.json'));print(s.get('result',''),s.get('drawn',''),'张','\$'+str(s.get('spend','')))" 2>/dev/null)"
+            for i in 1 2 3; do git pull -q --rebase && git push -q && return 0; sleep 5; done
           }
-          for round in $(seq 1 30); do
-            set +e; python3 tools/art.py; code=$?; set -e
+          code=0
+          for round in $(seq 1 60); do
+            set +e; timeout 90m python3 tools/art.py; code=$?; set -e
             commit
-            if [ "$code" = 10 ]; then echo "第 $round 轮完成，接着画"; continue; fi
-            exit $code
+            if [ "$code" != 10 ]; then break; fi
+            # 一个任务最多跑 6 小时：5 小时后停下，status.json 里 result=more，再推送 run.json 接着画
+            if [ $SECONDS -gt 18000 ]; then echo "时间快到，先停在这里"; code=0; break; fi
+            echo "第 $round 轮完成，接着画"
           done
+          exit $code
