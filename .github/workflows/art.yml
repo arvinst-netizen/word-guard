@@ -41,10 +41,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
           if [ "${{ github.event_name }}" = push ]; then
-            eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))))")"
+            eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))),'RUN_PROJECT='+shlex.quote(str(r.get('project',''))))")"
           else
             export MODE="$IN_MODE" REDO="$IN_REDO" BUDGET="$IN_BUDGET"
           fi
+          # 项目号不是机密：Secrets 里没有 GCP_PROJECT 时用 run.json 里的（走 global 端点，价格最低、Nano Banana 2.1 只在 global）
+          if [ -z "$GCP_PROJECT" ] && [ -n "$RUN_PROJECT" ]; then export GCP_PROJECT="$RUN_PROJECT"; fi
           echo "模式 $MODE，上限 \$$BUDGET"
           commit() {
             git add art
