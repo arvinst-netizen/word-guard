@@ -1,0 +1,187 @@
+{
+"words": {
+"busy": {
+"sig": "971b24b33a",
+"stages": {
+"starters": {
+"scene": "A cute cartoon boy carrying a huge stack of colorful books that covers his face."
+},
+"movers": {
+"scene": "A cartoon mom holding a crying baby in one arm while stirring a cooking pot with her other hand."
+},
+"ket": {
+"scene": "A close-up of a person's hands typing rapidly on a laptop keyboard while holding a ringing telephone with their shoulder."
+}
+}
+},
+"happy": {
+"sig": "4cee29181c",
+"stages": {
+"starters": {
+"scene": "A cute cartoon girl jumping high in the air with a huge, joyful smile."
+},
+"movers": {
+"scene": "A happy cartoon boy hugging a big, fluffy dog that is licking his cheek."
+},
+"ket": {
+"scene": "A close-up of a smiling child's face wearing a bright, colorful birthday party hat while blowing a party horn."
+}
+}
+},
+"small": {
+"sig": "f4bf6e619c",
+"stages": {
+"starters": {
+"scene": "A tiny, cute ladybug sitting on a single blade of green grass."
+},
+"movers": {
+"scene": "A tiny yellow chick standing next to a giant, massive brown bear."
+},
+"ket": {
+"scene": "A close-up of a giant adult hand gently holding a tiny, miniature toy car on one finger."
+}
+}
+},
+"pencil": {
+"sig": "af4cb30d39",
+"stages": {
+"starters": {
+"scene": "A single, bright yellow cartoon pencil with a pink eraser."
+},
+"movers": {
+"reuse": "starters"
+},
+"ket": {
+"reuse": "starters"
+}
+}
+},
+"apple": {
+"sig": "5101189f0d",
+"stages": {
+"starters": {
+"scene": "A shiny, bright red apple with a single green leaf on its stem."
+},
+"movers": {
+"reuse": "starters"
+},
+"ket": {
+"reuse": "starters"
+}
+}
+},
+"run": {
+"sig": "b9acd4c062",
+"stages": {
+"starters": {
+"scene": "A cute cartoon boy running fast, with sweat drops flying and feet off the ground."
+},
+"movers": {
+"scene": "A smiling cartoon boy running fast to catch a flying red frisbee."
+},
+"ket": {
+"scene": "A close-up of a runner's legs in bright red sneakers crossing a bright white finish line tape."
+}
+}
+},
+"light": {
+"sig": "2be869a0ec",
+"stages": {
+"starters": {
+"scene": "A glowing, yellow lightbulb shining brightly."
+},
+"ket": {
+"scene": "A close-up of a hand pressing a wall switch, making a bright desk lamp turn on."
+}
+}
+},
+"kitchen": {
+"sig": "6d76f326c2",
+"stages": {
+"starters": {
+"scene": "A simple, bright kitchen with a stove, a sink, and cabinets, clearly showing a kitchen room in a cute cartoon style."
+},
+"movers": {
+"scene": "A cartoon chef tossing a green vegetable inside a hot frying pan."
+},
+"ket": {
+"scene": "A cozy kitchen with a stove, a sink, cabinets, and a refrigerator clearly visible."
+}
+}
+},
+"break": {
+"sig": "83e14890ce",
+"stages": {
+"movers": {
+"scene": "A cartoon cat sitting next to a shattered, broken flower vase on the floor."
+},
+"ket": {
+"scene": "A ceramic plate falling and shattering into pieces on the floor."
+}
+}
+},
+"celebrate": {
+"sig": "0562993146",
+"stages": {
+"movers": {
+"scene": "Happy cartoon children at a birthday party with a cake, balloons, and confetti, cheering and clapping to celebrate."
+},
+"ket": {
+"scene": "A close-up of a person's hands lighting a single sparkling candle on a colorful birthday cake."
+}
+}
+},
+"dangerous": {
+"sig": "1fb8fc08d6",
+"stages": {
+"movers": {
+"scene": "A cute cartoon boy reaching his hand toward a hot, glowing red iron."
+},
+"ket": {
+"scene": "A close-up of a hand about to touch a bare, sparking electrical wire."
+}
+}
+},
+"opinion": {
+"sig": "8ea656c0e8",
+"stages": {
+"ket": {
+"scene": "Two children talking, each with a speech bubble showing a different symbol (like a star and a heart) to represent different opinions."
+}
+}
+},
+"borrow": {
+"sig": "faf6b75661",
+"stages": {
+"ket": {
+"scene": "A close-up of one hand handing a thick, colorful book to another waiting hand."
+}
+}
+},
+"vote": {
+"sig": "abf7494f64",
+"stages": {
+"pet": {
+"scene": "A smiling cartoon girl with a proud expression, dropping a folded paper slip into a big wooden ballot box."
+}
+}
+},
+"peace": {
+"sig": "7cb5800397",
+"stages": {
+"pet": {
+"scene": "A peaceful cartoon boy with closed eyes and a serene smile, holding a white dove in his hands."
+}
+}
+},
+"compare": {
+"sig": "7b6b505c7f",
+"stages": {
+"pet": {
+"scene": "A curious cartoon girl squinting her eyes, holding a giant red apple in one hand and a tiny green grape in the other."
+}
+}
+}
+},
+"planner": "gemini-3.5-flash"
+}
