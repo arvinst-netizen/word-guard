@@ -3,6 +3,9 @@ on:
   # Claude 推送 art/run.json 就会运行（内容如 {"mode": "sample", "redo": "", "n": 1}）
   push:
     paths: ['art/run.json']
+  # 自动续画：每 6 小时看一次，art/autopilot.json 打开、上一轮还没画完（status 是 more）就接着画
+  schedule:
+    - cron: '23 */6 * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -40,8 +43,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
-          if [ "${{ github.event_name }}" = push ]; then
-            eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))),'RUN_PROJECT='+shlex.quote(str(r.get('project',''))),'LIMIT='+shlex.quote(str(r.get('limit',150))),'ROUNDS='+shlex.quote(str(r.get('rounds',60))))")"
+          if [ "${{ github.event_name }}" = schedule ]; then
+            go=$(python3 -c "import json,os;a=json.load(open('art/autopilot.json')) if os.path.exists('art/autopilot.json') else {};s=json.load(open('art/status.json')) if os.path.exists('art/status.json') else {};print('yes' if a.get('enabled') and s.get('result')=='more' else 'no')")
+            if [ "$go" != yes ]; then echo "自动续画没打开或已画完，不用跑"; exit 0; fi
+            cp art/autopilot.json art/run.json
+          fi
+          if [ "${{ github.event_name }}" != workflow_dispatch ]; then
+            eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))),'RUN_PROJECT='+shlex.quote(str(r.get('project',''))),'LIMIT='+shlex.quote(str(r.get('limit',150))),'ROUNDS='+shlex.quote(str(r.get('rounds',60))),'THINKING='+shlex.quote(str(r.get('thinking',''))))")"
           else
             export MODE="$IN_MODE" REDO="$IN_REDO" BUDGET="$IN_BUDGET"
           fi
@@ -59,6 +67,7 @@ jobs:
             set +e; timeout 90m python3 tools/art.py; code=$?; set -e
             commit
             if [ "$code" != 10 ]; then break; fi
+            if [ "$round" -ge "${ROUNDS:-60}" ]; then code=0; break; fi
             # 一个任务最多跑 6 小时：5 小时后停下，status.json 里 result=more，再推送 run.json 接着画
             if [ $SECONDS -gt 18000 ]; then echo "时间快到，先停在这里"; code=0; break; fi
             echo "第 $round 轮完成，接着画"

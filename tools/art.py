@@ -42,18 +42,20 @@ LIMIT = int(os.environ.get('LIMIT', '') or '150')
 WORKERS = int(os.environ.get('WORKERS', '') or '4')
 BUDGET = float(os.environ.get('BUDGET', '') or '250')
 CHECK = os.environ.get('CHECK', '1') != '0'
+THINKING = os.environ.get('THINKING', '').strip().upper()  # 图像模型思考程度：空 = 默认；MINIMAL / LOW / HIGH
+_think_ok = [bool(THINKING)]
 MIN_INTERVAL = float(os.environ.get('MIN_INTERVAL', '') or '2')
-# 官方价格（Vertex AI Global，美元 / 百万 token，2026-11）：输入、输出
+# 官方价格（Vertex AI Global Standard，美元 / 百万 token，2026-11）：输入、文字输出（含思考）、图片输出
 PRICES = {
-    'gemini-nano-banana-2.1': (1.5, 30.0),
-    'gemini-3.1-flash-image': (0.5, 60.0),
-    'gemini-3.1-flash-lite-image': (0.25, 30.0),
-    'gemini-3.5-flash': (1.5, 9.0),
-    'gemini-3-flash': (0.5, 3.0),
-    'gemini-3-flash-preview': (0.5, 3.0),
-    'gemini-2.5-flash': (0.3, 2.5),
+    'gemini-nano-banana-2.1': (1.5, 7.5, 30.0),
+    'gemini-3.1-flash-image': (0.5, 3.0, 60.0),
+    'gemini-3.1-flash-lite-image': (0.25, 7.5, 30.0),
+    'gemini-3.5-flash': (1.5, 9.0, 9.0),
+    'gemini-3-flash': (0.5, 3.0, 3.0),
+    'gemini-3-flash-preview': (0.5, 3.0, 3.0),
+    'gemini-2.5-flash': (0.3, 2.5, 2.5),
 }
-UNKNOWN_PRICE = (2.0, 60.0)  # 不认识的模型按贵的算
+UNKNOWN_PRICE = (2.0, 15.0, 60.0)  # 不认识的模型按贵的算
 EST_IMAGE = 0.05  # 估算用：每张图（含参考图输入和检查）
 PLAN_BATCH = 20
 ROOT = Path(__file__).resolve().parent.parent
@@ -127,10 +129,15 @@ _spend = json.loads(SPEND_PATH.read_text()) if SPEND_PATH.exists() else {'total'
 
 
 def add_spend(model, usage, kind):
-    pin, pout = PRICES.get(model, UNKNOWN_PRICE)
+    pin, ptext, pimg = PRICES.get(model, UNKNOWN_PRICE)
     tin = usage.get('promptTokenCount', 0)
-    tout = usage.get('candidatesTokenCount', 0) + usage.get('thoughtsTokenCount', 0)
-    cost = (tin * pin + tout * pout) / 1e6
+    cand = usage.get('candidatesTokenCount', 0)
+    details = usage.get('candidatesTokensDetails') or []
+    img = sum(d.get('tokenCount', 0) for d in details if d.get('modality') == 'IMAGE')
+    if not details and kind == 'draw':
+        img = cand  # 没有明细时，画图请求的输出都按图片价算（偏贵，保守）
+    text = cand - img + usage.get('thoughtsTokenCount', 0)
+    cost = (tin * pin + text * ptext + img * pimg) / 1e6
     with _lock:
         tk = _spend.setdefault('tokens', {}).setdefault(f'{kind}:{model}', {'calls': 0, 'in': 0, 'out': 0, 'thoughts': 0, 'cost': 0.0})
         tk['calls'] += 1
@@ -174,6 +181,12 @@ def call(model, body, label, kind):
                 if _size_ok[0]:
                     _size_ok[0] = False
                     print(f'  模型不支持这个尺寸，改用默认尺寸')
+                continue
+            if e.code == 400 and 'thinkingConfig' in body.get('generationConfig', {}) and ('thinking' in msg.lower()):
+                del body['generationConfig']['thinkingConfig']
+                if _think_ok[0]:
+                    _think_ok[0] = False
+                    print(f'  模型不支持 thinkingLevel={THINKING}，用默认')
                 continue
             if e.code in (401, 403):
                 raise PermissionError(f'密钥或权限有问题（{e.code}）：{msg[:300]}')
@@ -324,6 +337,8 @@ def generate(job, scene=None) -> bytes:
         gen = {'responseModalities': ['IMAGE'], 'imageConfig': {'aspectRatio': '1:1'}}
         if _size_ok[0]:
             gen['imageConfig']['imageSize'] = size
+        if _think_ok[0]:
+            gen['thinkingConfig'] = {'thinkingLevel': THINKING}
         body = {'contents': [{'role': 'user', 'parts': REFS + [{'text': prompt(dict(job, scene=scene or job['scene']))}]}], 'generationConfig': gen}
         try:
             for _ in range(3):  # 偶尔只回文字不回图，再试
