@@ -132,6 +132,12 @@ def add_spend(model, usage, kind):
     tout = usage.get('candidatesTokenCount', 0) + usage.get('thoughtsTokenCount', 0)
     cost = (tin * pin + tout * pout) / 1e6
     with _lock:
+        tk = _spend.setdefault('tokens', {}).setdefault(f'{kind}:{model}', {'calls': 0, 'in': 0, 'out': 0, 'thoughts': 0, 'cost': 0.0})
+        tk['calls'] += 1
+        tk['in'] += tin
+        tk['out'] += usage.get('candidatesTokenCount', 0)
+        tk['thoughts'] += usage.get('thoughtsTokenCount', 0)
+        tk['cost'] = round(tk['cost'] + cost, 4)
         _spend['total'] = round(_spend['total'] + cost, 4)
         _spend['by'][kind] = round(_spend['by'].get(kind, 0) + cost, 4)
         _spend['calls'] += 1
@@ -384,7 +390,7 @@ def to_webp(png: bytes) -> bytes:
 
 
 def fname(job) -> str:
-    key = f'{REF_TAG}|{job["key"]}|{job["zh"]}|{job["scene"]}|{job.get("v", 0)}'
+    key = f'|{job["key"]}|{job["zh"]}|{job["scene"]}|{job.get("v", 0)}'  # 开头的 | 是早先留下的（兼容已画的文件名）
     return hashlib.sha1(key.encode()).hexdigest()[:16] + '.webp'
 
 
@@ -538,6 +544,8 @@ def main():
             if CHECK:
                 ok, problem, better = check(job, png)
                 if not ok:
+                    with _lock:
+                        _spend['check_fail'] = _spend.get('check_fail', 0) + 1
                     print(f'  检查没通过 {job["key"]}：{problem[:120]}')
                     if better and job['key'] not in hints:
                         png2 = generate(job, better)

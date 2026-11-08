@@ -41,7 +41,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
           if [ "${{ github.event_name }}" = push ]; then
-            eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))),'RUN_PROJECT='+shlex.quote(str(r.get('project',''))))")"
+            eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))),'RUN_PROJECT='+shlex.quote(str(r.get('project',''))),'LIMIT='+shlex.quote(str(r.get('limit',150))),'ROUNDS='+shlex.quote(str(r.get('rounds',60))))")"
           else
             export MODE="$IN_MODE" REDO="$IN_REDO" BUDGET="$IN_BUDGET"
           fi
@@ -55,7 +55,7 @@ jobs:
             for i in 1 2 3; do git pull -q --rebase && git push -q && return 0; sleep 5; done
           }
           code=0
-          for round in $(seq 1 60); do
+          for round in $(seq 1 ${ROUNDS:-60}); do
             set +e; timeout 90m python3 tools/art.py; code=$?; set -e
             commit
             if [ "$code" != 10 ]; then break; fi
