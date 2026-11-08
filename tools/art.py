@@ -26,7 +26,7 @@
 art/reject.json 里列的（"词" 或 "词@阶段"）游戏不用。
 """
 import base64, hashlib, html, io, json, os, re, sys, threading, time, urllib.error, urllib.request
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from PIL import Image, ImageDraw
 
@@ -41,6 +41,8 @@ REDO = [w.strip() for w in os.environ.get('REDO', '').split(',') if w.strip()]
 LIMIT = int(os.environ.get('LIMIT', '') or '150')
 WORKERS = int(os.environ.get('WORKERS', '') or '4')
 BUDGET = float(os.environ.get('BUDGET', '') or '250')
+ROUND_MINUTES = float(os.environ.get('ROUND_MINUTES', '') or '40')  # 一轮最多画多久，到时间就收尾提交（配额慢时不至于被超时打断）
+SAVE_EVERY = 10  # 每画好几张就把进度写盘一次
 CHECK = os.environ.get('CHECK', '1') != '0'
 THINKING = os.environ.get('THINKING', '').strip().upper()  # 图像模型思考程度：空 = 默认；MINIMAL / LOW / HIGH
 _think_ok = [bool(THINKING)]
@@ -540,6 +542,14 @@ def main():
                 todo.append(dict(job, v=int(time.time())))  # 换个版本号，生成新文件
         reject -= set(REDO)
     else:
+        # 上一轮被打断时，图已经画好、存了文件，但进度没写进清单：文件名由内容算出，对得上就直接认领
+        adopted = 0
+        for j in jobs_for(targets, plan, hints, words):
+            if drawn.get(j['key']) != fname(j) and (ART / fname(j)).exists():
+                drawn[j['key']] = fname(j)
+                adopted += 1
+        if adopted:
+            print(f'认领上次已画好的 {adopted} 张')
         todo = [j for j in jobs_for(targets, plan, hints, words) if drawn.get(j['key']) != fname(j) or not (ART / fname(j)).exists()]
     total_jobs = len(jobs_for(targets, plan, hints))
     remaining_after = max(0, len(todo) - LIMIT) if MODE == 'full' else 0
@@ -549,9 +559,14 @@ def main():
     print(f'图像模型 {IMAGE_MODELS[0][0]} 起，画风参考 {len(REFS)} 张；规划好的词要画 {total_jobs} 张；这一轮画 {len(todo)} 张，'
           f'约 ${len(todo) * EST_IMAGE:.2f}；已花 ${_spend["total"]:.2f} / 上限 ${BUDGET:.0f}')
     stop = []  # 预算用完或密钥有问题时，别的线程也停
+    deadline = time.monotonic() + ROUND_MINUTES * 60
+    skipped = [0]
 
     def work(job):
         if stop:
+            return job['key'], None, '已停止', None
+        if time.monotonic() > deadline:
+            skipped[0] += 1
             return job['key'], None, '已停止', None
         try:
             png = generate(job)
@@ -579,12 +594,24 @@ def main():
             return job['key'], None, str(e), None
 
     failed, done = [], 0
+
+    def save_state():
+        (ART / 'plan.json').write_text(json.dumps(plan, ensure_ascii=False, indent=0))
+        files_now = resolve_index(targets, plan, hints, drawn)
+        (ART / 'index.json').write_text(json.dumps({'model': (_img[0] or IMAGE_MODELS[0])[0] if (_img[0] or IMAGE_MODELS) else '',
+                                                    'complete': False, 'files': files_now, 'drawn': drawn},
+                                                   ensure_ascii=False, separators=(',', ':')))
+        (ART / 'flags.json').write_text(json.dumps(flags, ensure_ascii=False, indent=0))
+        SPEND_PATH.write_text(json.dumps(_spend))
+
     with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        for key, f, err, extra in ex.map(work, todo):
+        futures = [ex.submit(work, j) for j in todo]
+        for fut in as_completed(futures):
+            key, f, err, extra = fut.result()
             if err:
                 if err != '已停止':
                     failed.append((key, err))
-                    print(f'  失败 {key}：{err[:200]}')
+                    print(f'  失败 {key}：{err[:200]}', flush=True)
                 continue
             drawn[key] = f
             done += 1
@@ -596,8 +623,10 @@ def main():
                 flags[key] = note
             else:
                 flags.pop(key, None)
+            if done % SAVE_EVERY == 0:
+                save_state()
             if done % 25 == 0:
-                print(f'  已完成 {done}/{len(todo)}，已花 ${_spend["total"]:.2f}')
+                print(f'  已完成 {done}/{len(todo)}，已花 ${_spend["total"]:.2f}', flush=True)
     (ART / 'plan.json').write_text(json.dumps(plan, ensure_ascii=False, indent=0))
 
     valid = {j['key'] for j in jobs_for(targets, plan, hints)}
@@ -620,7 +649,9 @@ def main():
                 f'插画审核：规划 {planned}/{len(targets)} 词 · 画了 {len(drawn)}/{total_jobs} 张 · 覆盖 {len(files)}/{pairs} 个"词×阶段" · '
                 f'自动检查待看 {len(flags)} 张 · 已花 ${_spend["total"]:.2f}')
     print(f'这一轮：新画 {done} 张，失败 {len(failed)} 张；已画 {len(drawn)}/{total_jobs}；覆盖 {len(files)}/{pairs}；已花 ${_spend["total"]:.2f}')
-    more = MODE == 'full' and (remaining_after > 0 or (failed and done > 0) or (planned < len(targets) and newly_planned > 0))
+    more = MODE == 'full' and (remaining_after > 0 or skipped[0] > 0 or (failed and done > 0) or (planned < len(targets) and newly_planned > 0))
+    if skipped[0]:
+        print(f'到了一轮的时间（{ROUND_MINUTES:.0f} 分钟），还有 {skipped[0]} 张留到下一轮')
     result = 'stopped' if stop else ('error' if failed and done == 0 else ('more' if more else 'done'))
     write_status(result=result, message=(stop[0] if stop else (f'{failed[0][0]}：{failed[0][1][:400]}' if failed else '')),
                  planned=planned, words=len(targets), drawn=len(drawn), jobs=total_jobs, covered=len(files), pairs=pairs,

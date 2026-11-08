@@ -64,7 +64,8 @@ jobs:
           }
           code=0
           for round in $(seq 1 ${ROUNDS:-60}); do
-            set +e; timeout 90m python3 tools/art.py; code=$?; set -e
+            set +e; timeout 75m python3 -u tools/art.py; code=$?; set -e
+            if [ "$code" = 124 ]; then echo "这一轮超时，已画的下一轮会认领"; code=10; fi
             commit
             if [ "$code" != 10 ]; then break; fi
             if [ "$round" -ge "${ROUNDS:-60}" ]; then code=0; break; fi
