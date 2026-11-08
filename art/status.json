@@ -1,17 +1,17 @@
 {
  "mode": "check",
  "result": "ready",
- "message": "可以开始：图像模型 gemini-3.1-flash-image，文字模型 gemini-3.5-flash",
+ "message": "可以开始：图像模型 gemini-nano-banana-2.1，文字模型 gemini-3.5-flash",
  "models": {
-  "gemini-nano-banana-2.1": "404：{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Publisher model `projects/863612587482/locations/us-central1/publishers/google/models/gemini-nano-banana-2.1` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the speci",
+  "gemini-nano-banana-2.1": "ok",
   "gemini-3.1-flash-image": "ok",
   "gemini-3.5-flash": "ok",
-  "gemini-3-flash": "404：{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Publisher model `projects/863612587482/locations/us-west4/publishers/google/models/gemini-3-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region",
+  "gemini-3-flash": "404：{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Publisher model `projects/863612587482/locations/global/publishers/google/models/gemini-3-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. ",
   "gemini-3-flash-preview": "ok",
-  "gemini-2.5-flash": "404：{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Publisher model `projects/863612587482/locations/us-central1/publishers/google/models/gemini-2.5-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified r"
+  "gemini-2.5-flash": "404：{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Publisher model `projects/863612587482/locations/global/publishers/google/models/gemini-2.5-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region"
  },
- "project_path": false,
+ "project_path": true,
  "spend": 0.0,
  "budget": 250.0,
- "at": "2026-11-08 12:27:42 UTC"
+ "at": "2026-11-08 12:28:47 UTC"
 }
