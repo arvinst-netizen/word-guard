@@ -1961,7 +1961,7 @@
 "scene": "A cute cartoon runner in a starting stance, looking forward eagerly."
 },
 "ket": {
-"scene": "Close-up of a child's hands tying the laces of a bright blue sneaker."
+"scene": "A runner in a starting position on a running track, poised and waiting for the race to begin."
 }
 }
 },
@@ -2170,10 +2170,10 @@
 "sig": "a8bd91da28",
 "stages": {
 "starters": {
-"scene": "ONE cartoon girl running forward with an excited, happy face."
+"scene": "A cartoon child walking towards a school building with a green arrow pointing forward to represent 'go'."
 },
 "ket": {
-"scene": "Close-up of a hand pushing open a green door leading to a bright sunny path outside."
+"scene": "A cartoon child happily walking along a path towards a school in the distance, waving goodbye."
 }
 }
 },
@@ -2214,10 +2214,10 @@
 "sig": "323ae64102",
 "stages": {
 "starters": {
-"scene": "ONE cartoon boy standing patiently with his hands behind his back."
+"scene": "A cartoon boy standing at a bus stop, looking at his wristwatch impatiently."
 },
 "movers": {
-"scene": "A boy standing patiently in line behind a girl, waiting."
+"scene": "A boy standing at a bus stop, looking at his watch while waiting for a bus visible in the distance."
 },
 "ket": {
 "scene": "Close-up of a hand tapping a wristwatch impatiently."
@@ -2449,7 +2449,7 @@
 "scene": "A large red apple sitting next to a small yellow banana on a flat surface."
 },
 "ket": {
-"scene": "A tight close-up of a hand peeling a bright orange, with a piece of peel curling down."
+"scene": "A colorful basket filled with various fruits like an apple, a banana, grapes, and an orange."
 }
 }
 },
