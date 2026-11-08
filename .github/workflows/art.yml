@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'sample = 规划并画 16 个词看画风和递进；plan = 只写画面描述；full = 规划并画完全部（可中断，再跑接着画）；redo = 重画指定的'
+        description: 'check = 免费检查密钥和模型；sample = 规划并画 16 个词看画风和递进；plan = 只写画面描述；full = 规划并画完全部（可中断，再跑接着画）；redo = 重画指定的'
         required: true
         default: sample
         type: choice
-        options: [sample, plan, full, redo]
+        options: [check, sample, plan, full, redo]
       redo:
         description: 'redo 模式：要重画的，用逗号分隔；"run" 重画这个词所有阶段，"run@ket" 只重画 KET 阶段'
         required: false

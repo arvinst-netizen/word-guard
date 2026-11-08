@@ -16,6 +16,7 @@
 每次运行结束写 art/status.json（模式、结果、进度、花费、出错信息）。
 自动触发：推送 art/run.json（{"mode": ..., "redo": ..., "n": 序号}）就会运行，方便不打开网页也能启动。
 模式：
+- check：免费检查密钥和模型（只调 countTokens，不收费、不生成）
 - plan：只做第 1 步（全部词），审核页 art/review.html 能看到每个画面描述
 - sample：挑十几个词（含跨阶段的）规划并画出来，看画风和递进效果
 - full：规划 + 画完全部；每画 LIMIT 张退出一次（退出码 10），由 workflow 提交后接着画
@@ -99,6 +100,9 @@ Scene descriptions: at most 35 English words, concrete and drawable, describe on
 Return JSON only: {"words":[{"id":"<word>","stages":{"<stage>":{"scene":"..."} or {"reuse":"<earlier stage>"}}}]} with every requested stage present."""
 
 if not KEY:
+    (Path(__file__).resolve().parent.parent / 'art' / 'status.json').write_text(json.dumps(
+        {'mode': MODE, 'result': 'error', 'message': '没有找到密钥 VERTEX_API_KEY（仓库 Settings → Secrets and variables → Actions）',
+         'at': time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()) + ' UTC'}, ensure_ascii=False, indent=1))
     sys.exit('没有找到密钥：请在仓库 Settings → Secrets and variables → Actions 里添加 VERTEX_API_KEY')
 
 _lock = threading.Lock()
@@ -459,6 +463,33 @@ def write_status(**kw):
     SPEND_PATH.write_text(json.dumps(_spend))
 
 
+def check_access():
+    """免费检查：只调 countTokens（Google 不收费），看密钥能不能用、哪些模型能用。不生成任何东西。"""
+    results = {}
+    for model in [m for m, _ in IMAGE_MODELS] + PLANNERS:
+        url = endpoint(model).replace(':generateContent', ':countTokens')
+        body = {'contents': [{'role': 'user', 'parts': [{'text': 'hello'}]}]}
+        req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={'Content-Type': 'application/json', 'x-goog-api-key': KEY})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                json.load(r)
+            results[model] = 'ok'
+        except urllib.error.HTTPError as e:
+            results[model] = f'{e.code}：{e.read().decode(errors="replace")[:300]}'
+        except Exception as e:
+            results[model] = f'网络错误：{e}'
+        print(f'  {model}：{results[model][:200]}')
+    image_ok = [m for m, _ in IMAGE_MODELS if results.get(m) == 'ok']
+    text_ok = [m for m in PLANNERS if results.get(m) == 'ok']
+    ready = bool(image_ok and text_ok)
+    (ART / 'status.json').write_text(json.dumps({
+        'mode': 'check', 'result': 'ready' if ready else 'error',
+        'message': f'可以开始：图像模型 {image_ok[0]}，文字模型 {text_ok[0]}' if ready else '密钥或模型不可用，见 models',
+        'models': results, 'project_path': bool(PROJECT), 'spend': _spend['total'], 'budget': BUDGET,
+        'at': time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()) + ' UTC'}, ensure_ascii=False, indent=1))
+    print('可以开始' if ready else '还不能开始')
+
+
 def main():
     targets = json.loads((ART / 'targets.json').read_text())
     by_id = {t['id']: t for t in targets}
@@ -580,7 +611,7 @@ def main():
 
 
 try:
-    main()
+    check_access() if MODE == 'check' else main()
 except (BudgetExceeded, PermissionError, RuntimeError) as e:
     write_status(result='stopped' if isinstance(e, (BudgetExceeded, PermissionError)) else 'error', message=str(e)[:600])
     sys.exit(f'停止：{e}')
