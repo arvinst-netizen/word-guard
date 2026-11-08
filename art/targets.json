@@ -1,0 +1,2886 @@
+[
+{
+"id": "body",
+"zh": "身体"
+},
+{
+"id": "face",
+"zh": "脸"
+},
+{
+"id": "eye",
+"zh": "眼睛"
+},
+{
+"id": "ear",
+"zh": "耳朵"
+},
+{
+"id": "nose",
+"zh": "鼻子"
+},
+{
+"id": "mouth",
+"zh": "嘴"
+},
+{
+"id": "hair",
+"zh": "头发"
+},
+{
+"id": "head",
+"zh": "头"
+},
+{
+"id": "smile",
+"zh": "微笑"
+},
+{
+"id": "arm",
+"zh": "手臂"
+},
+{
+"id": "hand",
+"zh": "手"
+},
+{
+"id": "leg",
+"zh": "腿"
+},
+{
+"id": "foot",
+"zh": "脚"
+},
+{
+"id": "clap",
+"zh": "拍手"
+},
+{
+"id": "point",
+"zh": "指"
+},
+{
+"id": "wave",
+"zh": "挥手"
+},
+{
+"id": "jump",
+"zh": "跳"
+},
+{
+"id": "run",
+"zh": "跑"
+},
+{
+"id": "walk",
+"zh": "走路"
+},
+{
+"id": "red",
+"zh": "红色的"
+},
+{
+"id": "blue",
+"zh": "蓝色的"
+},
+{
+"id": "green",
+"zh": "绿色的"
+},
+{
+"id": "yellow",
+"zh": "黄色的"
+},
+{
+"id": "black",
+"zh": "黑色的"
+},
+{
+"id": "white",
+"zh": "白色的"
+},
+{
+"id": "pink",
+"zh": "粉红色的"
+},
+{
+"id": "purple",
+"zh": "紫色的"
+},
+{
+"id": "brown",
+"zh": "棕色的"
+},
+{
+"id": "gray",
+"zh": "灰色的"
+},
+{
+"id": "apple",
+"zh": "苹果"
+},
+{
+"id": "banana",
+"zh": "香蕉"
+},
+{
+"id": "pear",
+"zh": "梨"
+},
+{
+"id": "orange",
+"zh": "橙子"
+},
+{
+"id": "grape",
+"zh": "葡萄"
+},
+{
+"id": "watermelon",
+"zh": "西瓜"
+},
+{
+"id": "lemon",
+"zh": "柠檬"
+},
+{
+"id": "lime",
+"zh": "青柠"
+},
+{
+"id": "mango",
+"zh": "芒果"
+},
+{
+"id": "fruit",
+"zh": "水果"
+},
+{
+"id": "peach",
+"zh": "桃子"
+},
+{
+"id": "strawberry",
+"zh": "草莓"
+},
+{
+"id": "pineapple",
+"zh": "菠萝"
+},
+{
+"id": "kiwi",
+"zh": "猕猴桃"
+},
+{
+"id": "coconut",
+"zh": "椰子"
+},
+{
+"id": "tomato",
+"zh": "西红柿"
+},
+{
+"id": "potato",
+"zh": "土豆"
+},
+{
+"id": "carrot",
+"zh": "胡萝卜"
+},
+{
+"id": "onion",
+"zh": "洋葱"
+},
+{
+"id": "pea",
+"zh": "豌豆"
+},
+{
+"id": "breakfast",
+"zh": "早餐"
+},
+{
+"id": "lunch",
+"zh": "午餐"
+},
+{
+"id": "dinner",
+"zh": "晚餐"
+},
+{
+"id": "bread",
+"zh": "面包"
+},
+{
+"id": "egg",
+"zh": "鸡蛋"
+},
+{
+"id": "milk",
+"zh": "牛奶"
+},
+{
+"id": "rice",
+"zh": "米饭"
+},
+{
+"id": "meat",
+"zh": "肉"
+},
+{
+"id": "sausage",
+"zh": "香肠"
+},
+{
+"id": "bean",
+"zh": "豆子"
+},
+{
+"id": "cake",
+"zh": "蛋糕"
+},
+{
+"id": "ice cream",
+"zh": "冰淇淋"
+},
+{
+"id": "chocolate",
+"zh": "巧克力"
+},
+{
+"id": "candy",
+"zh": "糖果"
+},
+{
+"id": "pie",
+"zh": "馅饼"
+},
+{
+"id": "burger",
+"zh": "汉堡包"
+},
+{
+"id": "fries",
+"zh": "薯条"
+},
+{
+"id": "meatballs",
+"zh": "肉丸"
+},
+{
+"id": "eat",
+"zh": "吃"
+},
+{
+"id": "drink",
+"zh": "喝"
+},
+{
+"id": "food",
+"zh": "食物"
+},
+{
+"id": "juice",
+"zh": "果汁"
+},
+{
+"id": "lemonade",
+"zh": "柠檬水"
+},
+{
+"id": "water",
+"zh": "水"
+},
+{
+"id": "cow",
+"zh": "奶牛"
+},
+{
+"id": "sheep",
+"zh": "绵羊"
+},
+{
+"id": "goat",
+"zh": "山羊"
+},
+{
+"id": "horse",
+"zh": "马"
+},
+{
+"id": "donkey",
+"zh": "驴"
+},
+{
+"id": "duck",
+"zh": "鸭子"
+},
+{
+"id": "chicken",
+"zh": "鸡"
+},
+{
+"id": "dog",
+"zh": "狗"
+},
+{
+"id": "cat",
+"zh": "猫"
+},
+{
+"id": "pig",
+"zh": "猪"
+},
+{
+"id": "zoo",
+"zh": "动物园"
+},
+{
+"id": "tiger",
+"zh": "老虎"
+},
+{
+"id": "elephant",
+"zh": "大象"
+},
+{
+"id": "monkey",
+"zh": "猴子"
+},
+{
+"id": "giraffe",
+"zh": "长颈鹿"
+},
+{
+"id": "zebra",
+"zh": "斑马"
+},
+{
+"id": "hippo",
+"zh": "河马"
+},
+{
+"id": "bear",
+"zh": "熊"
+},
+{
+"id": "polar bear",
+"zh": "北极熊"
+},
+{
+"id": "panda",
+"zh": "熊猫"
+},
+{
+"id": "bird",
+"zh": "鸟"
+},
+{
+"id": "fish",
+"zh": "鱼"
+},
+{
+"id": "frog",
+"zh": "青蛙"
+},
+{
+"id": "snake",
+"zh": "蛇"
+},
+{
+"id": "spider",
+"zh": "蜘蛛"
+},
+{
+"id": "bee",
+"zh": "蜜蜂"
+},
+{
+"id": "lizard",
+"zh": "蜥蜴"
+},
+{
+"id": "mouse",
+"zh": "老鼠"
+},
+{
+"id": "rabbit",
+"zh": "兔子"
+},
+{
+"id": "tail",
+"zh": "尾巴"
+},
+{
+"id": "beach",
+"zh": "海滩"
+},
+{
+"id": "sea",
+"zh": "大海"
+},
+{
+"id": "sand",
+"zh": "沙子"
+},
+{
+"id": "shell",
+"zh": "贝壳"
+},
+{
+"id": "jellyfish",
+"zh": "水母"
+},
+{
+"id": "crocodile",
+"zh": "鳄鱼"
+},
+{
+"id": "boat",
+"zh": "小船"
+},
+{
+"id": "ship",
+"zh": "轮船"
+},
+{
+"id": "fishing",
+"zh": "钓鱼"
+},
+{
+"id": "swim",
+"zh": "游泳"
+},
+{
+"id": "family",
+"zh": "家庭"
+},
+{
+"id": "mother",
+"zh": "母亲"
+},
+{
+"id": "father",
+"zh": "父亲"
+},
+{
+"id": "mom",
+"zh": "妈妈"
+},
+{
+"id": "dad",
+"zh": "爸爸"
+},
+{
+"id": "sister",
+"zh": "姐妹"
+},
+{
+"id": "brother",
+"zh": "兄弟"
+},
+{
+"id": "baby",
+"zh": "婴儿"
+},
+{
+"id": "grandmother",
+"zh": "祖母"
+},
+{
+"id": "grandfather",
+"zh": "祖父"
+},
+{
+"id": "grandma",
+"zh": "奶奶"
+},
+{
+"id": "grandpa",
+"zh": "爷爷"
+},
+{
+"id": "boy",
+"zh": "男孩"
+},
+{
+"id": "girl",
+"zh": "女孩"
+},
+{
+"id": "man",
+"zh": "男人"
+},
+{
+"id": "woman",
+"zh": "女人"
+},
+{
+"id": "child",
+"zh": "孩子"
+},
+{
+"id": "kid",
+"zh": "小孩"
+},
+{
+"id": "person",
+"zh": "人"
+},
+{
+"id": "cousin",
+"zh": "堂（或表）兄弟姐妹"
+},
+{
+"id": "happy",
+"zh": "快乐的"
+},
+{
+"id": "sad",
+"zh": "伤心的"
+},
+{
+"id": "angry",
+"zh": "生气的"
+},
+{
+"id": "scary",
+"zh": "吓人的"
+},
+{
+"id": "funny",
+"zh": "好笑的"
+},
+{
+"id": "silly",
+"zh": "傻乎乎的"
+},
+{
+"id": "sorry",
+"zh": "抱歉的"
+},
+{
+"id": "cool",
+"zh": "凉爽的"
+},
+{
+"id": "good",
+"zh": "好的"
+},
+{
+"id": "great",
+"zh": "很棒的"
+},
+{
+"id": "school",
+"zh": "学校"
+},
+{
+"id": "classroom",
+"zh": "教室"
+},
+{
+"id": "teacher",
+"zh": "老师"
+},
+{
+"id": "classmate",
+"zh": "同学"
+},
+{
+"id": "friend",
+"zh": "朋友"
+},
+{
+"id": "board",
+"zh": "板"
+},
+{
+"id": "desk",
+"zh": "书桌"
+},
+{
+"id": "chair",
+"zh": "椅子"
+},
+{
+"id": "door",
+"zh": "门"
+},
+{
+"id": "window",
+"zh": "窗户"
+},
+{
+"id": "book",
+"zh": "书"
+},
+{
+"id": "pen",
+"zh": "钢笔"
+},
+{
+"id": "pencil",
+"zh": "铅笔"
+},
+{
+"id": "ruler",
+"zh": "尺子"
+},
+{
+"id": "eraser",
+"zh": "橡皮"
+},
+{
+"id": "crayon",
+"zh": "蜡笔"
+},
+{
+"id": "bag",
+"zh": "包"
+},
+{
+"id": "paper",
+"zh": "纸"
+},
+{
+"id": "page",
+"zh": "页"
+},
+{
+"id": "poster",
+"zh": "海报"
+},
+{
+"id": "read",
+"zh": "阅读"
+},
+{
+"id": "write",
+"zh": "写"
+},
+{
+"id": "draw",
+"zh": "画画"
+},
+{
+"id": "spell",
+"zh": "拼写"
+},
+{
+"id": "listen",
+"zh": "听"
+},
+{
+"id": "look",
+"zh": "看"
+},
+{
+"id": "ask",
+"zh": "问"
+},
+{
+"id": "answer",
+"zh": "回答"
+},
+{
+"id": "question",
+"zh": "问题"
+},
+{
+"id": "word",
+"zh": "单词"
+},
+{
+"id": "alphabet",
+"zh": "字母表"
+},
+{
+"id": "letter",
+"zh": "信"
+},
+{
+"id": "number",
+"zh": "数字"
+},
+{
+"id": "English",
+"zh": "英语"
+},
+{
+"id": "story",
+"zh": "故事"
+},
+{
+"id": "sentence",
+"zh": "句子"
+},
+{
+"id": "example",
+"zh": "例子"
+},
+{
+"id": "lesson",
+"zh": "一节课"
+},
+{
+"id": "class",
+"zh": "班级"
+},
+{
+"id": "line",
+"zh": "线"
+},
+{
+"id": "open",
+"zh": "打开"
+},
+{
+"id": "close",
+"zh": "关闭"
+},
+{
+"id": "sit",
+"zh": "坐"
+},
+{
+"id": "stand",
+"zh": "站"
+},
+{
+"id": "tick",
+"zh": "打钩"
+},
+{
+"id": "cross",
+"zh": "穿过"
+},
+{
+"id": "correct",
+"zh": "正确的"
+},
+{
+"id": "right",
+"zh": "正确的"
+},
+{
+"id": "choose",
+"zh": "选择"
+},
+{
+"id": "find",
+"zh": "找到"
+},
+{
+"id": "learn",
+"zh": "学习"
+},
+{
+"id": "understand",
+"zh": "理解"
+},
+{
+"id": "tell",
+"zh": "告诉"
+},
+{
+"id": "say",
+"zh": "说"
+},
+{
+"id": "talk",
+"zh": "谈话"
+},
+{
+"id": "know",
+"zh": "知道"
+},
+{
+"id": "show",
+"zh": "展示"
+},
+{
+"id": "count",
+"zh": "数数"
+},
+{
+"id": "add",
+"zh": "添加"
+},
+{
+"id": "complete",
+"zh": "完成"
+},
+{
+"id": "home",
+"zh": "家"
+},
+{
+"id": "house",
+"zh": "房子"
+},
+{
+"id": "apartment",
+"zh": "公寓"
+},
+{
+"id": "room",
+"zh": "房间"
+},
+{
+"id": "kitchen",
+"zh": "厨房"
+},
+{
+"id": "bathroom",
+"zh": "浴室"
+},
+{
+"id": "bedroom",
+"zh": "卧室"
+},
+{
+"id": "living room",
+"zh": "客厅"
+},
+{
+"id": "dining room",
+"zh": "餐厅（房间）"
+},
+{
+"id": "hall",
+"zh": "大厅"
+},
+{
+"id": "bed",
+"zh": "床"
+},
+{
+"id": "table",
+"zh": "桌子"
+},
+{
+"id": "sofa",
+"zh": "沙发"
+},
+{
+"id": "armchair",
+"zh": "扶手椅"
+},
+{
+"id": "cupboard",
+"zh": "橱柜"
+},
+{
+"id": "bookcase",
+"zh": "书柜"
+},
+{
+"id": "mirror",
+"zh": "镜子"
+},
+{
+"id": "lamp",
+"zh": "灯"
+},
+{
+"id": "mat",
+"zh": "垫子"
+},
+{
+"id": "rug",
+"zh": "小地毯"
+},
+{
+"id": "clock",
+"zh": "时钟"
+},
+{
+"id": "computer",
+"zh": "电脑"
+},
+{
+"id": "phone",
+"zh": "电话"
+},
+{
+"id": "radio",
+"zh": "收音机"
+},
+{
+"id": "television",
+"zh": "电视"
+},
+{
+"id": "camera",
+"zh": "照相机"
+},
+{
+"id": "box",
+"zh": "盒子"
+},
+{
+"id": "picture",
+"zh": "图画"
+},
+{
+"id": "wall",
+"zh": "墙"
+},
+{
+"id": "floor",
+"zh": "地板"
+},
+{
+"id": "garden",
+"zh": "花园"
+},
+{
+"id": "tree",
+"zh": "树"
+},
+{
+"id": "flower",
+"zh": "花"
+},
+{
+"id": "sun",
+"zh": "太阳"
+},
+{
+"id": "street",
+"zh": "街道"
+},
+{
+"id": "park",
+"zh": "公园"
+},
+{
+"id": "playground",
+"zh": "操场"
+},
+{
+"id": "store",
+"zh": "商店"
+},
+{
+"id": "bookstore",
+"zh": "书店"
+},
+{
+"id": "clothes",
+"zh": "衣服"
+},
+{
+"id": "T-shirt",
+"zh": "T恤衫"
+},
+{
+"id": "shirt",
+"zh": "衬衫"
+},
+{
+"id": "dress",
+"zh": "连衣裙"
+},
+{
+"id": "skirt",
+"zh": "裙子"
+},
+{
+"id": "jeans",
+"zh": "牛仔裤"
+},
+{
+"id": "pants",
+"zh": "裤子"
+},
+{
+"id": "shorts",
+"zh": "短裤"
+},
+{
+"id": "jacket",
+"zh": "夹克"
+},
+{
+"id": "sock",
+"zh": "袜子"
+},
+{
+"id": "shoes",
+"zh": "鞋"
+},
+{
+"id": "boots",
+"zh": "靴子"
+},
+{
+"id": "hat",
+"zh": "帽子"
+},
+{
+"id": "baseball cap",
+"zh": "棒球帽"
+},
+{
+"id": "glasses",
+"zh": "眼镜"
+},
+{
+"id": "handbag",
+"zh": "手提包"
+},
+{
+"id": "watch",
+"zh": "手表"
+},
+{
+"id": "wear",
+"zh": "穿"
+},
+{
+"id": "toy",
+"zh": "玩具"
+},
+{
+"id": "doll",
+"zh": "洋娃娃"
+},
+{
+"id": "teddy bear",
+"zh": "泰迪熊"
+},
+{
+"id": "ball",
+"zh": "球"
+},
+{
+"id": "balloon",
+"zh": "气球"
+},
+{
+"id": "kite",
+"zh": "风筝"
+},
+{
+"id": "robot",
+"zh": "机器人"
+},
+{
+"id": "monster",
+"zh": "怪物"
+},
+{
+"id": "alien",
+"zh": "外星人"
+},
+{
+"id": "board game",
+"zh": "棋盘游戏"
+},
+{
+"id": "car",
+"zh": "小汽车"
+},
+{
+"id": "bus",
+"zh": "公共汽车"
+},
+{
+"id": "train",
+"zh": "火车"
+},
+{
+"id": "plane",
+"zh": "飞机"
+},
+{
+"id": "helicopter",
+"zh": "直升机"
+},
+{
+"id": "motorbike",
+"zh": "摩托车"
+},
+{
+"id": "truck",
+"zh": "卡车"
+},
+{
+"id": "bike",
+"zh": "自行车"
+},
+{
+"id": "go",
+"zh": "去"
+},
+{
+"id": "ride",
+"zh": "骑"
+},
+{
+"id": "sport",
+"zh": "运动"
+},
+{
+"id": "soccer",
+"zh": "足球"
+},
+{
+"id": "baseball",
+"zh": "棒球"
+},
+{
+"id": "basketball",
+"zh": "篮球"
+},
+{
+"id": "tennis",
+"zh": "网球"
+},
+{
+"id": "table tennis",
+"zh": "乒乓球"
+},
+{
+"id": "badminton",
+"zh": "羽毛球"
+},
+{
+"id": "hockey",
+"zh": "曲棍球"
+},
+{
+"id": "tennis racket",
+"zh": "网球拍"
+},
+{
+"id": "bat",
+"zh": "蝙蝠"
+},
+{
+"id": "play",
+"zh": "玩"
+},
+{
+"id": "game",
+"zh": "游戏"
+},
+{
+"id": "hobby",
+"zh": "爱好"
+},
+{
+"id": "throw",
+"zh": "扔"
+},
+{
+"id": "catch",
+"zh": "接住"
+},
+{
+"id": "kick",
+"zh": "踢"
+},
+{
+"id": "bounce",
+"zh": "弹起"
+},
+{
+"id": "skateboard",
+"zh": "滑板"
+},
+{
+"id": "skateboarding",
+"zh": "滑板运动"
+},
+{
+"id": "hit",
+"zh": "打"
+},
+{
+"id": "music",
+"zh": "音乐"
+},
+{
+"id": "song",
+"zh": "歌曲"
+},
+{
+"id": "sing",
+"zh": "唱歌"
+},
+{
+"id": "guitar",
+"zh": "吉他"
+},
+{
+"id": "piano",
+"zh": "钢琴"
+},
+{
+"id": "drawing",
+"zh": "图画"
+},
+{
+"id": "painting",
+"zh": "画作"
+},
+{
+"id": "paint",
+"zh": "颜料"
+},
+{
+"id": "photo",
+"zh": "照片"
+},
+{
+"id": "take a photo",
+"zh": "拍照"
+},
+{
+"id": "morning",
+"zh": "早晨"
+},
+{
+"id": "afternoon",
+"zh": "下午"
+},
+{
+"id": "evening",
+"zh": "晚上"
+},
+{
+"id": "night",
+"zh": "夜晚"
+},
+{
+"id": "day",
+"zh": "一天"
+},
+{
+"id": "today",
+"zh": "今天"
+},
+{
+"id": "year",
+"zh": "年"
+},
+{
+"id": "birthday",
+"zh": "生日"
+},
+{
+"id": "sleep",
+"zh": "睡觉"
+},
+{
+"id": "go to bed",
+"zh": "上床睡觉"
+},
+{
+"id": "come",
+"zh": "来"
+},
+{
+"id": "give",
+"zh": "给"
+},
+{
+"id": "hold",
+"zh": "拿着"
+},
+{
+"id": "make",
+"zh": "制作"
+},
+{
+"id": "pick up",
+"zh": "捡起"
+},
+{
+"id": "put",
+"zh": "放"
+},
+{
+"id": "want",
+"zh": "想要"
+},
+{
+"id": "like",
+"zh": "喜欢"
+},
+{
+"id": "love",
+"zh": "爱"
+},
+{
+"id": "see",
+"zh": "看见"
+},
+{
+"id": "big",
+"zh": "大的"
+},
+{
+"id": "small",
+"zh": "小的"
+},
+{
+"id": "long",
+"zh": "长的"
+},
+{
+"id": "short",
+"zh": "短的"
+},
+{
+"id": "beautiful",
+"zh": "美丽的"
+},
+{
+"id": "ugly",
+"zh": "丑的"
+},
+{
+"id": "dirty",
+"zh": "脏的"
+},
+{
+"id": "clean",
+"zh": "干净的"
+},
+{
+"id": "nice",
+"zh": "好的"
+},
+{
+"id": "fantastic",
+"zh": "极好的"
+},
+{
+"id": "animal",
+"zh": "动物"
+},
+{
+"id": "bath",
+"zh": "洗澡"
+},
+{
+"id": "color",
+"zh": "颜色"
+},
+{
+"id": "keyboard",
+"zh": "键盘"
+},
+{
+"id": "tablet",
+"zh": "平板电脑"
+},
+{
+"id": "drive",
+"zh": "开车"
+},
+{
+"id": "enjoy",
+"zh": "享受"
+},
+{
+"id": "favorite",
+"zh": "最喜欢的"
+},
+{
+"id": "new",
+"zh": "新的"
+},
+{
+"id": "old",
+"zh": "老的"
+},
+{
+"id": "young",
+"zh": "年轻的"
+},
+{
+"id": "fun",
+"zh": "乐趣"
+},
+{
+"id": "closed",
+"zh": "关着的"
+},
+{
+"id": "start",
+"zh": "开始"
+},
+{
+"id": "stop",
+"zh": "停止"
+},
+{
+"id": "try",
+"zh": "尝试"
+},
+{
+"id": "name",
+"zh": "名字"
+},
+{
+"id": "live",
+"zh": "居住"
+},
+{
+"id": "Monday",
+"zh": "星期一"
+},
+{
+"id": "Tuesday",
+"zh": "星期二"
+},
+{
+"id": "Wednesday",
+"zh": "星期三"
+},
+{
+"id": "Thursday",
+"zh": "星期四"
+},
+{
+"id": "Friday",
+"zh": "星期五"
+},
+{
+"id": "Saturday",
+"zh": "星期六"
+},
+{
+"id": "Sunday",
+"zh": "星期日"
+},
+{
+"id": "week",
+"zh": "星期"
+},
+{
+"id": "weekend",
+"zh": "周末"
+},
+{
+"id": "always",
+"zh": "总是"
+},
+{
+"id": "often",
+"zh": "经常"
+},
+{
+"id": "sometimes",
+"zh": "有时"
+},
+{
+"id": "never",
+"zh": "从不"
+},
+{
+"id": "yesterday",
+"zh": "昨天"
+},
+{
+"id": "o'clock",
+"zh": "…点钟"
+},
+{
+"id": "age",
+"zh": "年龄"
+},
+{
+"id": "pair",
+"zh": "一双"
+},
+{
+"id": "kitten",
+"zh": "小猫"
+},
+{
+"id": "puppy",
+"zh": "小狗"
+},
+{
+"id": "parrot",
+"zh": "鹦鹉"
+},
+{
+"id": "cage",
+"zh": "笼子"
+},
+{
+"id": "feed",
+"zh": "喂养"
+},
+{
+"id": "fly",
+"zh": "飞"
+},
+{
+"id": "snail",
+"zh": "蜗牛"
+},
+{
+"id": "pet",
+"zh": "宠物"
+},
+{
+"id": "lion",
+"zh": "狮子"
+},
+{
+"id": "kangaroo",
+"zh": "袋鼠"
+},
+{
+"id": "dolphin",
+"zh": "海豚"
+},
+{
+"id": "whale",
+"zh": "鲸"
+},
+{
+"id": "shark",
+"zh": "鲨鱼"
+},
+{
+"id": "penguin",
+"zh": "企鹅"
+},
+{
+"id": "jungle",
+"zh": "丛林"
+},
+{
+"id": "back",
+"zh": "后面"
+},
+{
+"id": "neck",
+"zh": "脖子"
+},
+{
+"id": "shoulder",
+"zh": "肩膀"
+},
+{
+"id": "stomach",
+"zh": "胃"
+},
+{
+"id": "tooth",
+"zh": "牙齿"
+},
+{
+"id": "beard",
+"zh": "胡子"
+},
+{
+"id": "mustache",
+"zh": "小胡子"
+},
+{
+"id": "blond",
+"zh": "金发的"
+},
+{
+"id": "curly",
+"zh": "卷曲的"
+},
+{
+"id": "fair",
+"zh": "公平的"
+},
+{
+"id": "fat",
+"zh": "胖的"
+},
+{
+"id": "thin",
+"zh": "瘦的"
+},
+{
+"id": "tall",
+"zh": "高的"
+},
+{
+"id": "strong",
+"zh": "强壮的"
+},
+{
+"id": "weak",
+"zh": "虚弱的"
+},
+{
+"id": "little",
+"zh": "小的"
+},
+{
+"id": "huge",
+"zh": "巨大的"
+},
+{
+"id": "pretty",
+"zh": "漂亮的"
+},
+{
+"id": "brave",
+"zh": "勇敢的"
+},
+{
+"id": "clever",
+"zh": "聪明的"
+},
+{
+"id": "ill",
+"zh": "生病的"
+},
+{
+"id": "sick",
+"zh": "生病的"
+},
+{
+"id": "cold",
+"zh": "冷的"
+},
+{
+"id": "cough",
+"zh": "咳嗽"
+},
+{
+"id": "headache",
+"zh": "头痛"
+},
+{
+"id": "earache",
+"zh": "耳朵疼"
+},
+{
+"id": "toothache",
+"zh": "牙疼"
+},
+{
+"id": "stomachache",
+"zh": "肚子疼"
+},
+{
+"id": "temperature",
+"zh": "温度"
+},
+{
+"id": "tired",
+"zh": "累的"
+},
+{
+"id": "hospital",
+"zh": "医院"
+},
+{
+"id": "doctor",
+"zh": "医生"
+},
+{
+"id": "nurse",
+"zh": "护士"
+},
+{
+"id": "dentist",
+"zh": "牙医"
+},
+{
+"id": "hurt",
+"zh": "弄伤"
+},
+{
+"id": "cry",
+"zh": "哭"
+},
+{
+"id": "fall",
+"zh": "落下"
+},
+{
+"id": "fine",
+"zh": "好的"
+},
+{
+"id": "hot",
+"zh": "热的"
+},
+{
+"id": "wet",
+"zh": "湿的"
+},
+{
+"id": "aunt",
+"zh": "阿姨"
+},
+{
+"id": "uncle",
+"zh": "叔叔"
+},
+{
+"id": "daughter",
+"zh": "女儿"
+},
+{
+"id": "son",
+"zh": "儿子"
+},
+{
+"id": "parent",
+"zh": "父母"
+},
+{
+"id": "grandparent",
+"zh": "（外）祖父"
+},
+{
+"id": "granddaughter",
+"zh": "孙女"
+},
+{
+"id": "grandson",
+"zh": "孙子"
+},
+{
+"id": "grown-up",
+"zh": "成年人"
+},
+{
+"id": "balcony",
+"zh": "阳台"
+},
+{
+"id": "basement",
+"zh": "地下室"
+},
+{
+"id": "stairs",
+"zh": "楼梯"
+},
+{
+"id": "elevator",
+"zh": "电梯"
+},
+{
+"id": "roof",
+"zh": "屋顶"
+},
+{
+"id": "upstairs",
+"zh": "在楼上"
+},
+{
+"id": "downstairs",
+"zh": "在楼下"
+},
+{
+"id": "seat",
+"zh": "座位"
+},
+{
+"id": "address",
+"zh": "地址"
+},
+{
+"id": "dream",
+"zh": "梦"
+},
+{
+"id": "shower",
+"zh": "淋浴"
+},
+{
+"id": "toothbrush",
+"zh": "牙刷"
+},
+{
+"id": "toothpaste",
+"zh": "牙膏"
+},
+{
+"id": "towel",
+"zh": "毛巾"
+},
+{
+"id": "blanket",
+"zh": "毯子"
+},
+{
+"id": "wash",
+"zh": "洗"
+},
+{
+"id": "wake up",
+"zh": "醒来"
+},
+{
+"id": "get up",
+"zh": "起床"
+},
+{
+"id": "get dressed",
+"zh": "穿衣服"
+},
+{
+"id": "get undressed",
+"zh": "脱衣服"
+},
+{
+"id": "cheese",
+"zh": "奶酪"
+},
+{
+"id": "coffee",
+"zh": "咖啡"
+},
+{
+"id": "tea",
+"zh": "茶"
+},
+{
+"id": "soup",
+"zh": "汤"
+},
+{
+"id": "salad",
+"zh": "沙拉"
+},
+{
+"id": "sandwich",
+"zh": "三明治"
+},
+{
+"id": "pasta",
+"zh": "意大利面"
+},
+{
+"id": "noodles",
+"zh": "面条"
+},
+{
+"id": "pancake",
+"zh": "薄煎饼"
+},
+{
+"id": "milkshake",
+"zh": "奶昔"
+},
+{
+"id": "bottle",
+"zh": "瓶子"
+},
+{
+"id": "bowl",
+"zh": "碗"
+},
+{
+"id": "cup",
+"zh": "杯子"
+},
+{
+"id": "glass",
+"zh": "玻璃杯"
+},
+{
+"id": "plate",
+"zh": "盘子"
+},
+{
+"id": "sauce",
+"zh": "酱汁"
+},
+{
+"id": "vegetable",
+"zh": "蔬菜"
+},
+{
+"id": "picnic",
+"zh": "野餐"
+},
+{
+"id": "hungry",
+"zh": "饥饿的"
+},
+{
+"id": "thirsty",
+"zh": "口渴的"
+},
+{
+"id": "weather",
+"zh": "天气"
+},
+{
+"id": "sunny",
+"zh": "晴朗的"
+},
+{
+"id": "cloudy",
+"zh": "多云的"
+},
+{
+"id": "windy",
+"zh": "有风的"
+},
+{
+"id": "rain",
+"zh": "雨"
+},
+{
+"id": "snow",
+"zh": "雪"
+},
+{
+"id": "wind",
+"zh": "风"
+},
+{
+"id": "cloud",
+"zh": "云"
+},
+{
+"id": "rainbow",
+"zh": "彩虹"
+},
+{
+"id": "sky",
+"zh": "天空"
+},
+{
+"id": "moon",
+"zh": "月亮"
+},
+{
+"id": "star",
+"zh": "星星"
+},
+{
+"id": "world",
+"zh": "世界"
+},
+{
+"id": "forest",
+"zh": "森林"
+},
+{
+"id": "grass",
+"zh": "草"
+},
+{
+"id": "leaf",
+"zh": "叶子"
+},
+{
+"id": "plant",
+"zh": "植物"
+},
+{
+"id": "rock",
+"zh": "岩石"
+},
+{
+"id": "island",
+"zh": "岛"
+},
+{
+"id": "mountain",
+"zh": "山"
+},
+{
+"id": "river",
+"zh": "河"
+},
+{
+"id": "lake",
+"zh": "湖"
+},
+{
+"id": "waterfall",
+"zh": "瀑布"
+},
+{
+"id": "field",
+"zh": "田野"
+},
+{
+"id": "countryside",
+"zh": "乡村"
+},
+{
+"id": "village",
+"zh": "村庄"
+},
+{
+"id": "city",
+"zh": "城市"
+},
+{
+"id": "town",
+"zh": "城镇"
+},
+{
+"id": "road",
+"zh": "马路"
+},
+{
+"id": "ground",
+"zh": "地面"
+},
+{
+"id": "building",
+"zh": "建筑物"
+},
+{
+"id": "library",
+"zh": "图书馆"
+},
+{
+"id": "station",
+"zh": "车站"
+},
+{
+"id": "bus station",
+"zh": "汽车站"
+},
+{
+"id": "bus stop",
+"zh": "公交车站"
+},
+{
+"id": "parking lot",
+"zh": "停车场"
+},
+{
+"id": "cinema",
+"zh": "电影院"
+},
+{
+"id": "circus",
+"zh": "马戏团"
+},
+{
+"id": "funfair",
+"zh": "游乐场"
+},
+{
+"id": "market",
+"zh": "市场"
+},
+{
+"id": "supermarket",
+"zh": "超市"
+},
+{
+"id": "shopping center",
+"zh": "购物中心"
+},
+{
+"id": "sports center",
+"zh": "体育中心"
+},
+{
+"id": "city center",
+"zh": "市中心"
+},
+{
+"id": "town center",
+"zh": "镇中心"
+},
+{
+"id": "cafe",
+"zh": "咖啡馆"
+},
+{
+"id": "place",
+"zh": "地方"
+},
+{
+"id": "map",
+"zh": "地图"
+},
+{
+"id": "farm",
+"zh": "农场"
+},
+{
+"id": "square",
+"zh": "正方形"
+},
+{
+"id": "work",
+"zh": "工作"
+},
+{
+"id": "cook",
+"zh": "做饭"
+},
+{
+"id": "farmer",
+"zh": "农民"
+},
+{
+"id": "clown",
+"zh": "小丑"
+},
+{
+"id": "pirate",
+"zh": "海盗"
+},
+{
+"id": "pop star",
+"zh": "流行歌星"
+},
+{
+"id": "movie star",
+"zh": "电影明星"
+},
+{
+"id": "driver",
+"zh": "司机"
+},
+{
+"id": "dance",
+"zh": "跳舞"
+},
+{
+"id": "hop",
+"zh": "单脚跳"
+},
+{
+"id": "skip",
+"zh": "跳绳"
+},
+{
+"id": "climb",
+"zh": "攀登"
+},
+{
+"id": "ice skating",
+"zh": "滑冰"
+},
+{
+"id": "ice skates",
+"zh": "冰鞋"
+},
+{
+"id": "roller skating",
+"zh": "轮滑"
+},
+{
+"id": "roller skates",
+"zh": "旱冰鞋"
+},
+{
+"id": "goal",
+"zh": "进球"
+},
+{
+"id": "score",
+"zh": "得分"
+},
+{
+"id": "movie",
+"zh": "电影"
+},
+{
+"id": "video",
+"zh": "视频"
+},
+{
+"id": "CD",
+"zh": "光盘"
+},
+{
+"id": "DVD",
+"zh": "影碟"
+},
+{
+"id": "comic",
+"zh": "漫画"
+},
+{
+"id": "comic book",
+"zh": "漫画书"
+},
+{
+"id": "e-book",
+"zh": "电子书"
+},
+{
+"id": "band",
+"zh": "乐队"
+},
+{
+"id": "party",
+"zh": "聚会"
+},
+{
+"id": "present",
+"zh": "礼物"
+},
+{
+"id": "internet",
+"zh": "互联网"
+},
+{
+"id": "laptop",
+"zh": "笔记本电脑"
+},
+{
+"id": "email",
+"zh": "电子邮件"
+},
+{
+"id": "text",
+"zh": "文本"
+},
+{
+"id": "app",
+"zh": "应用程序"
+},
+{
+"id": "website",
+"zh": "网站"
+},
+{
+"id": "message",
+"zh": "消息"
+},
+{
+"id": "send",
+"zh": "发送"
+},
+{
+"id": "call",
+"zh": "打电话"
+},
+{
+"id": "ticket",
+"zh": "票"
+},
+{
+"id": "trip",
+"zh": "旅行"
+},
+{
+"id": "travel",
+"zh": "旅行"
+},
+{
+"id": "tractor",
+"zh": "拖拉机"
+},
+{
+"id": "helmet",
+"zh": "头盔"
+},
+{
+"id": "get on",
+"zh": "上车"
+},
+{
+"id": "get off",
+"zh": "下车"
+},
+{
+"id": "go shopping",
+"zh": "去购物"
+},
+{
+"id": "shopping",
+"zh": "购物"
+},
+{
+"id": "holiday",
+"zh": "假期"
+},
+{
+"id": "homework",
+"zh": "家庭作业"
+},
+{
+"id": "mistake",
+"zh": "错误"
+},
+{
+"id": "teach",
+"zh": "教"
+},
+{
+"id": "break",
+"zh": "打破"
+},
+{
+"id": "idea",
+"zh": "主意"
+},
+{
+"id": "shape",
+"zh": "形状"
+},
+{
+"id": "circle",
+"zh": "圆圈"
+},
+{
+"id": "treasure",
+"zh": "宝藏"
+},
+{
+"id": "noise",
+"zh": "噪音"
+},
+{
+"id": "machine",
+"zh": "机器"
+},
+{
+"id": "coat",
+"zh": "外套"
+},
+{
+"id": "scarf",
+"zh": "围巾"
+},
+{
+"id": "sweater",
+"zh": "毛衣"
+},
+{
+"id": "swimsuit",
+"zh": "泳衣"
+},
+{
+"id": "take off",
+"zh": "脱下"
+},
+{
+"id": "put on",
+"zh": "穿上"
+},
+{
+"id": "dress up",
+"zh": "打扮"
+},
+{
+"id": "net",
+"zh": "网"
+},
+{
+"id": "pool",
+"zh": "游泳池"
+},
+{
+"id": "swimming pool",
+"zh": "游泳池"
+},
+{
+"id": "afraid",
+"zh": "害怕的"
+},
+{
+"id": "frightened",
+"zh": "害怕的"
+},
+{
+"id": "surprised",
+"zh": "惊讶的"
+},
+{
+"id": "bored",
+"zh": "无聊的"
+},
+{
+"id": "boring",
+"zh": "乏味的"
+},
+{
+"id": "exciting",
+"zh": "令人兴奋的"
+},
+{
+"id": "naughty",
+"zh": "淘气的"
+},
+{
+"id": "quiet",
+"zh": "安静的"
+},
+{
+"id": "loud",
+"zh": "大声的"
+},
+{
+"id": "laugh",
+"zh": "笑"
+},
+{
+"id": "quick",
+"zh": "快的"
+},
+{
+"id": "quickly",
+"zh": "快速地"
+},
+{
+"id": "slow",
+"zh": "慢的"
+},
+{
+"id": "slowly",
+"zh": "慢慢地"
+},
+{
+"id": "loudly",
+"zh": "大声地"
+},
+{
+"id": "quietly",
+"zh": "安静地"
+},
+{
+"id": "careful",
+"zh": "小心的"
+},
+{
+"id": "carefully",
+"zh": "小心地"
+},
+{
+"id": "dangerous",
+"zh": "危险的"
+},
+{
+"id": "safe",
+"zh": "安全的"
+},
+{
+"id": "bad",
+"zh": "坏的"
+},
+{
+"id": "badly",
+"zh": "糟糕地"
+},
+{
+"id": "better",
+"zh": "更好的"
+},
+{
+"id": "best",
+"zh": "最好的"
+},
+{
+"id": "worse",
+"zh": "更糟的"
+},
+{
+"id": "worst",
+"zh": "最糟的"
+},
+{
+"id": "easy",
+"zh": "容易的"
+},
+{
+"id": "difficult",
+"zh": "困难的"
+},
+{
+"id": "different",
+"zh": "不同的"
+},
+{
+"id": "wrong",
+"zh": "错误的"
+},
+{
+"id": "bring",
+"zh": "带来"
+},
+{
+"id": "buy",
+"zh": "买"
+},
+{
+"id": "carry",
+"zh": "搬运"
+},
+{
+"id": "change",
+"zh": "改变"
+},
+{
+"id": "drop",
+"zh": "落下"
+},
+{
+"id": "fix",
+"zh": "修理"
+},
+{
+"id": "grow",
+"zh": "生长"
+},
+{
+"id": "help",
+"zh": "帮助"
+},
+{
+"id": "hide",
+"zh": "藏"
+},
+{
+"id": "invite",
+"zh": "邀请"
+},
+{
+"id": "look for",
+"zh": "寻找"
+},
+{
+"id": "lose",
+"zh": "丢失"
+},
+{
+"id": "move",
+"zh": "移动"
+},
+{
+"id": "need",
+"zh": "需要"
+},
+{
+"id": "shout",
+"zh": "喊叫"
+},
+{
+"id": "take",
+"zh": "拿走"
+},
+{
+"id": "think",
+"zh": "想"
+},
+{
+"id": "wait",
+"zh": "等待"
+},
+{
+"id": "build",
+"zh": "建造"
+},
+{
+"id": "mean",
+"zh": "意思是"
+},
+{
+"id": "brilliant",
+"zh": "极好的"
+},
+{
+"id": "busy",
+"zh": "忙碌的"
+},
+{
+"id": "famous",
+"zh": "著名的"
+},
+{
+"id": "terrible",
+"zh": "糟糕的"
+},
+{
+"id": "dry",
+"zh": "干的"
+},
+{
+"id": "ice",
+"zh": "冰"
+},
+{
+"id": "model",
+"zh": "模型"
+},
+{
+"id": "player",
+"zh": "运动员"
+},
+{
+"id": "sail",
+"zh": "航行"
+},
+{
+"id": "sweet",
+"zh": "甜的"
+},
+{
+"id": "up",
+"zh": "向上"
+},
+{
+"id": "down",
+"zh": "向下"
+},
+{
+"id": "inside",
+"zh": "在里面"
+},
+{
+"id": "outside",
+"zh": "在外面"
+},
+{
+"id": "top",
+"zh": "顶部"
+},
+{
+"id": "bottom",
+"zh": "底部"
+},
+{
+"id": "round",
+"zh": "圆的"
+},
+{
+"id": "straight",
+"zh": "直的"
+},
+{
+"id": "asleep",
+"zh": "睡着的"
+},
+{
+"id": "awake",
+"zh": "醒着的"
+},
+{
+"id": "hello",
+"zh": "你好"
+},
+{
+"id": "welcome",
+"zh": "欢迎"
+},
+{
+"id": "pack",
+"zh": "打包"
+},
+{
+"id": "schoolbag",
+"zh": "书包"
+},
+{
+"id": "pencil case",
+"zh": "铅笔盒"
+},
+{
+"id": "on duty",
+"zh": "值日"
+},
+{
+"id": "blackboard",
+"zh": "黑板"
+},
+{
+"id": "warm",
+"zh": "温暖的"
+},
+{
+"id": "helpful",
+"zh": "有帮助的"
+},
+{
+"id": "hen",
+"zh": "母鸡"
+},
+{
+"id": "hill",
+"zh": "小山"
+},
+{
+"id": "fly away",
+"zh": "飞走"
+},
+{
+"id": "come back",
+"zh": "回来"
+},
+{
+"id": "flap wings",
+"zh": "拍打翅膀"
+},
+{
+"id": "tie shoelaces",
+"zh": "系鞋带"
+},
+{
+"id": "time",
+"zh": "时间"
+},
+{
+"id": "slide",
+"zh": "滑梯"
+},
+{
+"id": "swing",
+"zh": "秋千"
+},
+{
+"id": "seesaw",
+"zh": "跷跷板"
+},
+{
+"id": "hold on tight",
+"zh": "紧紧抓住"
+},
+{
+"id": "be careful",
+"zh": "小心"
+},
+{
+"id": "rainy",
+"zh": "下雨的"
+},
+{
+"id": "snowy",
+"zh": "下雪的"
+},
+{
+"id": "trousers",
+"zh": "长裤"
+},
+{
+"id": "hide-and-seek",
+"zh": "捉迷藏"
+},
+{
+"id": "ready",
+"zh": "准备好的"
+},
+{
+"id": "skip rope",
+"zh": "跳绳"
+},
+{
+"id": "throw sandbags",
+"zh": "扔沙包"
+},
+{
+"id": "traffic light",
+"zh": "红绿灯"
+},
+{
+"id": "zebra crossing",
+"zh": "斑马线"
+},
+{
+"id": "climb a tree",
+"zh": "爬树"
+},
+{
+"id": "toy car",
+"zh": "玩具汽车"
+},
+{
+"id": "toy boat",
+"zh": "玩具船"
+},
+{
+"id": "toy train",
+"zh": "玩具火车"
+},
+{
+"id": "gift",
+"zh": "礼物"
+},
+{
+"id": "cute",
+"zh": "可爱的"
+},
+{
+"id": "spoon",
+"zh": "勺子"
+},
+{
+"id": "chopsticks",
+"zh": "筷子"
+},
+{
+"id": "fox",
+"zh": "狐狸"
+},
+{
+"id": "hard",
+"zh": "困难的"
+},
+{
+"id": "rough",
+"zh": "粗糙的"
+},
+{
+"id": "smooth",
+"zh": "光滑的"
+},
+{
+"id": "soft",
+"zh": "柔软的"
+},
+{
+"id": "van",
+"zh": "面包车"
+},
+{
+"id": "bicycle",
+"zh": "自行车"
+},
+{
+"id": "skate",
+"zh": "溜冰"
+},
+{
+"id": "ride a bicycle",
+"zh": "骑自行车"
+},
+{
+"id": "autumn",
+"zh": "秋天"
+},
+{
+"id": "winter",
+"zh": "冬天"
+},
+{
+"id": "light",
+"zh": "光"
+},
+{
+"id": "play football",
+"zh": "踢足球"
+},
+{
+"id": "play basketball",
+"zh": "打篮球"
+},
+{
+"id": "play ping-pong",
+"zh": "打乒乓球"
+},
+{
+"id": "play cards",
+"zh": "打牌"
+},
+{
+"id": "carnation",
+"zh": "康乃馨"
+}
+]

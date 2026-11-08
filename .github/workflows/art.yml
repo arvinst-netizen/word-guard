@@ -1,0 +1,51 @@
+name: 生成插画
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'sample = 先画几张看风格；full = 画完全部；redo = 重画指定的词'
+        required: true
+        default: sample
+        type: choice
+        options: [sample, full, redo]
+      redo:
+        description: 'redo 模式：要重画的英文词，用逗号分隔'
+        required: false
+        default: ''
+      model:
+        description: 'OpenAI 图像模型'
+        required: false
+        default: gpt-image-1.5
+      quality:
+        description: '画质 low / medium（medium 约贵 4 倍）'
+        required: false
+        default: low
+permissions:
+  contents: write
+concurrency: art
+jobs:
+  art:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - name: 安装 Pillow
+        run: pip install pillow
+      - name: 生成
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MODE: ${{ inputs.mode }}
+          REDO: ${{ inputs.redo }}
+          MODEL: ${{ inputs.model }}
+          QUALITY: ${{ inputs.quality }}
+        run: python3 tools/art.py
+      - name: 提交插画
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add art
+          git diff --cached --quiet && echo "没有变化" && exit 0
+          git commit -m "生成插画（${{ inputs.mode }} ${{ inputs.model }}）"
+          git pull --rebase
+          git push
