@@ -73,19 +73,27 @@ STYLE = (
     "no frame, no border, no full-bleed background. "
     "Absolutely no text, letters, numbers, words, signs with writing, or speech bubbles with writing anywhere."
 )
+# 游戏里图片常常只有 60~120 像素：所有阶段都要近景、主体占满画面、最多两个大元素，不画远景小人和房间
+LEGIBLE = ('Must stay instantly readable as a tiny 64x64 phone icon: the subject fills 75-85% of the frame, '
+           'at most 2 large visual elements, close-up framing, no tiny distant full-body figures, no rooms, no background clutter.')
 STAGE_RULE = {
-    'starters': 'Level: Starters (age 6-7). Show ONE single object, or ONE character doing ONE single action. Big, centered, very simple, nothing else in the picture.',
-    'movers': 'Level: Movers (age 8-9). Show a simple relationship: two things or characters and how they relate (position, who does what to whom, bigger/smaller, part of). Keep it simple.',
-    'ket': 'Level: KET (age 10-11). Show a small everyday-life situation (home, school, shop, street, park) in which the meaning is clear. Compact vignette.',
-    'pet': 'Level: PET (age 11-13). Show a clear situation that makes the more abstract meaning unmistakable (cause and effect, contrast, feelings, choices). Compact vignette with 1-3 characters.',
+    'starters': 'Level: Starters (age 6-7). ONE single object, or ONE character doing ONE unambiguous action, filling the frame. No props.',
+    'movers': 'Level: Movers (age 8-9). A simple relationship between two large clear elements (position, size comparison, or direct interaction). Bold contrast.',
+    'ket': ('Level: KET (age 10-11). An everyday real-life situation shown as a TIGHT CLOSE-UP (hands, objects or a waist-up character) '
+            'with only ONE iconic everyday prop, e.g. two hands passing a library book for "borrow" rather than a library room.'),
+    'pet': ('Level: PET (age 11-13). An abstract idea, feeling or nuanced verb/adjective shown as a head-and-shoulders close-up with an '
+            'exaggerated, unmistakable expression or gesture plus ONE bold symbol of cause or effect beside it, '
+            'e.g. a worried face biting nails next to a big ticking clock for "anxious".'),
 }
 PLAN_RULES = """You plan illustrations for a children's English vocabulary game for Chinese primary-school pupils (Cambridge path: Starters -> Movers -> KET -> PET).
 For every word and every stage it is listed in, write ONE short visual scene description that an image model will draw in a fixed cute cartoon style.
 How the meaning is expressed grows with the learner's level:
 - starters (age 6-7): ONE single object, or ONE character doing ONE single action. Nothing else.
-- movers (age 8-9): a simple relationship: two things or characters and how they relate (position, who does what to whom, bigger/smaller, part of).
-- ket (age 10-11): a small everyday-life situation (home, school, shop, street, park) in which the meaning is clear.
-- pet (age 11-13): a clear situation that makes a more abstract meaning unmistakable (cause and effect, contrast, feelings, choices); 1-3 characters.
+- movers (age 8-9): a simple relationship between two large clear elements (position, size comparison, who does what to whom).
+- ket (age 10-11): an everyday situation shown as a TIGHT CLOSE-UP (hands, objects, or a waist-up character) with only ONE iconic everyday prop (e.g. two hands passing a library book for "borrow", not a library room).
+- pet (age 11-13): an abstract meaning shown as a head-and-shoulders close-up with an exaggerated, unmistakable expression or gesture plus ONE bold cause-or-effect symbol (e.g. a worried face biting nails next to a big ticking clock for "anxious").
+MOBILE LEGIBILITY (critical): pictures are shown as tiny 64x64 icons on a phone. Every scene uses close-up framing with at most 2 large visual elements filling most of the frame; never describe rooms, wide scenes, crowds, background furniture or tiny distant full-body figures.
+If a word has several different senses (e.g. "park": a public garden / to park a car), draw the sense taught at that stage (use the Chinese meaning and example) and do not reuse across stages when the sense changes.
 Reuse rule for words listed in several stages: the earliest stage is always drawn. A later stage may reuse an earlier stage's picture ONLY when the word has the same meaning there AND the earlier picture is still the right teaching picture at the later level (typically a concrete noun such as a fruit, an animal or a school object). If the later stage teaches the word better with a relationship or a situation, or uses a different sense, write a new scene for it.
 Scene descriptions: at most 35 English words, concrete and drawable, describe only what is visible; the meaning must be guessable with no text at all; never rely on letters, numbers, writing, signs, flags or logos; friendly cartoon children and adults; nothing scary or violent; prefer the sense given by the Chinese meaning and the example sentence.
 Return JSON only: {"words":[{"id":"<word>","stages":{"<stage>":{"scene":"..."} or {"reuse":"<earlier stage>"}}}]} with every requested stage present."""
@@ -288,7 +296,7 @@ REF_TAG = hashlib.sha1(b''.join(r['inlineData']['data'].encode() for r in REFS))
 
 
 def prompt(job):
-    p = f'{STYLE}\n{STAGE_RULE[job["stage"]]}\n'
+    p = f'{STYLE}\n{LEGIBLE}\n{STAGE_RULE[job["stage"]]}\n'
     if REFS:
         p += 'Match the art style of the reference images exactly (line weight, colors, shading, how faces look). Do not copy their subjects.\n'
     p += f'The picture teaches the English word "{job["id"]}" (meaning in Chinese: {job["zh"]}).\nDraw this: {job["scene"]}'
@@ -332,7 +340,7 @@ def generate(job, scene=None) -> bytes:
 CHECK_RULES = """You are checking a picture for a children's English vocabulary game (Chinese primary-school pupils).
 The picture should teach the word "{id}" (Chinese meaning: {zh}) at the {stage} level. The intended scene: {scene}
 Reply JSON only: {{"ok": true/false, "text_in_image": true/false, "problem": "<short, empty if ok>", "better_scene": "<if not ok: a clearer scene, at most 35 words, no text in the picture>"}}
-ok is false if the picture contains any letters, words or numbers, if the meaning of the word cannot be guessed from it by a child at this level, if it shows something else, or if it is scary or inappropriate. Small stylistic flaws are fine."""
+ok is false if the picture contains any letters, words or numbers, if the meaning of the word cannot be guessed from it by a child at this level, if it shows something else, if it would be unreadable as a tiny 64x64 icon (small distant figures, wide room scenes, clutter), or if it is scary or inappropriate. Small stylistic flaws are fine."""
 
 
 def check(job, png: bytes):
