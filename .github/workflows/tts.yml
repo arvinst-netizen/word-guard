@@ -1,0 +1,43 @@
+name: 生成发音
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'sample = 生成试听页挑声音；full = 生成全部单词和例句'
+        required: true
+        default: sample
+        type: choice
+        options: [sample, full]
+      voice:
+        description: '声音名字（full 模式用），例如 en-US-Chirp3-HD-Leda'
+        required: false
+        default: en-US-Chirp3-HD-Leda
+      rate:
+        description: '语速，1 是正常，0.9 稍慢'
+        required: false
+        default: '0.9'
+permissions:
+  contents: write
+concurrency: tts
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: 生成
+        env:
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          MODE: ${{ inputs.mode }}
+          VOICE: ${{ inputs.voice }}
+          RATE: ${{ inputs.rate }}
+        run: python3 tools/tts.py
+      - name: 提交音频
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add audio
+          git diff --cached --quiet && echo "没有变化" && exit 0
+          git commit -m "生成发音（${{ inputs.mode }} ${{ inputs.voice }}）"
+          git pull --rebase
+          git push
