@@ -3,26 +3,26 @@
  "message": "bookstore@starters：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource has been exhausted (e.g. check quota).\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
  "planned": 2993,
  "words": 2993,
- "drawn": 836,
+ "drawn": 876,
  "jobs": 3616,
- "covered": 956,
+ "covered": 996,
  "pairs": 3818,
- "flagged": 7,
- "failed": 5,
+ "flagged": 8,
+ "failed": 4,
  "this_round": 40,
  "complete": false,
  "mode": "full",
- "spend": 52.67,
+ "spend": 54.79,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.0581,
-  "draw": 41.4546,
-  "check": 5.1527
+  "draw": 43.3302,
+  "check": 5.4053
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-09 11:31:43 UTC"
+ "at": "2026-11-09 12:18:35 UTC"
 }

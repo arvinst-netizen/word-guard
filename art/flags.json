@@ -5,5 +5,6 @@
 "word@starters": "The magnifying glass highlights a smiley face and random shapes, which represents 'search' or 'symbol' rather than 'word'.",
 "number@ket": "The image contains digit characters (1, 2, 3, 4, 5).",
 "sentence@ket": "The blocks show shapes (star, heart) instead of words, making it look like a toy pattern rather than a sentence.",
-"example@ket": "The concept of 'example' is too abstract to guess from just a person holding an origami swan."
+"example@ket": "The concept of 'example' is too abstract to guess from just a person holding an origami swan.",
+"begin@ket": "The paper already has a sun drawn on it, which makes the image represent 'draw' or 'write' rather than 'begin'."
 }
