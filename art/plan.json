@@ -2990,7 +2990,7 @@
 "scene": "A small red sailboat floating on top of a large blue ocean wave."
 },
 "ket": {
-"scene": "A close-up of a person's feet splashing in the shallow blue sea water at the shore."
+"scene": "A wide view of a blue sea with waves rolling onto a sandy beach under a sunny sky."
 }
 }
 },
@@ -3432,10 +3432,10 @@
 "sig": "a742d1f989",
 "stages": {
 "starters": {
-"scene": "A cartoon child sitting on the floor, arranging colorful toy blocks with simple letters on them."
+"scene": "A cartoon child writing on a piece of paper with a pencil, with colorful blank blocks nearby, representing the act of writing or spelling without showing actual letters."
 },
 "ket": {
-"scene": "Close-up of hands arranging wooden letter tiles to form a word next to a small toy dog."
+"scene": "A child arranging blank wooden blocks in a row next to a toy dog, suggesting the action of spelling without showing actual letters."
 }
 }
 },
@@ -3498,10 +3498,10 @@
 "sig": "0fc1613241",
 "stages": {
 "starters": {
-"scene": "Three colorful wooden toy blocks spelling 'CAT' lined up together."
+"scene": "An open dictionary with a magnifying glass highlighting a specific entry, using simplified lines and symbols instead of actual letters to represent text."
 },
 "ket": {
-"scene": "Close-up of a child's finger pointing directly at a single highlighted word in an open book."
+"scene": "A close-up of a finger pointing at a single highlighted block of abstract text in an open book, representing a word without using actual letters."
 }
 }
 },
@@ -3509,7 +3509,7 @@
 "sig": "bd88c11630",
 "stages": {
 "starters": {
-"scene": "A colorful toy poster showing the letters 'A', 'B', 'C', and 'D' in a grid."
+"scene": "A set of colorful toy blocks shaped like various letters of the alphabet scattered on a wooden table."
 }
 }
 },
@@ -3520,7 +3520,7 @@
 "scene": "Three colorful wooden toy blocks shaped like the numbers '1', '2', and '3'."
 },
 "ket": {
-"scene": "Close-up of a child's hand pressing a large number key on a colorful toy calculator."
+"scene": "A child arranging colorful wooden number blocks on a plain table."
 }
 }
 },
@@ -3528,7 +3528,7 @@
 "sig": "9f5f35077b",
 "stages": {
 "starters": {
-"scene": "A cute cartoon bulldog wearing a classic black bowler hat."
+"scene": "The British flag (Union Jack) waving on a flagpole, in a simple cartoon style."
 },
 "movers": {
 "scene": "A cute cartoon child in a red raincoat standing next to a tall red telephone booth."
@@ -3553,10 +3553,10 @@
 "sig": "7b26b57166",
 "stages": {
 "starters": {
-"scene": "A toy train where each colorful carriage holds a single letter block, linked in a line."
+"scene": "A notebook page with neat lines of handwritten text (represented by scribbles) and a pencil resting on it, clearly representing written sentences."
 },
 "ket": {
-"scene": "Close-up of a hand using a bright yellow marker to highlight a line of text in a book."
+"scene": "A train of colorful toy blocks lined up to represent words in a sentence, with a large period punctuation mark block at the very end."
 }
 }
 },

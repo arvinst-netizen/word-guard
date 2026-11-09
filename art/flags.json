@@ -1,5 +1,10 @@
 {
 "go@ket": "The image contains the word 'School' on the building.",
 "zoo@ket": "The image contains the text 'ZOO'.",
-"cousin@ket": "The image contains the text 'COUSINS' at the top."
+"cousin@ket": "The image contains the text 'COUSINS' at the top.",
+"spell@starters": "Without letters, the action looks like coloring or drawing, making 'spell' impossible to guess.",
+"spell@ket": "Without letters on the blocks, the action looks like building or arranging, making 'spell' impossible to guess.",
+"word@starters": "The magnifying glass highlights a smiley face and random shapes, which represents 'search' or 'symbol' rather than 'word'.",
+"number@ket": "The image contains digit characters (1, 2, 3, 4, 5).",
+"sentence@ket": "The blocks show shapes (star, heart) instead of words, making it look like a toy pattern rather than a sentence."
 }
