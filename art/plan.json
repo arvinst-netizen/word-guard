@@ -3235,7 +3235,7 @@
 "sig": "99de577a36",
 "stages": {
 "starters": {
-"scene": "A cute cartoon child with wide eyes and an open mouth, holding both hands to their cheeks in terror."
+"scene": "A cute, friendly cartoon ghost or a playful little monster jumping out to gently startle someone, clearly representing 'scary'."
 },
 "ket": {
 "scene": "Waist-up of a shivering child under a blanket, staring wide-eyed at a giant, comical spider shadow on the wall."
@@ -3421,7 +3421,7 @@
 "scene": "A cartoon girl sitting on the floor, drawing a sun with a yellow marker."
 },
 "movers": {
-"scene": "A boy showing his drawing of a green dragon to his smiling father."
+"scene": "A child sitting at a table, holding a crayon and actively drawing a colorful picture on a sheet of paper."
 },
 "ket": {
 "scene": "Close-up of a child's hand holding a pencil, carefully sketching the outline of a puppy on paper."
@@ -3479,7 +3479,7 @@
 "scene": "A cute cartoon child smiling and raising one hand high in the air."
 },
 "ket": {
-"scene": "Close-up of a child's hand holding a telephone receiver to their ear, smiling happily."
+"scene": "A student raising their hand happily in a classroom to answer a teacher's question."
 }
 }
 },
@@ -3567,7 +3567,7 @@
 "scene": "A flashcard showing a drawing of a red apple next to a large letter 'A'."
 },
 "ket": {
-"scene": "Close-up of a teacher's hand writing '1 plus 1 equals 2' on a small chalkboard."
+"scene": "A teacher holding up a completed origami swan to show students as a model before they start folding."
 }
 }
 },
@@ -3586,7 +3586,7 @@
 "sig": "a1ddad9a0d",
 "stages": {
 "starters": {
-"scene": "Three smiling cartoon children standing together, wearing matching blue school uniforms."
+"scene": "A classroom with a teacher writing on the blackboard and several students sitting at desks listening attentively."
 },
 "movers": {
 "scene": "A smiling teacher standing at the front, looking at two students sitting at their desks."
@@ -3625,13 +3625,13 @@
 "sig": "a5bdd4a99a",
 "stages": {
 "starters": {
-"scene": "A heavy wooden door completely shut with a large key in the lock."
+"scene": "A hand pushing a door shut, with a curved arrow showing the closing motion."
 },
 "movers": {
 "scene": "A cartoon child pushing a wooden door shut with both hands."
 },
 "ket": {
-"scene": "Close-up of a hand pulling a zipper shut on a colorful school backpack."
+"scene": "A close-up of a hand closing a colorful book, with a simple arrow indicating the closing motion."
 }
 }
 },
@@ -3683,7 +3683,7 @@
 "scene": "A smiling cartoon star wearing a gold crown and giving a thumbs-up."
 },
 "ket": {
-"scene": "Close-up of a teacher's hand using a red pen to draw a big checkmark on a paper."
+"scene": "A close-up of a hand using a red pen to draw a large checkmark on a paper with simple lines representing text, without any actual numbers or letters."
 }
 }
 },
@@ -3705,7 +3705,7 @@
 "sig": "8739576399",
 "stages": {
 "starters": {
-"scene": "A cartoon hand pointing a finger at a bright red apple."
+"scene": "A hand pointing to select one apple from a choice of a red apple, a green apple, and an orange."
 },
 "ket": {
 "scene": "A tight close-up of a child's hand hovering indecisively between a chocolate ice cream cone and a strawberry ice cream cone."
@@ -3716,7 +3716,7 @@
 "sig": "f82a12c566",
 "stages": {
 "starters": {
-"scene": "A cartoon boy looking through a magnifying glass at a tiny ladybug."
+"scene": "A happy boy holding up a lost key he just found under a doormat, pointing at it with a cheerful, successful expression."
 },
 "movers": {
 "scene": "A cartoon girl happily holding up a lost key she just found under a doormat."
