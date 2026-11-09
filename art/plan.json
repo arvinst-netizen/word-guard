@@ -4763,7 +4763,7 @@
 "sig": "9771c1ac8b",
 "stages": {
 "starters": {
-"scene": "A bright yellow sun shining happily in a clear blue sky."
+"scene": "A bright daytime landscape with a smiling sun in a blue sky over green hills, clearly representing day instead of just the sun."
 },
 "ket": {
 "scene": "Close-up of a hand tearing a page off a daily calendar, revealing a new page with a sun icon."
@@ -4777,7 +4777,7 @@
 "scene": "A calendar page with a big red circle drawn around one single grid square."
 },
 "ket": {
-"scene": "Close-up of a finger pointing directly at a red-circled square on a wall calendar."
+"scene": "A close-up of a finger pointing directly to a single highlighted square on a calendar grid, with no text or numbers on the page."
 }
 }
 },
@@ -4785,10 +4785,10 @@
 "sig": "a7af344eaf",
 "stages": {
 "starters": {
-"scene": "A thick, multi-page wall calendar showing many pages bound together."
+"scene": "A thick spiral-bound calendar with pages turning, showing icons of four seasons (sun, leaf, snowflake, flower) to represent a year, without any numbers or text."
 },
 "ket": {
-"scene": "Close-up of a hand hanging a brand new, fresh wall calendar onto a hook."
+"scene": "A circular diagram showing the four seasons (spring, summer, autumn, winter) in a cycle, representing one full year."
 }
 }
 },
@@ -4810,7 +4810,7 @@
 "scene": "A cute cartoon boy sleeping peacefully in a bed under a cozy blue blanket."
 },
 "ket": {
-"scene": "Close-up of a sleeping child's head on a soft white pillow, hugging a brown teddy bear."
+"scene": "A close-up of a cartoon child sleeping peacefully on a pillow, hugging a teddy bear, with no letters or symbols like 'Z' in the background."
 }
 }
 },
@@ -4837,7 +4837,7 @@
 "sig": "715bceffca",
 "stages": {
 "starters": {
-"scene": "A cute cartoon hand holding out a shiny red apple."
+"scene": "One hand handing a wrapped gift box to another hand, clearly showing the action of giving."
 },
 "ket": {
 "scene": "Close-up of one child's hands passing a wrapped gift box directly into another child's hands."
