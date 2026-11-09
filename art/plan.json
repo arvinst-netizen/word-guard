@@ -3840,7 +3840,7 @@
 "scene": "A cozy cartoon house with a red roof and a chimney."
 },
 "ket": {
-"scene": "A tight close-up of a hand holding a key ring with a house-shaped keychain next to a wooden front door."
+"scene": "A simple, cozy cartoon house with a red roof, a chimney with puffing smoke, a green lawn, and a small tree next to it."
 }
 }
 },
@@ -3926,7 +3926,7 @@
 "sig": "6ac2ff9ad8",
 "stages": {
 "starters": {
-"scene": "A wooden dining table set with a plate, a fork, and a spoon."
+"scene": "A cozy dining room showing a dining table with chairs, a window, and a sideboard in the background."
 },
 "ket": {
 "scene": "A tight close-up of a hand placing a bowl of steaming soup onto a wooden dining table."
@@ -3937,13 +3937,13 @@
 "sig": "d480ee493a",
 "stages": {
 "starters": {
-"scene": "A large, arched wooden front door standing wide open."
+"scene": "A spacious school assembly hall or grand building lobby with a high ceiling, columns, and a polished floor, clearly depicting a large hall."
 },
 "movers": {
-"scene": "A small cartoon boy standing next to a giant, tall white pillar."
+"scene": "A long hallway inside a house with doors on both sides and a small rug on the floor."
 },
 "ket": {
-"scene": "A close-up of a hand hanging a coat on a wooden peg in a hallway."
+"scene": "A bright entrance hall of a house with an open front door, a coat rack, and a staircase leading upstairs."
 }
 }
 },
@@ -4050,7 +4050,7 @@
 "sig": "2886b98761",
 "stages": {
 "starters": {
-"scene": "A fluffy, circular pink rug with a soft texture."
+"scene": "A simple cozy rug on a wooden floor next to the corner of a bed or a chair, making its function clear."
 }
 }
 },
@@ -4061,7 +4061,7 @@
 "scene": "A round wall clock with two black hands pointing in different directions, without numbers."
 },
 "ket": {
-"scene": "A close-up of a hand pressing down the snooze button on top of a ringing alarm clock."
+"scene": "A cute cartoon alarm clock ringing, with a simple face without numbers, showing clear clock hands."
 }
 }
 },
@@ -4105,7 +4105,7 @@
 "sig": "23e6380d2a",
 "stages": {
 "starters": {
-"scene": "A flat-screen television displaying a colorful cartoon landscape."
+"scene": "A modern flat-screen television on a simple stand with a remote control lying next to it, displaying a colorful cartoon landscape."
 },
 "movers": {
 "scene": "A boy sitting on the floor, looking up at a large television screen."
@@ -4144,7 +4144,7 @@
 "scene": "A section of a red brick wall with neat grey mortar."
 },
 "ket": {
-"scene": "A close-up of a hand using a roller brush to paint a wall with bright blue paint."
+"scene": "A simple red brick wall with a few green leaves climbing up, clearly representing a wall."
 }
 }
 },
