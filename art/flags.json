@@ -6,5 +6,14 @@
 "number@ket": "The image contains digit characters (1, 2, 3, 4, 5).",
 "sentence@ket": "The blocks show shapes (star, heart) instead of words, making it look like a toy pattern rather than a sentence.",
 "example@ket": "The concept of 'example' is too abstract to guess from just a person holding an origami swan.",
-"begin@ket": "The paper already has a sun drawn on it, which makes the image represent 'draw' or 'write' rather than 'begin'."
+"Monday@movers": "The image is too abstract and ambiguous; it is very difficult for a child to guess the specific word 'Monday' from it.",
+"Tuesday@movers": "Without any letters or labels, it is impossible to distinguish 'Tuesday' from other days of the week, making it look like 'calendar' or 'week'.",
+"Wednesday@ket": "The calendar only shows 5 blocks instead of 7, making it confusing to identify as Wednesday (the middle of a 7-day week).",
+"Thursday@movers": "The image contains the text 'THURSDAY' which violates the rule of no letters or words in the picture.",
+"Thursday@ket": "The image contains text (MON, TUE, WED, THU, FRI) and numbers, which is not allowed.",
+"Friday@ket": "The calendar grid has only four columns instead of five, making it confusing to represent the fifth day (Friday).",
+"club@movers": "The image contains the word 'CLUB' written on a sign on the table.",
+"Sunday@ket": "The image contains text ('SUN') and numbers ('7'), which is not allowed.",
+"Saturday@ket": "The calendar shows eight blocks instead of seven, making it confusing, and 'Saturday' is impossible to guess from this illustration.",
+"Saturday@movers": "The grid only has 4 columns instead of 7, making it impossible to identify 'Saturday' as the sixth day of the week."
 }

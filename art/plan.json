@@ -5624,7 +5624,7 @@
 "sig": "73896c3b61",
 "stages": {
 "movers": {
-"scene": "A cute cartoon girl holding a framed picture of a cozy countryside village with a small river and green hills."
+"scene": "A cozy, beautiful countryside village with small houses, green hills, a winding river, and a welcoming path, representing a peaceful hometown."
 }
 }
 },
@@ -5648,10 +5648,10 @@
 "sig": "9e35d5520d",
 "stages": {
 "movers": {
-"scene": "A cute cartoon child wearing a school backpack, waving goodbye to a smiling mother at the front door."
+"scene": "A calendar showing the seven days of the week as blocks, with the first weekday block highlighted with a school icon to represent the start of the school week."
 },
 "ket": {
-"scene": "Close-up of a child's hands packing a fresh, clean notebook and a pencil case into a school backpack."
+"scene": "A child happily waking up on a sunny morning, putting on a school backpack, with a calendar on the wall showing the first day of the week highlighted."
 }
 }
 },
@@ -5689,7 +5689,7 @@
 "sig": "415ec764a2",
 "stages": {
 "movers": {
-"scene": "A child sitting at a desk, focused on writing in an open school workbook under a small lamp."
+"scene": "A simple calendar showing the days of the week with the column for Tuesday highlighted in bright yellow with a red circle around it."
 },
 "ket": {
 "scene": "Close-up of a child's hand writing neatly in a school notebook with a pencil."
@@ -5711,7 +5711,7 @@
 "scene": "A child happily eating a sandwich from a lunchbox next to a small desk clock."
 },
 "ket": {
-"scene": "Close-up of a hand placing a red apple next to a school textbook on a desk."
+"scene": "A calendar showing seven blank blocks for the days of the week, with the third block highlighted in bright yellow to represent Wednesday, without any text."
 }
 }
 },
@@ -5730,10 +5730,10 @@
 "sig": "071dc8292b",
 "stages": {
 "movers": {
-"scene": "A child painting a colorful picture on an easel with a paintbrush."
+"scene": "A calendar page with the word 'Thursday' or 'THU' clearly highlighted with a red circle."
 },
 "ket": {
-"scene": "Close-up of a child's hand holding a paintbrush, mixing blue and yellow paint on a palette."
+"scene": "A calendar page with a weekly view where the column for Thursday is highlighted with a bright circle or star."
 }
 }
 },
@@ -5741,10 +5741,10 @@
 "sig": "881b867630",
 "stages": {
 "movers": {
-"scene": "A child happily throwing their school backpack into the air with a joyful expression."
+"scene": "A calendar chart with five school-day icons, the first four crossed out, and the fifth one showing a child cheering for the weekend."
 },
 "ket": {
-"scene": "Close-up of a child's hands closing a heavy school textbook with a happy, relaxed sigh."
+"scene": "A calendar showing five crossed-out school days with a big smiley face on the fifth day, next to a school bag and weekend toys."
 }
 }
 },
@@ -5755,7 +5755,7 @@
 "scene": "A cute girl sharing her umbrella with a wet, shivering puppy in the rain."
 },
 "ket": {
-"scene": "Close-up of a child's hands gently placing a colorful band-aid on another child's scraped knee."
+"scene": "A smiling child sharing their umbrella with a wet, shivering puppy in the rain."
 }
 }
 },
@@ -5766,7 +5766,7 @@
 "scene": "A hand sliding the final puzzle piece into a nearly finished, colorful jigsaw puzzle."
 },
 "ket": {
-"scene": "Close-up of two smiling cartoon children clasping their hands together in a warm, friendly handshake."
+"scene": "A smiling child running to join a group of happy children playing together in a circle, with them welcoming the child in."
 }
 }
 },
@@ -5774,10 +5774,10 @@
 "sig": "895453636e",
 "stages": {
 "movers": {
-"scene": "A child happily riding a bicycle with training wheels on a sunny path."
+"scene": "A calendar with seven columns representing the days of the week, where the sixth column (Saturday) is highlighted with a star and a small icon of a child playing."
 },
 "ket": {
-"scene": "Close-up of a child's hands holding a game controller, playing a video game."
+"scene": "A calendar showing seven blocks for the week, with the sixth block (Saturday) highlighted with a star and a happy face to represent the weekend."
 }
 }
 },
@@ -5785,10 +5785,10 @@
 "sig": "a1ab9853f8",
 "stages": {
 "movers": {
-"scene": "Two children happily painting a large, colorful banner together with paintbrushes."
+"scene": "A group of children in matching club t-shirts happily gathered around a table, doing activities like chess and painting together."
 },
 "ket": {
-"scene": "Close-up of a child's hand pinning a colorful badge with a paintbrush symbol onto another child's shirt."
+"scene": "A group of children gathered around a table, happily playing board games or doing crafts together in a school club room."
 }
 }
 },
@@ -5796,10 +5796,10 @@
 "sig": "abae9270f2",
 "stages": {
 "movers": {
-"scene": "A child sleeping peacefully in a cozy bed, with a bright smiling sun outside the window."
+"scene": "A calendar showing a sun icon on the weekend page, next to a family happily having a picnic in a sunny park."
 },
 "ket": {
-"scene": "Close-up of a child's feet in fluffy slippers resting on a soft rug next to a toy box."
+"scene": "A calendar page with the day 'Sunday' highlighted in red, next to a cartoon family happily going on a picnic."
 }
 }
 },
