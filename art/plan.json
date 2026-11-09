@@ -2597,7 +2597,7 @@
 "sig": "16da66c2fe",
 "stages": {
 "starters": {
-"scene": "A roasted chicken leg on a white plate, steam rising gently."
+"scene": "A plate with a complete meal like steak, broccoli, and carrots, next to a glass of water, representing a typical dinner."
 },
 "movers": {
 "scene": "A parent placing a hot, steaming bowl of soup in front of a happy child at a table."
@@ -2788,7 +2788,7 @@
 "scene": "A cute green plant in a pot being watered by a blue watering can."
 },
 "ket": {
-"scene": "A close-up of two hands washing under a running bathroom faucet with clear water."
+"scene": "A clear glass filled with clean drinking water on a simple background."
 }
 }
 },
@@ -2862,7 +2862,7 @@
 "sig": "a31d3b87e2",
 "stages": {
 "starters": {
-"scene": "A cute cartoon giraffe peeking over a simple wooden fence."
+"scene": "A cartoon zoo entrance gate with a variety of animals like a lion, elephant, and monkey visible inside."
 },
 "movers": {
 "scene": "A happy child feeding a green leaf to a tall giraffe over a wooden fence."
@@ -2965,7 +2965,7 @@
 "scene": "A happy dog wagging its long tail, with motion lines showing the movement."
 },
 "ket": {
-"scene": "A close-up of a hand gently brushing a horse's long, hairy tail."
+"scene": "A cute cartoon dog or cat seen from behind, wagging its long tail with simple motion lines highlighting the tail."
 }
 }
 },
@@ -2973,10 +2973,10 @@
 "sig": "e33b5ed91c",
 "stages": {
 "starters": {
-"scene": "A red and white striped beach umbrella standing in the yellow sand."
+"scene": "A sandy beach next to blue ocean waves, with a beach umbrella and a sunny sky."
 },
 "ket": {
-"scene": "A close-up of a hand using a red plastic shovel to scoop yellow sand into a blue bucket."
+"scene": "A sunny beach with golden sand, gentle blue ocean waves, and a clear sky."
 }
 }
 },
@@ -2984,7 +2984,7 @@
 "sig": "8ec804f842",
 "stages": {
 "starters": {
-"scene": "A simple blue ocean wave curving and splashing."
+"scene": "A wide view of a blue sea with gentle waves under a sunny sky, showing the horizon."
 },
 "movers": {
 "scene": "A small red sailboat floating on top of a large blue ocean wave."
