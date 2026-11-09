@@ -6295,7 +6295,7 @@
 "scene": "A large red cinema seat with a big striped bucket of popcorn sitting on it."
 },
 "ket": {
-"scene": "A tight close-up of a hand holding a pair of red and blue 3D glasses."
+"scene": "A cinema hall with rows of red seats facing a large glowing movie screen showing a film."
 }
 }
 },
@@ -6333,7 +6333,7 @@
 "sig": "a026f8d065",
 "stages": {
 "movers": {
-"scene": "A red shopping cart filled with a giant carrot and a milk carton."
+"scene": "A bright supermarket aisle with shelves stocked with colorful groceries, fruits, and a shopping cart in the foreground."
 },
 "ket": {
 "scene": "A tight close-up of a hand pushing a metal shopping cart handle."
@@ -6374,10 +6374,10 @@
 "sig": "bbea34ae2a",
 "stages": {
 "movers": {
-"scene": "A green caterpillar crawling on a branch next to a beautiful butterfly."
+"scene": "A cute caterpillar on the left, a simple arrow pointing to the right, and a beautiful butterfly on the right, showing transformation."
 },
 "ket": {
-"scene": "A tight close-up of a magician's hand waving a wand over a hat, turning a flower into a rabbit."
+"scene": "A split image showing a cute caterpillar on the left and a beautiful butterfly on the right, clearly illustrating the concept of 'become'."
 }
 }
 },
