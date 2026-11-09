@@ -102,7 +102,7 @@
 "scene": "A simple, bright kitchen with a stove, a sink, and cabinets, clearly showing a kitchen room in a cute cartoon style."
 },
 "movers": {
-"scene": "A cartoon chef tossing a green vegetable inside a hot frying pan."
+"scene": "A colorful cartoon kitchen showing a stove with a boiling pot, a sink, cabinets, and a refrigerator."
 },
 "ket": {
 "scene": "A cozy kitchen with a stove, a sink, cabinets, and a refrigerator clearly visible."
@@ -3766,7 +3766,7 @@
 "scene": "A cartoon child with an open mouth and a speech bubble containing a heart."
 },
 "ket": {
-"scene": "A tight close-up of a smiling cartoon child speaking directly into a silver microphone."
+"scene": "A cartoon child with an open mouth and sound waves, pointing to their mouth to show they are speaking."
 }
 }
 },
@@ -3865,7 +3865,7 @@
 "scene": "A tall cartoon apartment building with several windows and balconies."
 },
 "ket": {
-"scene": "A tight close-up of a finger pressing a button on a modern apartment intercom panel next to a door."
+"scene": "A tall apartment building with multiple balconies and windows under a blue sky, clearly showing a multi-family residential structure."
 }
 }
 },
@@ -3873,10 +3873,10 @@
 "sig": "fb6ec94fc8",
 "stages": {
 "starters": {
-"scene": "A cozy cartoon bed with a colorful pillow and blanket."
+"scene": "A cozy bedroom showing a bed, a small window, a wardrobe, and a rug to clearly represent a whole room."
 },
 "ket": {
-"scene": "A tight close-up of a hand turning a shiny brass doorknob to open a wooden door."
+"scene": "A cozy bedroom with a neatly made bed, a small desk with a lamp, and a window showing daylight, representing a typical room."
 }
 }
 },
@@ -3884,13 +3884,13 @@
 "sig": "9ee70eb2c0",
 "stages": {
 "starters": {
-"scene": "A cute cartoon bathtub filled with white bubbles and a yellow rubber duck."
+"scene": "A cute cartoon bathroom showing a bathtub, a sink with a mirror, and a toilet."
 },
 "movers": {
-"scene": "A happy cartoon child sitting inside a white bathtub filled with bubbles, splashing water."
+"scene": "A simple cartoon bathroom showing a bathtub, a sink with a mirror, and a toilet."
 },
 "ket": {
-"scene": "A tight close-up of a hand squeezing blue toothpaste onto a toothbrush over a white sink."
+"scene": "A simple cartoon bathroom showing a bathtub with a shower head, a toilet, and a small sink."
 }
 }
 },
@@ -3898,13 +3898,13 @@
 "sig": "ccc4ac118e",
 "stages": {
 "starters": {
-"scene": "A cozy cartoon bed with a blue pillow and a yellow star-patterned blanket."
+"scene": "A simple cozy bedroom with a bed, a small bedside table with a lamp, and a window showing a night sky."
 },
 "movers": {
 "scene": "A cartoon child sleeping peacefully in a cozy bed under a yellow star-patterned blanket."
 },
 "ket": {
-"scene": "A tight close-up of a hand pulling a cozy blue blanket up to a sleeping child's chin."
+"scene": "A simple, cozy bedroom showing a neat bed, a small bedside table with a lamp, and a window."
 }
 }
 },
@@ -3912,13 +3912,13 @@
 "sig": "285f1bbb89",
 "stages": {
 "starters": {
-"scene": "A comfortable cartoon sofa with two colorful cushions."
+"scene": "A cozy living room with a simple sofa, a small coffee table, a floor lamp, and a window."
 },
 "movers": {
-"scene": "A cartoon child sitting comfortably on a large red sofa, holding a black TV remote."
+"scene": "A cozy cartoon living room showing a sofa, a small coffee table with a cup, a potted plant, and a framed picture on the wall."
 },
 "ket": {
-"scene": "A tight close-up of a hand pressing a button on a black TV remote control."
+"scene": "A cozy living room with a sofa, a coffee table, and a television on a stand."
 }
 }
 },
