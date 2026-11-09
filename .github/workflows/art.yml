@@ -3,9 +3,9 @@ on:
   # Claude 推送 art/run.json 就会运行（内容如 {"mode": "sample", "redo": "", "n": 1}）
   push:
     paths: ['art/run.json']
-  # 自动续画：每 6 小时看一次，art/autopilot.json 打开、上一轮还没画完（status 是 more）就接着画
+  # 自动续画：每小时看一次（上一个还在跑就排队等），art/autopilot.json 打开、上一轮还没画完（status 是 more）就接着画
   schedule:
-    - cron: '23 */6 * * *'
+    - cron: '23 * * * *'
   workflow_dispatch:
     inputs:
       mode:
