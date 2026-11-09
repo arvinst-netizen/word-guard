@@ -5870,7 +5870,7 @@
 "scene": "A calendar page highlighting Saturday and Sunday with smiley faces, or a family happily playing together in a park."
 },
 "ket": {
-"scene": "A close-up of a child's hands holding a video game controller next to a bowl of popcorn."
+"scene": "A calendar page with the last two days of the week (Saturday and Sunday) highlighted in red with a sun icon."
 }
 }
 },
@@ -6025,7 +6025,7 @@
 "sig": "62199c52af",
 "stages": {
 "movers": {
-"scene": "A large round wall clock with hands pointing straight up and straight right, with a cute bird popping out."
+"scene": "A cute round wall clock showing exactly three o'clock with simple dots or tick marks instead of numbers, with a little bird popping out."
 }
 }
 },
@@ -6052,10 +6052,10 @@
 "sig": "b42e4486a1",
 "stages": {
 "movers": {
-"scene": "A tall, wrinkled grandfather holding hands with a tiny, cute toddler."
+"scene": "A row of four cartoon characters representing different life stages: a baby, a young child, a middle-aged adult, and an elderly person, showing the concept of age."
 },
 "ket": {
-"scene": "A close-up of a child's hands holding a small birthday cupcake with a single glowing candle."
+"scene": "A sequence of four characters showing stages of growing up: a baby, a young child, a teenager, and an adult."
 }
 }
 },
@@ -6063,7 +6063,7 @@
 "sig": "7135febe68",
 "stages": {
 "movers": {
-"scene": "A small wooden bridge arching over a flowing blue river."
+"scene": "A wide, winding blue river flowing through a green meadow with a few trees on the banks under a blue sky."
 },
 "ket": {
 "reuse": "movers"
@@ -6194,7 +6194,7 @@
 "scene": "A cartoon boy sitting at a desk, writing in an open notebook with a pencil."
 },
 "ket": {
-"scene": "A close-up of a hand holding a pencil, writing answers in a workbook."
+"scene": "A close-up of a child's hand holding a pencil, writing on a workbook page with simple lines and drawings, without any readable letters or numbers."
 }
 }
 },
@@ -6210,7 +6210,7 @@
 "sig": "c96f89cd38",
 "stages": {
 "movers": {
-"scene": "A cartoon boy putting his index finger to his lips next to a sleeping baby."
+"scene": "A cartoon boy putting his index finger to his lips next to a sleeping baby, without any floating letters like 'z z z'."
 },
 "ket": {
 "scene": "A close-up of a person's face from the nose down, with an index finger pressed against closed lips."
@@ -6273,7 +6273,7 @@
 "scene": "A cute cartoon shopfront with a striped awning and a large toy bear in the window."
 },
 "ket": {
-"scene": "A tight close-up of a shopkeeper's hand passing a paper shopping bag to a customer's hand."
+"scene": "A cute cartoon storefront of a toy shop with colorful toys visible in the large display window."
 }
 }
 },
