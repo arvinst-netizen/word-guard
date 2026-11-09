@@ -9,11 +9,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'check = 免费检查密钥和模型；sample = 规划并画 16 个词看画风和递进；plan = 只写画面描述；full = 规划并画完全部（可中断，再跑接着画）；redo = 重画指定的'
+        description: 'auto = 按 art/autopilot.json 接着画（上一轮结束时自动触发）；check = 免费检查密钥和模型；sample = 规划并画 16 个词看画风和递进；plan = 只写画面描述；full = 规划并画完全部（可中断，再跑接着画）；redo = 重画指定的'
         required: true
         default: sample
         type: choice
-        options: [check, sample, plan, full, redo]
+        options: [check, sample, plan, full, redo, auto]
       redo:
         description: 'redo 模式：要重画的，用逗号分隔；"run" 重画这个词所有阶段，"run@ket" 只重画 KET 阶段'
         required: false
@@ -24,6 +24,7 @@ on:
         default: '250'
 permissions:
   contents: write
+  actions: write  # 画完一轮还有剩时，自己触发下一轮
 concurrency: art
 jobs:
   art:
@@ -43,12 +44,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
-          if [ "${{ github.event_name }}" = schedule ]; then
+          if [ "${{ github.event_name }}" = schedule ] || [ "$IN_MODE" = auto ]; then
             go=$(python3 -c "import json,os;a=json.load(open('art/autopilot.json')) if os.path.exists('art/autopilot.json') else {};s=json.load(open('art/status.json')) if os.path.exists('art/status.json') else {};print('yes' if a.get('enabled') and (s.get('result')=='more' or (s.get('result')=='error' and '429' in s.get('message',''))) else 'no')")
             if [ "$go" != yes ]; then echo "自动续画没打开或已画完，不用跑"; exit 0; fi
             cp art/autopilot.json art/run.json
           fi
-          if [ "${{ github.event_name }}" != workflow_dispatch ]; then
+          if [ "${{ github.event_name }}" != workflow_dispatch ] || [ "$IN_MODE" = auto ]; then
             eval "$(python3 -c "import json,shlex;r=json.load(open('art/run.json'));print('export MODE='+shlex.quote(r.get('mode','sample')),'REDO='+shlex.quote(r.get('redo','')),'BUDGET='+shlex.quote(str(r.get('budget',250))),'RUN_PROJECT='+shlex.quote(str(r.get('project',''))),'LIMIT='+shlex.quote(str(r.get('limit',150))),'ROUNDS='+shlex.quote(str(r.get('rounds',60))),'THINKING='+shlex.quote(str(r.get('thinking',''))))")"
           else
             export MODE="$IN_MODE" REDO="$IN_REDO" BUDGET="$IN_BUDGET"
@@ -74,3 +75,12 @@ jobs:
             echo "第 $round 轮完成，接着画"
           done
           exit $code
+      - name: 还没画完就触发下一轮
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git pull -q --rebase || true
+          go=$(python3 -c "import json,os;a=json.load(open('art/autopilot.json')) if os.path.exists('art/autopilot.json') else {};s=json.load(open('art/status.json')) if os.path.exists('art/status.json') else {};print('yes' if a.get('enabled') and (s.get('result')=='more' or (s.get('result')=='error' and '429' in s.get('message',''))) else 'no')")
+          echo "接着画：$go"
+          if [ "$go" = yes ]; then gh workflow run art.yml --ref "${{ github.ref_name }}" -f mode=auto; fi
