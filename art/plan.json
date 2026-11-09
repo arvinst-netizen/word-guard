@@ -2868,7 +2868,7 @@
 "scene": "A happy child feeding a green leaf to a tall giraffe over a wooden fence."
 },
 "ket": {
-"scene": "A close-up of a hand holding a paper zoo admission ticket next to a metal turnstile gate."
+"scene": "A colorful zoo entrance archway decorated with cartoon animal figures like a giraffe and elephant, with a pathway leading inside."
 }
 }
 },
@@ -2998,7 +2998,7 @@
 "sig": "53ba7ad37a",
 "stages": {
 "starters": {
-"scene": "A neat yellow sandcastle with a small red flag on top."
+"scene": "A simple pile of yellow sand on a beach with a small toy shovel stuck in it."
 }
 }
 },
@@ -3039,7 +3039,7 @@
 "scene": "A small red wooden sailboat floating on gentle blue waves."
 },
 "movers": {
-"scene": "A large blue ship sailing next to a tiny red toy-like sailboat, showing size comparison."
+"scene": "A single cute small red sailboat floating on calm blue water, clearly representing a boat."
 },
 "ket": {
 "reuse": "starters"
@@ -3078,7 +3078,7 @@
 "scene": "A tall cartoon father holding his small son up on his shoulders, both laughing."
 },
 "ket": {
-"scene": "Close-up of a father's hand guiding a child's hand to tie a shoelace."
+"scene": "A father smiling and hugging his young child in a warm, simple setting."
 }
 }
 },
@@ -3089,7 +3089,7 @@
 "scene": "A cute cartoon baby in a blue onesie, sitting and smiling."
 },
 "ket": {
-"scene": "Close-up of a hand gently holding a baby's tiny foot."
+"scene": "A cute cartoon baby lying on its back, smiling and holding a baby bottle."
 }
 }
 },
@@ -3100,7 +3100,7 @@
 "scene": "A kind, elderly cartoon grandmother with grey hair in a bun, smiling."
 },
 "ket": {
-"scene": "Close-up of a grandmother's wrinkled hands teaching a child how to knit with red yarn."
+"scene": "An elderly woman with gray hair and glasses smiling warmly while hugging her young grandchild."
 }
 }
 },
@@ -3141,7 +3141,7 @@
 "sig": "0a182d6033",
 "stages": {
 "starters": {
-"scene": "A friendly cartoon man with short brown hair, smiling."
+"scene": "A friendly cartoon adult man with a neat beard or mustache, wearing a collared shirt, smiling and waving."
 },
 "ket": {
 "scene": "Close-up of a man's waist-up figure, wearing a professional suit and adjusting his tie."
@@ -3166,10 +3166,10 @@
 "scene": "A happy cartoon child with a bright smile, wearing a yellow t-shirt."
 },
 "movers": {
-"scene": "A tall adult standing next to a short child, comparing their heights."
+"scene": "A happy young child standing and smiling, pointing to themselves."
 },
 "ket": {
-"scene": "Close-up of a child's hands carefully building a tower with colorful toy blocks."
+"scene": "A happy young child smiling and playing with colorful building blocks, showing their face and upper body clearly."
 }
 }
 },
@@ -3180,7 +3180,7 @@
 "scene": "A playful cartoon kid wearing a red cap backwards, smiling."
 },
 "ket": {
-"scene": "Close-up of a kid's hands holding a half-eaten chocolate chip cookie."
+"scene": "A happy young child standing and smiling, wearing colorful clothes, clearly representing a kid."
 }
 }
 },
