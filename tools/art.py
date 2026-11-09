@@ -411,11 +411,16 @@ def fname(job) -> str:
     return hashlib.sha1(key.encode()).hexdigest()[:16] + '.webp'
 
 
+_reject = set()  # 不用图的（"词" 或 "词@阶段"），也就不画
+
+
 def jobs_for(targets, plan, hints, words=None):
-    """要画的图：每个词每个"画"的阶段一张（复用的阶段不单独画）"""
+    """要画的图：每个词每个"画"的阶段一张（复用的阶段不单独画；reject 里的不画）"""
     out = []
     for t in targets:
         if words is not None and t['id'] not in words:
+            continue
+        if t['id'] in _reject:
             continue
         p = plan['words'].get(t['id'])
         if not p:
@@ -424,6 +429,8 @@ def jobs_for(targets, plan, hints, words=None):
             sp = p['stages'].get(st, {})
             key = f'{t["id"]}@{st}'
             scene = hints.get(key) or sp.get('scene')
+            if key in _reject:
+                continue
             if scene and (not sp.get('reuse') or key in hints):
                 out.append({'key': key, 'id': t['id'], 'zh': t['zh'], 'stage': st, 'scene': scene})
     return out
@@ -521,6 +528,7 @@ def main():
     drawn = dict(old.get('drawn', {}))  # 词@阶段 → 实际画的文件（不含复用）
     reject = set(json.loads((ART / 'reject.json').read_text())) if (ART / 'reject.json').exists() else set()
     flags = json.loads((ART / 'flags.json').read_text()) if (ART / 'flags.json').exists() else {}
+    _reject.update(reject - set(REDO))
 
     if MODE == 'sample':
         words = {w for w in SAMPLE if w in by_id}
@@ -629,7 +637,10 @@ def main():
                 print(f'  已完成 {done}/{len(todo)}，已花 ${_spend["total"]:.2f}', flush=True)
     (ART / 'plan.json').write_text(json.dumps(plan, ensure_ascii=False, indent=0))
 
-    valid = {j['key'] for j in jobs_for(targets, plan, hints)}
+    _rj = set(_reject)
+    _reject.clear()
+    valid = {j['key'] for j in jobs_for(targets, plan, hints)}  # 不用的图也留着文件，以后改主意不用重画
+    _reject.update(_rj)
     drawn = {k: v for k, v in drawn.items() if k in valid and (ART / v).exists()}
     flags = {k: v for k, v in flags.items() if k in drawn}
     keep = set(drawn.values())
@@ -638,7 +649,8 @@ def main():
             p.unlink()
     files = resolve_index(targets, plan, hints, drawn)
     pairs = sum(len(t['stages']) for t in targets)
-    complete = len(files) == pairs
+    wanted = sum(1 for t in targets if t['id'] not in reject for st in t['stages'] if f"{t['id']}@{st}" not in reject)
+    complete = len([k for k in files if k not in reject and k.split('@')[0] not in reject]) >= wanted
     model = (_img[0] or IMAGE_MODELS[0])[0] if (_img[0] or IMAGE_MODELS) else ''
     (ART / 'index.json').write_text(json.dumps({'model': model, 'complete': complete, 'files': files, 'drawn': drawn},
                                                ensure_ascii=False, separators=(',', ':')))
