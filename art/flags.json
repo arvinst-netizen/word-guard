@@ -37,5 +37,6 @@
 "fact@ket": "The concept of 'fact' is too abstract to be clearly conveyed by a boy looking at a globe, which is more likely to be interpreted as 'globe', 'earth', or 'geography'.",
 "total@ket": "The image looks like a hand grabbing or choosing a pile of apples, which represents 'pick' or 'pile' rather than 'total'.",
 "important@ket": "The image contains numbers on the calendar grid, which violates the rule against text and numbers.",
-"hour@ket": "The clock face contains numbers."
+"hour@ket": "The clock face contains numbers.",
+"daily@ket": "The image contains text ('CALENDAR' and letters for the days of the week)."
 }
