@@ -27,5 +27,6 @@
 "seat@movers": "The boy pointing at the seat is a distracting element that could make children think the word is 'boy', 'point', or 'child' instead of 'seat'.",
 "degree@ket": "The image is more likely to be guessed as 'hot', 'temperature', or 'thermometer' rather than 'degree'.",
 "address@ket": "The image contains letter-like scribbles on the envelope and inside the postmark.",
-"address@movers": "The image is more likely to be interpreted as 'letter', 'envelope', or 'magnifying glass' rather than 'address'."
+"address@movers": "The image is more likely to be interpreted as 'letter', 'envelope', or 'magnifying glass' rather than 'address'.",
+"parking lot@ket": "The image contains the letter 'P' on the parking sign."
 }
