@@ -25,8 +25,6 @@
 "degree@ket": "The image is more likely to be guessed as 'hot', 'temperature', or 'thermometer' rather than 'degree'.",
 "address@ket": "The image contains letter-like scribbles on the envelope and inside the postmark.",
 "address@movers": "The image is more likely to be interpreted as 'letter', 'envelope', or 'magnifying glass' rather than 'address'.",
-"hotel@ket": "The image depicts a bellhop carrying suitcases, which children are more likely to associate with 'luggage', 'suitcase', 'porter', or 'travel' rather than 'hotel'.",
-"bank@ket": "The image contains text ('BANK', 'SERVICE') which is not allowed.",
 "Thanksgiving@ket": "A roasted turkey alone is easily confused with 'chicken' or 'turkey' instead of 'Thanksgiving'.",
 "pound@ket": "The image represents 'weigh' or 'weight' rather than 'pound'. It is extremely difficult for a child to guess the specific unit 'pound' from this.",
 "life@ket": "The image depicts a family dinner, which children will likely guess as 'family', 'dinner', or 'eat' rather than the abstract concept of 'life'.",
@@ -38,5 +36,6 @@
 "minute@ket": "The image contains numbers (12 and 1), which violates the no-text/no-number rule.",
 "department@ket": "The image is too cluttered and detailed, making it unreadable as a tiny 64x64 icon.",
 "cent@ket": "The hand is too prominent, making it highly likely that a child will guess 'hand' or 'palm' instead of 'cent'.",
-"shut@ket": "The motion lines around the hand make it look like it is knocking on the door rather than shutting it."
+"shut@ket": "The motion lines around the hand make it look like it is knocking on the door rather than shutting it.",
+"digital@ket": "The image contains numbers (10:08) on the watch face."
 }
