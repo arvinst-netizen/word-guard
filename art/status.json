@@ -1,28 +1,28 @@
 {
  "result": "more",
- "message": "zip@ket：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource has been exhausted (e.g. check quota).\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
+ "message": "medicine@ket：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
  "planned": 2993,
  "words": 2993,
- "drawn": 1596,
+ "drawn": 1632,
  "jobs": 3571,
- "covered": 1775,
+ "covered": 1811,
  "pairs": 3818,
- "flagged": 31,
- "failed": 6,
- "this_round": 41,
+ "flagged": 32,
+ "failed": 5,
+ "this_round": 36,
  "complete": false,
  "mode": "full",
- "spend": 95.14,
+ "spend": 97.13,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.0581,
-  "draw": 78.912,
-  "check": 10.1723
+  "draw": 80.6715,
+  "check": 10.4051
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-10 11:24:40 UTC"
+ "at": "2026-11-10 12:11:47 UTC"
 }
