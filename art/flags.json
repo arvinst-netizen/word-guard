@@ -40,5 +40,8 @@
 "digital@ket": "The image contains numbers (10:08) on the watch face.",
 "advanced@ket": "The image is too simple and looks like 'internet' or 'smartphone' rather than 'advanced'.",
 "platform@ket": "The image is too crowded with a train and people, which might make children guess 'train' or 'boy' instead of 'platform'.",
-"arrive@ket": "The image contains the text 'Welcome' on the doormat."
+"arrive@ket": "The image contains the text 'Welcome' on the doormat.",
+"carpet@ket": "The boy is too prominent, making children likely to guess 'boy', 'play', or 'toy' instead of 'carpet'.",
+"meter@ket": "The image shows a boy holding a ruler, which is easily confused with 'ruler' or 'measure' instead of specifically representing 'meter'.",
+"penny@ket": "The image contains the number '1' on the coin."
 }
