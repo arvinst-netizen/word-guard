@@ -22,14 +22,13 @@
 "yesterday@movers": "The arrow points three days back instead of to the immediate previous day (yesterday).",
 "vitamin@movers": "Children will likely guess 'orange' instead of 'vitamin' because the image just looks like two oranges.",
 "aunt@ket": "The visiting woman has wrinkles and looks like a grandmother, which will lead children to guess 'grandmother' instead of 'aunt'.",
-"minute hand@movers": "It is unclear whether the image refers to 'clock', 'time', or 'minute hand' because both hands are highlighted together.",
 "degree@movers": "The degree symbol looks like the letter 'O', which is confusing and counts as text.",
 "seat@movers": "The boy pointing at the seat is a distracting element that could make children think the word is 'boy', 'point', or 'child' instead of 'seat'.",
 "degree@ket": "The image is more likely to be guessed as 'hot', 'temperature', or 'thermometer' rather than 'degree'.",
 "address@ket": "The image contains letter-like scribbles on the envelope and inside the postmark.",
 "address@movers": "The image is more likely to be interpreted as 'letter', 'envelope', or 'magnifying glass' rather than 'address'.",
-"parking lot@ket": "The image contains the letter 'P' on the parking sign.",
-"score@ket": "The image contains the word 'SCORE' and numbers '3' and '2'.",
-"easy@movers": "The image contains numbers ('1+1=2') which violates the rule against text or numbers in the picture.",
-"arrive at@ket": "The image contains the word 'SCHOOL' written on the archway."
+"arrive at@ket": "The image contains the word 'SCHOOL' written on the archway.",
+"hotel@ket": "The image depicts a bellhop carrying suitcases, which children are more likely to associate with 'luggage', 'suitcase', 'porter', or 'travel' rather than 'hotel'.",
+"bank@ket": "The image contains text ('BANK', 'SERVICE') which is not allowed.",
+"bakery@ket": "The image contains the word 'menu' on the small signboard on the left."
 }
