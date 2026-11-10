@@ -40,5 +40,6 @@
 "hour@ket": "The clock face contains numbers.",
 "daily@ket": "The image contains text ('CALENDAR' and letters for the days of the week).",
 "forget@ket": "The thought bubble contains a question mark, which represents 'confused' or 'question' rather than 'forget'.",
-"minute@ket": "The image contains numbers (12 and 1), which violates the no-text/no-number rule."
+"minute@ket": "The image contains numbers (12 and 1), which violates the no-text/no-number rule.",
+"department@ket": "The image is too cluttered and detailed, making it unreadable as a tiny 64x64 icon."
 }
