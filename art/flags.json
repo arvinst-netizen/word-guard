@@ -43,5 +43,8 @@
 "arrive@ket": "The image contains the text 'Welcome' on the doormat.",
 "carpet@ket": "The boy is too prominent, making children likely to guess 'boy', 'play', or 'toy' instead of 'carpet'.",
 "meter@ket": "The image shows a boy holding a ruler, which is easily confused with 'ruler' or 'measure' instead of specifically representing 'meter'.",
-"penny@ket": "The image contains the number '1' on the coin."
+"penny@ket": "The image contains the number '1' on the coin.",
+"journalist@ket": "The image contains text ('PRESS' on the badge).",
+"appointment@ket": "The image is more likely to be guessed as 'doctor' or 'handshake' rather than 'appointment'.",
+"police station@ket": "The image contains the English word 'POLICE' on a sign."
 }
