@@ -30,5 +30,6 @@
 "bank@ket": "The image contains text ('BANK', 'SERVICE') which is not allowed.",
 "bakery@ket": "The image contains the word 'menu' on the small signboard on the left.",
 "art museum@ket": "The image shows only one painting and two children, which looks more like a home or school than an art museum.",
-"Thanksgiving@ket": "A roasted turkey alone is easily confused with 'chicken' or 'turkey' instead of 'Thanksgiving'."
+"Thanksgiving@ket": "A roasted turkey alone is easily confused with 'chicken' or 'turkey' instead of 'Thanksgiving'.",
+"pound@ket": "The image represents 'weigh' or 'weight' rather than 'pound'. It is extremely difficult for a child to guess the specific unit 'pound' from this."
 }
