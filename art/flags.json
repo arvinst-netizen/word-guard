@@ -29,5 +29,6 @@
 "address@ket": "The image contains letter-like scribbles on the envelope and inside the postmark.",
 "address@movers": "The image is more likely to be interpreted as 'letter', 'envelope', or 'magnifying glass' rather than 'address'.",
 "parking lot@ket": "The image contains the letter 'P' on the parking sign.",
-"score@ket": "The image contains the word 'SCORE' and numbers '3' and '2'."
+"score@ket": "The image contains the word 'SCORE' and numbers '3' and '2'.",
+"easy@movers": "The image contains numbers ('1+1=2') which violates the rule against text or numbers in the picture."
 }
