@@ -6589,10 +6589,10 @@
 "sig": "874756151a",
 "stages": {
 "movers": {
-"scene": "A cute cartoon puppy standing behind a large, colorful beach ball, peeking its head out."
+"scene": "A cute cartoon puppy seen from behind, showing its back and tail as it walks away."
 },
 "ket": {
-"scene": "A close-up view from behind of a boy's back, showing him wearing a bright blue backpack."
+"scene": "A cartoon of a boy turned away, pointing to his back with a clear red arrow."
 }
 }
 },
@@ -6600,7 +6600,7 @@
 "sig": "7236d01eed",
 "stages": {
 "movers": {
-"scene": "Two smiling cartoon children, a boy and a girl, standing side-by-side and waving happily."
+"scene": "A small group of diverse cartoon people, including a man, a woman, and a child, smiling and standing together."
 },
 "ket": {
 "reuse": "movers"
@@ -6611,7 +6611,7 @@
 "sig": "f848fb6ce6",
 "stages": {
 "movers": {
-"scene": "A cute cartoon giraffe with an extremely long neck standing next to a short, leafy tree."
+"scene": "A cute cartoon giraffe wearing a colorful striped scarf around its long neck, highlighting the neck area clearly."
 },
 "ket": {
 "scene": "A close-up of a person's neck with a warm red scarf wrapped around it."
@@ -6669,7 +6669,7 @@
 "scene": "A smiling mother and father close together, framing their happy child between them."
 },
 "ket": {
-"scene": "A tight close-up of a large adult hand gently holding a small child's hand."
+"scene": "A loving mother or father smiling and hugging their young child warmly."
 }
 }
 },
@@ -6680,7 +6680,7 @@
 "scene": "A cute red barn next to a big, smiling spotted cow."
 },
 "ket": {
-"scene": "A close-up of a hand picking a fresh brown egg from a straw nest."
+"scene": "A classic red barn with a silo next to green fields, a tractor, and a cow or sheep in the pasture."
 }
 }
 },

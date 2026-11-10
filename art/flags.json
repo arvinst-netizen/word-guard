@@ -20,6 +20,5 @@
 "week@ket": "The image contains letters (S M T W T F S) representing the days of the week.",
 "weekend@movers": "The image contains text ('SAT' and 'SUN') on the calendar.",
 "sometimes@movers": "The image contains text (abbreviations of days of the week).",
-"yesterday@movers": "The arrow points three days back instead of to the immediate previous day (yesterday).",
-"weekend@ket": "The calendar grid only has 5 columns instead of 7, which does not represent a standard 7-day week with a 2-day weekend."
+"yesterday@movers": "The arrow points three days back instead of to the immediate previous day (yesterday)."
 }
