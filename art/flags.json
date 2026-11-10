@@ -12,7 +12,7 @@
 "Thursday@movers": "The image contains the text 'THURSDAY' which violates the rule of no letters or words in the picture.",
 "Thursday@ket": "The image contains text (MON, TUE, WED, THU, FRI) and numbers, which is not allowed.",
 "Friday@ket": "The calendar grid has only four columns instead of five, making it confusing to represent the fifth day (Friday).",
-"club@movers": "The image contains the word 'CLUB' written on a sign on the table.",
+"club@movers": "The image is too ambiguous and will likely be guessed as 'chess', 'play', or 'friends' instead of 'club'.",
 "Sunday@ket": "The image contains text ('SUN') and numbers ('7'), which is not allowed.",
 "Saturday@ket": "The calendar shows eight blocks instead of seven, making it confusing, and 'Saturday' is impossible to guess from this illustration.",
 "Saturday@movers": "The grid only has 4 columns instead of 7, making it impossible to identify 'Saturday' as the sixth day of the week.",
@@ -20,5 +20,7 @@
 "week@ket": "The image contains letters (S M T W T F S) representing the days of the week.",
 "weekend@movers": "The image contains text ('SAT' and 'SUN') on the calendar.",
 "sometimes@movers": "The image contains text (abbreviations of days of the week).",
-"yesterday@movers": "The arrow points three days back instead of to the immediate previous day (yesterday)."
+"yesterday@movers": "The arrow points three days back instead of to the immediate previous day (yesterday).",
+"Chinese chess@movers": "图里有文字",
+"vitamin@movers": "Children will likely guess 'orange' instead of 'vitamin' because the image just looks like two oranges."
 }
