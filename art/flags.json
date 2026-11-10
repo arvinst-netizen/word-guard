@@ -37,5 +37,6 @@
 "department@ket": "The image is too cluttered and detailed, making it unreadable as a tiny 64x64 icon.",
 "cent@ket": "The hand is too prominent, making it highly likely that a child will guess 'hand' or 'palm' instead of 'cent'.",
 "shut@ket": "The motion lines around the hand make it look like it is knocking on the door rather than shutting it.",
-"digital@ket": "The image contains numbers (10:08) on the watch face."
+"digital@ket": "The image contains numbers (10:08) on the watch face.",
+"advanced@ket": "The image is too simple and looks like 'internet' or 'smartphone' rather than 'advanced'."
 }
