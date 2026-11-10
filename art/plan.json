@@ -6614,7 +6614,7 @@
 "scene": "A cute cartoon giraffe wearing a colorful striped scarf around its long neck, highlighting the neck area clearly."
 },
 "ket": {
-"scene": "A close-up of a person's neck with a warm red scarf wrapped around it."
+"scene": "A close-up cartoon of a person pointing directly to their bare, clearly visible neck."
 }
 }
 },
@@ -7370,7 +7370,7 @@
 "scene": "A smiling engineer wearing a yellow hardhat, holding a rolled-up blueprint."
 },
 "ket": {
-"scene": "A tight close-up of hands wearing work gloves, using a wrench to turn a large gear."
+"scene": "A friendly engineer wearing a hard hat and safety vest, holding a blueprint in front of a modern machine."
 }
 }
 },
@@ -7462,7 +7462,7 @@
 "sig": "50622b49c9",
 "stages": {
 "movers": {
-"scene": "A close-up of a clock face. A giant magnifying glass highlights the long, bright red clock hand next to the short blue hand."
+"scene": "A close-up of a clock face without numbers. A giant magnifying glass highlights the long, bright red clock hand next to the short blue hand."
 }
 }
 },
@@ -7470,10 +7470,10 @@
 "sig": "b90796ce4e",
 "stages": {
 "movers": {
-"scene": "A friendly adult woman hugging a little cartoon girl, both smiling warmly."
+"scene": "A simple cartoon family tree diagram showing parents and a child, with a line connecting to a separate smiling woman representing the aunt."
 },
 "ket": {
-"scene": "A close-up of a smiling woman and a young girl cheek-to-cheek, the woman placing a sweet strawberry into the girl's mouth."
+"scene": "A woman visiting a home, hugging a young boy and girl at the door while the mother waves happily in the background, depicting a visiting aunt."
 }
 }
 },
@@ -7492,10 +7492,10 @@
 "sig": "f163f6af39",
 "stages": {
 "movers": {
-"scene": "A friendly adult man carrying a little cartoon boy on his shoulders, both laughing."
+"scene": "A friendly man with a mustache waving happily, standing next to a young boy who is pointing at him."
 },
 "ket": {
-"scene": "A close-up of a smiling man's hands teaching a young boy how to tie a shoelace on a red sneaker."
+"scene": "A simple cartoon family tree diagram showing a mother, father, and the father's brother highlighted with a bright circle to clearly represent 'uncle'."
 }
 }
 },
@@ -7503,7 +7503,7 @@
 "sig": "6ec4d3fedc",
 "stages": {
 "movers": {
-"scene": "A cartoon child sitting on a giant stack of colorful books, reading one happily."
+"scene": "A cozy room with tall bookshelves filled with books, a small table with chairs, and a child happily reading a book at the table."
 },
 "ket": {
 "scene": "A close-up of two hands passing a colorful book across a wooden desk, one hand stamping a card inside the book."
@@ -7517,7 +7517,7 @@
 "scene": "A tall cartoon mother smiling down and holding the hand of her small, happy daughter."
 },
 "ket": {
-"scene": "A close-up of a mother's hands braiding a young girl's long brown hair."
+"scene": "A happy mother hugging her young daughter, both smiling warmly at the camera to clearly show their mother-daughter relationship."
 }
 }
 },
@@ -7547,7 +7547,7 @@
 "scene": "An elderly grandmother with grey hair in a bun hugging a little cartoon child."
 },
 "ket": {
-"scene": "A close-up of an elderly wrinkled hand holding a child's small hand, walking together."
+"scene": "An elderly grandfather or grandmother with gray hair smiling warmly next to a young grandchild."
 }
 }
 },

@@ -21,5 +21,7 @@
 "sometimes@movers": "The image contains text (abbreviations of days of the week).",
 "yesterday@movers": "The arrow points three days back instead of to the immediate previous day (yesterday).",
 "Chinese chess@movers": "图里有文字",
-"vitamin@movers": "Children will likely guess 'orange' instead of 'vitamin' because the image just looks like two oranges."
+"vitamin@movers": "Children will likely guess 'orange' instead of 'vitamin' because the image just looks like two oranges.",
+"aunt@ket": "The visiting woman has wrinkles and looks like a grandmother, which will lead children to guess 'grandmother' instead of 'aunt'.",
+"minute hand@movers": "It is unclear whether the image refers to 'clock', 'time', or 'minute hand' because both hands are highlighted together."
 }
