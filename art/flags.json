@@ -28,5 +28,6 @@
 "degree@ket": "The image is more likely to be guessed as 'hot', 'temperature', or 'thermometer' rather than 'degree'.",
 "address@ket": "The image contains letter-like scribbles on the envelope and inside the postmark.",
 "address@movers": "The image is more likely to be interpreted as 'letter', 'envelope', or 'magnifying glass' rather than 'address'.",
-"parking lot@ket": "The image contains the letter 'P' on the parking sign."
+"parking lot@ket": "The image contains the letter 'P' on the parking sign.",
+"score@ket": "The image contains the word 'SCORE' and numbers '3' and '2'."
 }
