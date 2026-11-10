@@ -1,28 +1,28 @@
 {
  "result": "more",
- "message": "basement@movers：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource has been exhausted (e.g. check quota).\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
+ "message": "stay@ket：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource has been exhausted (e.g. check quota).\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
  "planned": 2993,
  "words": 2993,
- "drawn": 1276,
+ "drawn": 1313,
  "jobs": 3575,
- "covered": 1435,
+ "covered": 1484,
  "pairs": 3818,
  "flagged": 29,
- "failed": 4,
+ "failed": 3,
  "this_round": 37,
  "complete": false,
  "mode": "full",
- "spend": 77.55,
+ "spend": 79.62,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.0581,
-  "draw": 63.3169,
-  "check": 8.1784
+  "draw": 65.1539,
+  "check": 8.4078
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-10 04:36:03 UTC"
+ "at": "2026-11-10 05:25:41 UTC"
 }

@@ -7631,7 +7631,7 @@
 "sig": "7b643e8668",
 "stages": {
 "movers": {
-"scene": "A cartoon boy holding a glowing flashlight, walking down a flight of wooden stairs into a dark area."
+"scene": "A cartoon underground room with stairs leading up to a door, storage boxes, and a small window near the ceiling showing grass outside."
 }
 }
 },
@@ -7817,7 +7817,7 @@
 "scene": "A cute boy running fast with a piece of toast in his mouth, looking at his wristwatch."
 },
 "ket": {
-"scene": "A close-up of a hand tying a shoelace quickly, with motion lines around it."
+"scene": "A person running fast while looking at their wristwatch anxiously, with motion lines behind them to show speed."
 }
 }
 },
@@ -8176,7 +8176,7 @@
 "sig": "56997ad513",
 "stages": {
 "movers": {
-"scene": "Two tall, green pine trees standing side-by-side on a small grassy hill."
+"scene": "A dense group of many green trees close together, forming a lush forest with a small path winding through it."
 },
 "ket": {
 "reuse": "movers"
@@ -8239,7 +8239,7 @@
 "sig": "a81f890f78",
 "stages": {
 "movers": {
-"scene": "A tiny cute cottage with a straw roof next to a large green hill."
+"scene": "A small cluster of cute cottages with straw roofs nestled together at the foot of a green hill."
 },
 "ket": {
 "scene": "Close-up of a hand placing a small toy wooden cottage onto a green play mat."
@@ -8253,7 +8253,7 @@
 "scene": "Two tall grey skyscrapers towering over a tiny green tree."
 },
 "ket": {
-"scene": "Close-up of a hand holding a shiny glass model of a skyscraper."
+"scene": "A vibrant city skyline with skyscrapers, a busy street with cars, and trees under a blue sky."
 }
 }
 },
@@ -8261,10 +8261,10 @@
 "sig": "21c6b5d8eb",
 "stages": {
 "movers": {
-"scene": "A small brick house next to a slightly taller clock tower."
+"scene": "A street view of a small town with several colorful buildings like a bakery, a shop, and a house along a paved road."
 },
 "ket": {
-"scene": "Close-up of a hand placing a small toy brick house next to a toy street lamp."
+"scene": "A scenic view of a small town with several cozy houses, a shop, a church, paved streets, and green trees under a blue sky."
 }
 }
 },
@@ -8272,10 +8272,10 @@
 "sig": "05e8d5f13b",
 "stages": {
 "movers": {
-"scene": "A brown acorn lying on green grass."
+"scene": "A simple toy ball lying on a flat patch of brown dirt and green grass, with a clear arrow pointing to the ground."
 },
 "ket": {
-"scene": "Close-up of a child's hands planting a small green sprout into dark brown soil."
+"scene": "A soccer ball sitting on the flat grassy ground, with a clear arrow pointing to the ground surface."
 }
 }
 },
@@ -8283,7 +8283,7 @@
 "sig": "5b52723828",
 "stages": {
 "movers": {
-"scene": "A cute yellow crane lifting a large grey block onto a wall."
+"scene": "A cute, colorful school or apartment building with windows, a door, and a small garden, clearly representing a building."
 },
 "ket": {
 "scene": "Close-up of a hand using a trowel to spread cement onto a red brick."
