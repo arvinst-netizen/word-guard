@@ -70,5 +70,6 @@
 "essential@pet": "The concept of 'essential' is too abstract here; children will likely guess 'battery', 'charger', or 'charge' instead.",
 "qualified@pet": "The certificate contains letter-like symbols ('AAV') on the ribbon banner.",
 "retire@pet": "The image contains text ('Happy Retirement!' and 'OFFICE') which is not allowed.",
-"airline@pet": "The image represents 'airplane' rather than 'airline'. It lacks elements like a distinct airline logo or commercial branding to signify a company."
+"airline@pet": "The image represents 'airplane' rather than 'airline'. It lacks elements like a distinct airline logo or commercial branding to signify a company.",
+"nephew@pet": "The diagram looks like a mother and father with their son, which represents 'son' or 'family' rather than 'nephew'."
 }
