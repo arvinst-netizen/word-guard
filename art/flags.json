@@ -66,5 +66,7 @@
 "aged@pet": "The concept of 'aged' (...岁的) is extremely difficult to guess from this image, as children will likely guess 'candles', 'seven', or 'birthday'.",
 "obviously@pet": "The image is more likely to be guessed as 'detective', 'footprint', or 'clue' rather than the abstract adverb 'obviously'.",
 "instance@pet": "The concept of 'instance' is too abstract here; children will likely guess 'apple', 'fruit', or 'point'.",
-"lately@pet": "The image depicts marking a single date/deadline, which represents 'schedule' or 'date' rather than the concept of 'lately' (recently)."
+"lately@pet": "The image depicts marking a single date/deadline, which represents 'schedule' or 'date' rather than the concept of 'lately' (recently).",
+"historic@pet": "The castle is too cartoonish with a smiley face, which represents 'castle' or 'fairytale' rather than 'historic'.",
+"salary@pet": "The character receiving the money is a child, which represents allowance or pocket money rather than salary."
 }

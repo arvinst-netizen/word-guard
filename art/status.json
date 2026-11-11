@@ -1,28 +1,28 @@
 {
  "result": "more",
- "message": "dressed@pet：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
+ "message": "comfort@pet：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource has been exhausted (e.g. check quota).\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
  "planned": 2993,
  "words": 2993,
- "drawn": 2889,
+ "drawn": 2926,
  "jobs": 3542,
- "covered": 3068,
+ "covered": 3105,
  "pairs": 3818,
- "flagged": 68,
- "failed": 4,
- "this_round": 39,
+ "flagged": 70,
+ "failed": 5,
+ "this_round": 37,
  "complete": false,
  "mode": "full",
- "spend": 167.99,
+ "spend": 170.02,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.0581,
-  "draw": 142.458,
-  "check": 19.4738
+  "draw": 144.2175,
+  "check": 19.741
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-11 15:21:20 UTC"
+ "at": "2026-11-11 16:07:00 UTC"
 }
