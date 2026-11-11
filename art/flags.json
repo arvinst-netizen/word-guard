@@ -67,5 +67,8 @@
 "lately@pet": "The image depicts marking a single date/deadline, which represents 'schedule' or 'date' rather than the concept of 'lately' (recently).",
 "mall@pet": "The image depicts a small two-story shop or store rather than a large shopping mall.",
 "bank account@pet": "The bank card contains visible numbers, which violates the rule against text/numbers in the image.",
-"essential@pet": "The concept of 'essential' is too abstract here; children will likely guess 'battery', 'charger', or 'charge' instead."
+"essential@pet": "The concept of 'essential' is too abstract here; children will likely guess 'battery', 'charger', or 'charge' instead.",
+"qualified@pet": "The certificate contains letter-like symbols ('AAV') on the ribbon banner.",
+"retire@pet": "The image contains text ('Happy Retirement!' and 'OFFICE') which is not allowed.",
+"airline@pet": "The image represents 'airplane' rather than 'airline'. It lacks elements like a distinct airline logo or commercial branding to signify a company."
 }
