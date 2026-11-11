@@ -44,5 +44,6 @@
 "appointment@ket": "The image is more likely to be guessed as 'doctor' or 'handshake' rather than 'appointment'.",
 "surname@ket": "The image contains text ('lam', 'name' and scribbles).",
 "weekday@ket": "The image contains letters representing the days of the week (M, T, W, T, F, S, S) and 'zzz'.",
-"kilometer@ket": "The image is too abstract and will likely be guessed as 'road', 'highway', or 'distance' rather than 'kilometer'."
+"kilometer@ket": "The image is too abstract and will likely be guessed as 'road', 'highway', or 'distance' rather than 'kilometer'.",
+"issue@pet": "The image contains numbers (1, 2, 3) on the magazine covers."
 }
