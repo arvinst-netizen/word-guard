@@ -71,5 +71,7 @@
 "qualified@pet": "The certificate contains letter-like symbols ('AAV') on the ribbon banner.",
 "retire@pet": "The image contains text ('Happy Retirement!' and 'OFFICE') which is not allowed.",
 "airline@pet": "The image represents 'airplane' rather than 'airline'. It lacks elements like a distinct airline logo or commercial branding to signify a company.",
-"nephew@pet": "The diagram looks like a mother and father with their son, which represents 'son' or 'family' rather than 'nephew'."
+"nephew@pet": "The diagram looks like a mother and father with their son, which represents 'son' or 'family' rather than 'nephew'.",
+"southeast@pet": "The girl is pointing to the bottom-left arrow (southwest) instead of the bottom-right arrow (southeast).",
+"translation@pet": "The image contains scribble text ('em~') at the bottom of the phone screen."
 }
