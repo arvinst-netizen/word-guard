@@ -42,9 +42,7 @@
 "penny@ket": "The image contains the number '1' on the coin.",
 "journalist@ket": "The microphone cube has a letter 'G' logo on it.",
 "appointment@ket": "The image is more likely to be guessed as 'doctor' or 'handshake' rather than 'appointment'.",
-"police station@ket": "The image contains the English word 'POLICE' on a sign.",
 "surname@ket": "The image contains text ('lam', 'name' and scribbles).",
 "weekday@ket": "The image contains letters representing the days of the week (M, T, W, T, F, S, S) and 'zzz'.",
-"advertisement@ket": "The image contains the text 'YUM!'.",
 "kilometer@ket": "The image is too abstract and will likely be guessed as 'road', 'highway', or 'distance' rather than 'kilometer'."
 }
