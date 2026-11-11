@@ -52,5 +52,8 @@
 "style@pet": "Children will likely guess 'hat' or 'cap' instead of 'style'.",
 "figure@pet": "The image contains numbers (3, 5, and 8), which violates the rule against text and numbers in the image.",
 "sleepy@pet": "Contains the letters 'Zzz' on the left side.",
-"annual@pet": "The image contains text and numbers (years and dates) which violates the rules."
+"annual@pet": "The image contains text and numbers (years and dates) which violates the rules.",
+"addition@pet": "The image contains numbers and math symbols (1+1=2).",
+"reality@pet": "The abstract concept of 'reality' is impossible for a child to guess from this image without text labels.",
+"agency@pet": "The image contains the text 'TRAVEL' on the hanging sign."
 }
