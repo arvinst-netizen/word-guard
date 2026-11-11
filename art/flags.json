@@ -70,5 +70,7 @@
 "historic@pet": "The castle is too cartoonish with a smiley face, which represents 'castle' or 'fairytale' rather than 'historic'.",
 "salary@pet": "The character receiving the money is a child, which represents allowance or pocket money rather than salary.",
 "mall@pet": "The image contains text ('SALE') and is too detailed and cluttered to be readable as a small icon.",
-"bank account@pet": "The bank card contains visible numbers, which violates the rule against text/numbers in the image."
+"bank account@pet": "The bank card contains visible numbers, which violates the rule against text/numbers in the image.",
+"essential@pet": "The concept of 'essential' is too abstract here; children will likely guess 'battery', 'charger', or 'charge' instead.",
+"recording@pet": "The image contains text ('REC') and numbers ('00:01:23')."
 }
