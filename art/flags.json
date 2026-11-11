@@ -57,5 +57,8 @@
 "initial@pet": "The image contains letters and words, which is not allowed.",
 "ending@pet": "The image just shows a girl holding a book, which represents 'book' or 'reading' rather than 'ending'.",
 "chapter@pet": "The image contains the number '2', which violates the rule against letters, words, or numbers.",
-"necessary@pet": "The image is too ambiguous; children will likely guess 'tire', 'wheel', 'repair', or 'broken' instead of 'necessary'."
+"necessary@pet": "The image is too ambiguous; children will likely guess 'tire', 'wheel', 'repair', or 'broken' instead of 'necessary'.",
+"teaching@pet": "The image contains letters (A B C) on the blackboard.",
+"southern@pet": "The compass contains letters (N, S, E, W).",
+"typical@pet": "The concept of 'typical' is too abstract here; children will likely guess 'London', 'rain', or 'bus' instead."
 }
