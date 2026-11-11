@@ -1,28 +1,28 @@
 {
  "result": "more",
- "message": "role@pet：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
+ "message": "network@pet：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
  "planned": 2993,
  "words": 2993,
- "drawn": 2464,
+ "drawn": 2504,
  "jobs": 3552,
- "covered": 2643,
+ "covered": 2683,
  "pairs": 3818,
- "flagged": 52,
- "failed": 2,
- "this_round": 35,
+ "flagged": 54,
+ "failed": 3,
+ "this_round": 40,
  "complete": false,
  "mode": "full",
- "spend": 143.61,
+ "spend": 145.63,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.0581,
-  "draw": 121.3033,
-  "check": 16.2464
+  "draw": 123.0628,
+  "check": 16.5099
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-11 05:59:56 UTC"
+ "at": "2026-11-11 06:45:48 UTC"
 }

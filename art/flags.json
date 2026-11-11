@@ -50,5 +50,7 @@
 "result@pet": "The image contains the letter 'A' on the test paper, which violates the rule against letters/text.",
 "league@pet": "The image contains text and depicts winning a trophy rather than a league standing table.",
 "style@pet": "Children will likely guess 'hat' or 'cap' instead of 'style'.",
-"figure@pet": "The image contains numbers (3, 5, and 8), which violates the rule against text and numbers in the image."
+"figure@pet": "The image contains numbers (3, 5, and 8), which violates the rule against text and numbers in the image.",
+"sleepy@pet": "Contains the letters 'Zzz' on the left side.",
+"annual@pet": "The image contains text and numbers (years and dates) which violates the rules."
 }
