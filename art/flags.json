@@ -60,5 +60,7 @@
 "necessary@pet": "The image is too ambiguous; children will likely guess 'tire', 'wheel', 'repair', or 'broken' instead of 'necessary'.",
 "teaching@pet": "The image contains letters (A B C) on the blackboard.",
 "southern@pet": "The compass contains letters (N, S, E, W).",
-"typical@pet": "The concept of 'typical' is too abstract here; children will likely guess 'London', 'rain', or 'bus' instead."
+"typical@pet": "The concept of 'typical' is too abstract here; children will likely guess 'London', 'rain', or 'bus' instead.",
+"advantage@pet": "The image just shows one boy leading a race, which looks like 'running' or 'winning' rather than specifically depicting 'advantage' (a head start).",
+"contest@pet": "The image contains numbers (1, 2, 3) on the podium."
 }
