@@ -77,5 +77,6 @@
 "pen pal@pet": "The boy's paper contains actual letters ('Aa lm') instead of just scribbles.",
 "niece@pet": "The diagram depicts a mother and father connected to their daughter, which represents 'daughter' or 'family' rather than 'niece'.",
 "northeast@pet": "The image contains the letters 'NE'.",
-"backwards@pet": "The character's body posture (leaning forward, feet positions) indicates he is walking forward to the left, which contradicts the arrow pointing right, making the concept of 'backwards' confusing."
+"backwards@pet": "The character's body posture (leaning forward, feet positions) indicates he is walking forward to the left, which contradicts the arrow pointing right, making the concept of 'backwards' confusing.",
+"southwest@pet": "The compass contains letters (N, S, E, W), which violates the no-text rule."
 }
