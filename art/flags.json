@@ -81,5 +81,7 @@
 "advertise@pet": "The image contains the English word 'JUICE!'.",
 "vowel@pet": "The image contains the letters A, E, I, O, and U.",
 "handwriting@pet": "The image contains readable letters and simulated words like 'mening' and 'lemm'.",
-"full-time@pet": "The calendar has an unrealistic 4x3 grid instead of 7 days, and the abstract concept of 'full-time' is extremely difficult to guess from this illustration."
+"full-time@pet": "The calendar has an unrealistic 4x3 grid instead of 7 days, and the abstract concept of 'full-time' is extremely difficult to guess from this illustration.",
+"pronunciation@pet": "The image contains letters (p, b) and phonetic symbols, which violates the no-letters rule.",
+"left-hand@pet": "The raised hand is anatomically the boy's right hand, which is confusing for teaching 'left-hand'."
 }
