@@ -78,5 +78,6 @@
 "backwards@pet": "The boy is walking and facing in the same direction as the arrow, which depicts walking forwards rather than backwards.",
 "southwest@pet": "The compass contains letters (N, S, E, W), which violates the no-text rule.",
 "lettuce@pet": "The image looks more like a Chinese cabbage (Napa cabbage) than a lettuce due to its white base and upright shape.",
-"advertise@pet": "The image contains the English word 'JUICE!'."
+"advertise@pet": "The image contains the English word 'JUICE!'.",
+"vowel@pet": "The image contains the letters A, E, I, O, and U."
 }
