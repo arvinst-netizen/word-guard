@@ -69,14 +69,13 @@
 "bank account@pet": "The bank card contains visible numbers, which violates the rule against text/numbers in the image.",
 "essential@pet": "The concept of 'essential' is too abstract here; children will likely guess 'battery', 'charger', or 'charge' instead.",
 "qualified@pet": "The certificate contains letter-like symbols ('AAV') on the ribbon banner.",
-"retire@pet": "The image contains text ('Happy Retirement!' and 'OFFICE') which is not allowed.",
 "airline@pet": "The image represents 'airplane' rather than 'airline'. It lacks elements like a distinct airline logo or commercial branding to signify a company.",
 "nephew@pet": "The diagram looks like a mother and father with their son, which represents 'son' or 'family' rather than 'nephew'.",
 "southeast@pet": "The girl is pointing to the bottom-left arrow (southwest) instead of the bottom-right arrow (southeast).",
 "translation@pet": "The image contains scribble text ('em~') at the bottom of the phone screen.",
-"pen pal@pet": "The boy's paper contains actual letters ('Aa lm') instead of just scribbles.",
 "niece@pet": "The diagram depicts a mother and father connected to their daughter, which represents 'daughter' or 'family' rather than 'niece'.",
 "northeast@pet": "The image contains the letters 'NE'.",
-"backwards@pet": "The character's body posture (leaning forward, feet positions) indicates he is walking forward to the left, which contradicts the arrow pointing right, making the concept of 'backwards' confusing.",
-"southwest@pet": "The compass contains letters (N, S, E, W), which violates the no-text rule."
+"backwards@pet": "The boy is walking and facing in the same direction as the arrow, which depicts walking forwards rather than backwards.",
+"southwest@pet": "The compass contains letters (N, S, E, W), which violates the no-text rule.",
+"lettuce@pet": "The image looks more like a Chinese cabbage (Napa cabbage) than a lettuce due to its white base and upright shape."
 }
