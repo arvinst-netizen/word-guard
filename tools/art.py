@@ -341,7 +341,8 @@ def generate(job, scene=None) -> bytes:
             gen['imageConfig']['imageSize'] = size
         if _think_ok[0]:
             gen['thinkingConfig'] = {'thinkingLevel': THINKING}
-        body = {'contents': [{'role': 'user', 'parts': REFS + [{'text': prompt(dict(job, scene=scene or job['scene']))}]}], 'generationConfig': gen}
+        text = job.get('raw_prompt') or prompt(dict(job, scene=scene or job['scene']))
+        body = {'contents': [{'role': 'user', 'parts': REFS + job.get('extra_refs', []) + [{'text': text}]}], 'generationConfig': gen}
         try:
             for _ in range(3):  # 偶尔只回文字不回图，再试
                 data = call(model, body, job['key'], 'draw')
@@ -386,8 +387,12 @@ def check(job, png: bytes):
     return ok, str(r.get('problem') or ('图里有文字' if r.get('text_in_image') else '')), str(r.get('better_scene') or '')
 
 
-def to_webp(png: bytes) -> bytes:
+def to_webp(png: bytes, size=256, keep_bg=False) -> bytes:
     im = Image.open(io.BytesIO(png)).convert('RGBA')
+    if keep_bg:  # 整张留着（应用图标）：不抠底、不裁边
+        buf = io.BytesIO()
+        im.convert('RGB').resize((size, size), Image.LANCZOS).save(buf, 'WEBP', quality=90, method=6)
+        return buf.getvalue()
     # 白底抠掉：从四边泛洪，只去掉和外围连着的白色
     if im.getextrema()[3][0] == 255:
         w, h = im.size
@@ -400,7 +405,7 @@ def to_webp(png: bytes) -> bytes:
     side = int(max(im.size) * 1.04)
     sq = Image.new('RGBA', (side, side), (0, 0, 0, 0))
     sq.paste(im, ((side - im.size[0]) // 2, (side - im.size[1]) // 2))
-    sq = sq.resize((256, 256), Image.LANCZOS)
+    sq = sq.resize((size, size), Image.LANCZOS)
     buf = io.BytesIO()
     sq.save(buf, 'WEBP', quality=82, method=6)
     return buf.getvalue()
@@ -681,8 +686,101 @@ def main():
         sys.exit(10)  # 还有要画的，workflow 提交后接着画
 
 
+# ---------- 界面素材（图标、城堡、Boss、小伙伴、应用图标） ----------
+
+UI_STYLE = (
+    "Game art asset for a children's English vocabulary game. One consistent house style: "
+    "soft rounded shapes, clean dark-brown outlines of even medium weight, flat colors with gentle simple shading, "
+    "warm cheerful palette (cream, carrot orange, sky blue, leaf green, sunny yellow, soft pink), friendly faces with dot eyes. "
+    "A single subject, centered, drawn large, isolated on a plain pure white background with white margin all around; "
+    "no ground, no shadow on the floor, no frame, no border, no scenery. "
+    "Absolutely no text, letters, numbers or words anywhere."
+)
+
+
+def ui_main():
+    """MODE=ui：按 art/ui.json 画界面素材，放在 art/ui/，清单是 art/ui/index.json。REDO 里写素材 id 就只重画那几个。"""
+    spec = json.loads((ART / 'ui.json').read_text())
+    UI = ART / 'ui'
+    UI.mkdir(exist_ok=True)
+    ipath = UI / 'index.json'
+    idx = json.loads(ipath.read_text()) if ipath.exists() else {'files': {}, 'sig': {}}
+    assets = spec['assets']
+
+    def asig(a):
+        return hashlib.sha1(json.dumps([a['prompt'], a.get('size', 256), a.get('refs', []), a.get('bg', ''), a.get('v', 0), REF_TAG], ensure_ascii=False).encode()).hexdigest()[:10]
+
+    def missing(a):
+        f = idx['files'].get(a['id'])
+        return not f or not (UI / f).exists() or idx['sig'].get(a['id']) != asig(a)
+
+    pending = [a for a in assets if (a['id'] in REDO if REDO else missing(a))]
+    print(f'界面素材 {len(assets)} 个，这次要画 {len(pending)} 个')
+    failed = []
+    deadline = time.monotonic() + ROUND_MINUTES * 60
+
+    def ref_part(aid):
+        im = Image.open(UI / idx['files'][aid]).convert('RGBA')
+        bg = Image.new('RGB', im.size, (255, 255, 255))
+        bg.paste(im, mask=im.split()[3])
+        buf = io.BytesIO()
+        bg.save(buf, 'PNG')
+        return {'inlineData': {'mimeType': 'image/png', 'data': base64.b64encode(buf.getvalue()).decode()}}
+
+    def work(a):
+        refs = a.get('refs', [])
+        text = (a.get('style') or UI_STYLE) + '\n'
+        if REFS:
+            text += 'Match the art style of the first reference images (line weight, colors, shading, how faces look). Do not copy their subjects.\n'
+        if refs:
+            text += (f'The LAST {len(refs)} reference image(s) show the same character/object at an earlier stage: keep it clearly the SAME one '
+                     '(same species, same colors, same face and markings), only changed as described.\n')
+        text += 'Draw this: ' + a['prompt']
+        job = {'key': 'ui:' + a['id'], 'raw_prompt': text, 'extra_refs': [ref_part(r) for r in refs], 'scene': ''}
+        png = generate(job)
+        data = to_webp(png, a.get('size', 256), a.get('bg') == 'keep')
+        name = f"{a['id']}-{hashlib.sha1(data).hexdigest()[:6]}.webp"
+        return a, name, data
+
+    while pending and time.monotonic() < deadline:
+        ids = {a['id'] for a in pending}
+        ready = [a for a in pending if not any(r in ids for r in a.get('refs', []))]
+        blocked = [a for a in ready if any(r not in idx['files'] for r in a.get('refs', []))]
+        ready = [a for a in ready if a not in blocked]
+        if not ready:
+            failed += [a['id'] for a in pending]
+            break
+        with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+            futs = {ex.submit(work, a): a for a in ready}
+            for fu in futs:
+                a = futs[fu]
+                try:
+                    _, name, data = fu.result()
+                    old = idx['files'].get(a['id'])
+                    (UI / name).write_bytes(data)
+                    if old and old != name and (UI / old).exists():
+                        (UI / old).unlink()
+                    idx['files'][a['id']] = name
+                    idx['sig'][a['id']] = asig(a)
+                    print(f'  画好 {a["id"]}')
+                except BudgetExceeded:
+                    raise
+                except Exception as e:  # noqa: BLE001 一个失败不影响别的
+                    print(f'  没画成 {a["id"]}：{e}')
+                    failed.append(a['id'])
+        ipath.write_text(json.dumps(idx, ensure_ascii=False, indent=0))
+        done = set(idx['files'])
+        pending = [a for a in pending if a not in ready or (a['id'] in failed and False)]
+        pending = [a for a in pending if a['id'] not in failed and not any(r in failed for r in a.get('refs', []))]
+        _ = done
+    left = [a['id'] for a in assets if missing(a)] if not REDO else failed
+    write_status(result='done' if not left else 'more' if not failed else 'error', drawn=len(idx['files']), ui=len(idx['files']), failed=len(failed),
+                 message=('没画成：' + '、'.join(failed[:12])) if failed else '界面素材画完了' if not left else f'还差 {len(left)} 个')
+    print(f'界面素材：共 {len(idx["files"])} 个，这次失败 {len(failed)} 个；累计花费 ${_spend["total"]:.2f}')
+
+
 try:
-    check_access() if MODE == 'check' else main()
+    check_access() if MODE == 'check' else ui_main() if MODE == 'ui' else main()
 except (BudgetExceeded, PermissionError, RuntimeError) as e:
     write_status(result='stopped' if isinstance(e, (BudgetExceeded, PermissionError)) else 'error', message=str(e)[:600])
     sys.exit(f'停止：{e}')

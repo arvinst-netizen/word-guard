@@ -1,0 +1,253 @@
+{
+ "note": "界面素材清单：tools/art.py 的 MODE=ui 按这里画，放在 art/ui/。改了 prompt 会自动重画；只重画某几个就把 id 写进 run.json 的 redo。",
+ "assets": [
+  {
+   "id": "icon-fire",
+   "size": 192,
+   "prompt": "a single cheerful orange flame with a yellow inner flame. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-tasks",
+   "size": 192,
+   "prompt": "a clipboard with a carrot-orange clip holding a cream sheet with three green check marks next to three short plain grey lines (no writing). A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-castle",
+   "size": 192,
+   "prompt": "a tiny cute grey stone castle with three battlement towers, a brown arched door and one small orange flag. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-bow",
+   "size": 192,
+   "prompt": "a pink ribbon bow (hair bow) with a round knot in the middle. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-gift",
+   "size": 192,
+   "prompt": "a red gift box with a sunny-yellow ribbon and bow on top. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-lock",
+   "size": 192,
+   "prompt": "a closed padlock: warm grey-brown body with a small keyhole and a metal shackle. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-crown",
+   "size": 192,
+   "prompt": "a golden crown with three points and one red gem. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-pencil",
+   "size": 192,
+   "prompt": "a yellow pencil with a pink eraser, drawn diagonally, tip pointing down-left. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-boss",
+   "size": 192,
+   "prompt": "the head of a grumpy purple monster with two small horns, angry eyebrows and little white teeth; cute, not scary. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-bolt",
+   "size": 192,
+   "prompt": "a sunny-yellow lightning bolt. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-snow",
+   "size": 192,
+   "prompt": "a light sky-blue six-pointed snowflake / ice crystal with a slightly darker blue outline (NOT white). A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-star",
+   "size": 192,
+   "prompt": "a glossy golden five-pointed star with a small highlight. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "icon-chest",
+   "size": 192,
+   "prompt": "a wooden treasure chest with golden trim, slightly open with golden light and a few sparkles coming out. A simple bold game UI icon, very few details, thick outline, readable at 24 pixels."
+  },
+  {
+   "id": "castle-0",
+   "size": 384,
+   "prompt": "a tiny cosy wooden cabin with a red-brown roof, one round window and a small door. Front view of one small building for a cute tower-defense game, the whole building visible."
+  },
+  {
+   "id": "castle-1",
+   "size": 384,
+   "prompt": "the same wooden cabin, slightly bigger, now with a little chimney and an orange flag on a pole on the roof. Front view of one small building for a cute tower-defense game, the whole building visible.",
+   "refs": [
+    "castle-0"
+   ]
+  },
+  {
+   "id": "castle-2",
+   "size": 384,
+   "prompt": "the home has been upgraded into a round grey stone watchtower with battlements, a wooden door, one window and the same orange flag on top. Front view of one small building for a cute tower-defense game, the whole building visible.",
+   "refs": [
+    "castle-1"
+   ]
+  },
+  {
+   "id": "castle-3",
+   "size": 384,
+   "prompt": "the home has grown into a small stone castle: the central tower with two shorter side towers with battlements, a wooden gate, orange flags. Front view of one small building for a cute tower-defense game, the whole building visible.",
+   "refs": [
+    "castle-2"
+   ]
+  },
+  {
+   "id": "castle-4",
+   "size": 384,
+   "prompt": "the home is now a grand castle: the same stone castle but bigger, with shining golden cone roofs on all three towers, golden trim, banners and little sparkles. Front view of one small building for a cute tower-defense game, the whole building visible.",
+   "refs": [
+    "castle-3"
+   ]
+  },
+  {
+   "id": "boss",
+   "size": 448,
+   "prompt": "a big round grumpy purple monster king for a kids' tower-defense game: two curved horns, a small golden crown, thick angry eyebrows, a wide mouth with little white teeth, short arms crossed, short legs. Chubby and funny, clearly cute and not scary. Full body, facing the viewer."
+  },
+  {
+   "id": "boss-angry",
+   "size": 448,
+   "refs": [
+    "boss"
+   ],
+   "prompt": "the same monster king now furious (enraged): face flushed red, eyes narrowed, mouth open in a roar, fists raised, two small puffs of white steam above his head. Still chubby, funny and not scary. Full body, facing the viewer."
+  },
+  {
+   "id": "pet-dragon-0",
+   "size": 320,
+   "prompt": "one pale cream egg with leaf-green round spots, standing upright, glossy with a small highlight. Just the egg, nothing else."
+  },
+  {
+   "id": "pet-dragon-1",
+   "size": 384,
+   "prompt": "a cute pet companion character, a dragon: leaf-green body, cream belly with faint horizontal stripes, two tiny cream horns, small orange back spikes, a tail with an orange arrow tip. Growth stage 1 of 5: just hatched, very small, round and chubby with a big head and big eyes, sitting inside the bottom half of its cracked eggshell (the shell is a pale cream egg with leaf-green round spots). Full body, facing the viewer, standing upright, feet at the bottom of the picture."
+  },
+  {
+   "id": "pet-dragon-2",
+   "size": 384,
+   "prompt": "a cute pet companion character, a dragon: leaf-green body, cream belly with faint horizontal stripes, two tiny cream horns, small orange back spikes, a tail with an orange arrow tip. Growth stage 2 of 5: a small child version: a bit bigger than the baby, standing on two feet on its own, no eggshell, curious happy face, small arms. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-dragon-1"
+   ]
+  },
+  {
+   "id": "pet-dragon-3",
+   "size": 384,
+   "prompt": "a cute pet companion character, a dragon: leaf-green body, cream belly with faint horizontal stripes, two tiny cream horns, small orange back spikes, a tail with an orange arrow tip. Growth stage 3 of 5: a young teenager version: taller and slimmer than the child, confident smile, wearing a small red scarf around the neck, with small wings on its back. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-dragon-2"
+   ]
+  },
+  {
+   "id": "pet-dragon-4",
+   "size": 384,
+   "prompt": "a cute pet companion character, a dragon: leaf-green body, cream belly with faint horizontal stripes, two tiny cream horns, small orange back spikes, a tail with an orange arrow tip. Growth stage 4 of 5: a grown-up, strong and proud version: clearly bigger, heroic pose, still wearing the red scarf, with a round golden medal on the chest, with large spread wings. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-dragon-3"
+   ]
+  },
+  {
+   "id": "pet-dragon-5",
+   "size": 384,
+   "prompt": "a cute pet companion character, a dragon: leaf-green body, cream belly with faint horizontal stripes, two tiny cream horns, small orange back spikes, a tail with an orange arrow tip. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with huge spread wings, with a soft golden glow and a few sparkles around it. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-dragon-4"
+   ]
+  },
+  {
+   "id": "pet-fox-0",
+   "size": 320,
+   "prompt": "one pale cream egg with carrot-orange round spots, standing upright, glossy with a small highlight. Just the egg, nothing else."
+  },
+  {
+   "id": "pet-fox-1",
+   "size": 384,
+   "prompt": "a cute pet companion character, a fox: carrot-orange body, cream-white belly and muzzle, big triangular ears with pink inside, a bushy tail with a white tip, a small black nose. Growth stage 1 of 5: just hatched, very small, round and chubby with a big head and big eyes, sitting inside the bottom half of its cracked eggshell (the shell is a pale cream egg with carrot-orange round spots). Full body, facing the viewer, standing upright, feet at the bottom of the picture."
+  },
+  {
+   "id": "pet-fox-2",
+   "size": 384,
+   "prompt": "a cute pet companion character, a fox: carrot-orange body, cream-white belly and muzzle, big triangular ears with pink inside, a bushy tail with a white tip, a small black nose. Growth stage 2 of 5: a small child version: a bit bigger than the baby, standing on two feet on its own, no eggshell, curious happy face, small arms. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-fox-1"
+   ]
+  },
+  {
+   "id": "pet-fox-3",
+   "size": 384,
+   "prompt": "a cute pet companion character, a fox: carrot-orange body, cream-white belly and muzzle, big triangular ears with pink inside, a bushy tail with a white tip, a small black nose. Growth stage 3 of 5: a young teenager version: taller and slimmer than the child, confident smile, wearing a small red scarf around the neck. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-fox-2"
+   ]
+  },
+  {
+   "id": "pet-fox-4",
+   "size": 384,
+   "prompt": "a cute pet companion character, a fox: carrot-orange body, cream-white belly and muzzle, big triangular ears with pink inside, a bushy tail with a white tip, a small black nose. Growth stage 4 of 5: a grown-up, strong and proud version: clearly bigger, heroic pose, still wearing the red scarf, with a round golden medal on the chest, with two bushy tails. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-fox-3"
+   ]
+  },
+  {
+   "id": "pet-fox-5",
+   "size": 384,
+   "prompt": "a cute pet companion character, a fox: carrot-orange body, cream-white belly and muzzle, big triangular ears with pink inside, a bushy tail with a white tip, a small black nose. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with three bushy tails fanned out, with a soft golden glow and a few sparkles around it. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-fox-4"
+   ]
+  },
+  {
+   "id": "pet-owl-0",
+   "size": 320,
+   "prompt": "one pale cream egg with sky-blue round spots, standing upright, glossy with a small highlight. Just the egg, nothing else."
+  },
+  {
+   "id": "pet-owl-1",
+   "size": 384,
+   "prompt": "a cute pet companion character, a owl: sky-blue feathers, pale cream-white belly with little feather marks, two small ear tufts, big round eyes with pale face discs, a small orange beak. Growth stage 1 of 5: just hatched, very small, round and chubby with a big head and big eyes, sitting inside the bottom half of its cracked eggshell (the shell is a pale cream egg with sky-blue round spots). Full body, facing the viewer, standing upright, feet at the bottom of the picture."
+  },
+  {
+   "id": "pet-owl-2",
+   "size": 384,
+   "prompt": "a cute pet companion character, a owl: sky-blue feathers, pale cream-white belly with little feather marks, two small ear tufts, big round eyes with pale face discs, a small orange beak. Growth stage 2 of 5: a small child version: a bit bigger than the baby, standing on two feet on its own, no eggshell, curious happy face, small arms. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-owl-1"
+   ]
+  },
+  {
+   "id": "pet-owl-3",
+   "size": 384,
+   "prompt": "a cute pet companion character, a owl: sky-blue feathers, pale cream-white belly with little feather marks, two small ear tufts, big round eyes with pale face discs, a small orange beak. Growth stage 3 of 5: a young teenager version: taller and slimmer than the child, confident smile, wearing a small red scarf around the neck, with wings slightly open. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-owl-2"
+   ]
+  },
+  {
+   "id": "pet-owl-4",
+   "size": 384,
+   "prompt": "a cute pet companion character, a owl: sky-blue feathers, pale cream-white belly with little feather marks, two small ear tufts, big round eyes with pale face discs, a small orange beak. Growth stage 4 of 5: a grown-up, strong and proud version: clearly bigger, heroic pose, still wearing the red scarf, with a round golden medal on the chest, with wide open wings. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-owl-3"
+   ]
+  },
+  {
+   "id": "pet-owl-5",
+   "size": 384,
+   "prompt": "a cute pet companion character, a owl: sky-blue feathers, pale cream-white belly with little feather marks, two small ear tufts, big round eyes with pale face discs, a small orange beak. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with huge wide open wings, with a soft golden glow and a few sparkles around it. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "refs": [
+    "pet-owl-4"
+   ]
+  },
+  {
+   "id": "app-icon",
+   "size": 512,
+   "bg": "keep",
+   "style": "App icon artwork for a children's English vocabulary tower-defense game, in a soft rounded cartoon style with clean dark-brown outlines, flat colors and gentle shading. Square, full-bleed (the background fills the whole square, no white margin, no rounded-corner mask, no frame). Absolutely no text, letters or numbers.",
+   "prompt": "a cheerful round sky-blue little monster with dot eyes and a big smile holding up a golden star, in front of a small cream castle with an orange flag, on a soft sky-to-meadow gradient background (light teal sky on top, fresh green grass at the bottom). The monster is big and centered so it reads clearly at small sizes."
+  }
+ ]
+}
