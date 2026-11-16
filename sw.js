@@ -1,7 +1,7 @@
-// 自动生成：python3 scripts/make-pwa.py（版本 e20c0122b3）
+// 自动生成：python3 scripts/make-pwa.py（版本 03b9042da0）
 // 离线缓存：网页和词表先联网取最新（3 秒取不到就用缓存）；录音、图片文件名带哈希，取过就一直用缓存。
 const CACHE = 'word-guard-v1';
-const FRESH = ['index.html', 'audio/index.json', 'art/index.json', 'manifest.webmanifest'];
+const FRESH = ['index.html', 'audio/index.json', 'art/index.json', 'art/ui/index.json', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
