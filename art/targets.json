@@ -127,6 +127,13 @@
 ]
 },
 {
+"id": "hello",
+"zh": "你好",
+"stages": [
+"starters"
+]
+},
+{
 "id": "tired",
 "zh": "累的",
 "stages": [
@@ -2226,6 +2233,14 @@
 "zh": "傻乎乎的",
 "stages": [
 "starters"
+]
+},
+{
+"id": "sorry",
+"zh": "抱歉的",
+"stages": [
+"starters",
+"ket"
 ]
 },
 {
@@ -6876,6 +6891,38 @@
 ]
 },
 {
+"id": "up",
+"zh": "向上",
+"stages": [
+"movers",
+"ket"
+]
+},
+{
+"id": "down",
+"zh": "向下",
+"stages": [
+"movers",
+"ket"
+]
+},
+{
+"id": "inside",
+"zh": "在里面",
+"stages": [
+"movers",
+"ket"
+]
+},
+{
+"id": "outside",
+"zh": "在外面",
+"stages": [
+"movers",
+"ket"
+]
+},
+{
 "id": "top",
 "zh": "顶部",
 "stages": [
@@ -7219,6 +7266,13 @@
 {
 "id": "heart",
 "zh": "心",
+"stages": [
+"ket"
+]
+},
+{
+"id": "along",
+"zh": "沿着",
 "stages": [
 "ket"
 ]
@@ -7969,8 +8023,29 @@
 ]
 },
 {
+"id": "around",
+"zh": "在周围",
+"stages": [
+"ket"
+]
+},
+{
+"id": "between",
+"zh": "在…之间",
+"stages": [
+"ket"
+]
+},
+{
 "id": "railway",
 "zh": "铁路",
+"stages": [
+"ket"
+]
+},
+{
+"id": "under",
+"zh": "在下面",
 "stages": [
 "ket"
 ]
@@ -8119,6 +8194,13 @@
 {
 "id": "company",
 "zh": "公司；陪伴",
+"stages": [
+"ket"
+]
+},
+{
+"id": "goodbye",
+"zh": "再见",
 "stages": [
 "ket"
 ]
@@ -8628,6 +8710,20 @@
 ]
 },
 {
+"id": "behind",
+"zh": "在后面",
+"stages": [
+"ket"
+]
+},
+{
+"id": "near",
+"zh": "在附近",
+"stages": [
+"ket"
+]
+},
+{
 "id": "final",
 "zh": "最后的",
 "stages": [
@@ -8707,6 +8803,13 @@
 {
 "id": "remember",
 "zh": "记得",
+"stages": [
+"ket"
+]
+},
+{
+"id": "across",
+"zh": "穿过",
 "stages": [
 "ket"
 ]
@@ -8869,6 +8972,13 @@
 {
 "id": "wool",
 "zh": "羊毛",
+"stages": [
+"ket"
+]
+},
+{
+"id": "above",
+"zh": "在上面",
 "stages": [
 "ket"
 ]
@@ -9317,6 +9427,13 @@
 {
 "id": "training",
 "zh": "训练",
+"stages": [
+"ket"
+]
+},
+{
+"id": "below",
+"zh": "在下面",
 "stages": [
 "ket"
 ]
@@ -10731,6 +10848,13 @@
 ]
 },
 {
+"id": "opposite",
+"zh": "在对面",
+"stages": [
+"ket"
+]
+},
+{
 "id": "customer",
 "zh": "顾客",
 "stages": [
@@ -11155,6 +11279,13 @@
 {
 "id": "tourist",
 "zh": "游客",
+"stages": [
+"ket"
+]
+},
+{
+"id": "beside",
+"zh": "在旁边",
 "stages": [
 "ket"
 ]

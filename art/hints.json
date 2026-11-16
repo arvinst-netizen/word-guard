@@ -32,7 +32,7 @@
  "platform@ket": "A simple empty train platform: a long raised concrete edge with a yellow safety line, a bench and a hanging lamp, a train just visible at the far end. No people, no signs or text.",
  "arrive@ket": "A family with suitcases stepping out of a taxi in front of grandma's house while grandma opens the door with open arms. No doormat text, no signs.",
  "carpet@ket": "A big soft patterned carpet rolled half-open on a wooden floor, shown large in close-up with its fringe edges. No people.",
- "journalist@ket": "A young woman holding a microphone out to interview a child, a camera operator beside her. Plain badge with no writing.",
+ "journalist@ket": "A waist-up cartoon woman reporter holding a plain round foam microphone toward a man she is interviewing, a small notebook in her other hand, a cameraman with a video camera behind her. The microphone is completely plain: no logo, no cube, no letters anywhere.",
  "police station@ket": "A small building with a blue roof light on top and a police car parked in front, a police officer standing at the door. No words or signs.",
  "advertisement@ket": "A big colourful billboard showing only a picture of a giant smiling ice-cream cone, with two kids pointing at it excitedly. No words or letters anywhere.",
  "sleepy@pet": "Head-and-shoulders close-up of a child yawning widely with heavy half-closed eyes, rubbing one eye, a crescent moon symbol beside them. No letters, no Zzz.",
@@ -44,9 +44,13 @@
  "contest@pet": "Head-and-shoulders close-up of two children on a stage holding up their drawings side by side, eager faces, a big shiny trophy symbol between them. No numbers or text.",
  "historic@pet": "An old weathered stone castle with crumbling walls and ivy, realistic cartoon style without a face, a child tourist looking up at it in awe. No text.",
  "salary@pet": "Close-up of a smiling adult office worker in a shirt and tie receiving an envelope of banknotes from a manager, a small briefcase symbol beside them. No numbers or text.",
- "mall@pet": "A big bright shopping centre seen from outside: glass doors and several shop windows with clothes and toys, a happy family carrying shopping bags. No signs or text.",
+ "mall@pet": "A wide interior view of a huge multi-storey shopping mall atrium: three floors of balconies lined with many small shop windows, two escalators crossing in the middle, small shoppers carrying shopping bags on every floor, a glass roof above. No signs with text.",
  "recording@pet": "Close-up of a child singing into a microphone wearing big headphones, a glowing red dot recording light beside them. No text or numbers.",
  "retire@pet": "A smiling grey-haired man in a sun hat relaxing in a garden hammock, his old briefcase and tie hung up on a hook beside him, a little palm tree symbol nearby. No text or banners.",
  "pen pal@pet": "Two children far apart, each at their own desk with a different landscape in their window (snowy mountains and a palm beach), each happily holding up an envelope with a stamp, a dotted line connecting them. Only wavy lines on paper, no letters.",
- "backwards@pet": "A child walking backwards with their back toward the direction of travel, looking over their shoulder, big curved arrow behind them pointing the way they are moving, footprints showing the direction. No text."
+ "backwards@pet": "Side view of a cartoon boy walking backwards on a path: his face, eyes and chest point to the LEFT edge of the picture, but he is moving to the RIGHT, stepping back with one foot reaching behind him. One big bold arrow on the ground behind his back points to the RIGHT. He glances nervously over his shoulder.",
+ "lettuce@pet": "A single head of green leaf lettuce with loose, frilly, ruffled bright-green leaves all the way down to the base (no thick white stalks), next to a sandwich with green lettuce leaves sticking out of it. It must not look like a cabbage or bok choy.",
+ "handwriting@pet": "A close-up of a child's hand holding a pencil and drawing rows of continuous curly loops and wavy lines on lined notebook paper, like handwriting practice patterns. Only abstract loops, spirals and waves: absolutely no letters and no words.",
+ "advertise@pet": "A large street billboard showing a happy cartoon cat holding a juice box inside a big star burst with sparkles; a passer-by on the pavement looks up and points at it. The billboard has only pictures and symbols: no letters, no words, no brand names.",
+ "left-hand@pet": "A cartoon child seen from BEHIND (we see the back of the head and the back of the shirt), raising one arm high. The raised arm is the one on the LEFT side of the picture, wearing a bright red glove with a glowing circle around it. The other arm hangs down with no glove."
 }
