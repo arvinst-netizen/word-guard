@@ -558,7 +558,12 @@ def main():
                 adopted += 1
         if adopted:
             print(f'认领上次已画好的 {adopted} 张')
-        todo = [j for j in jobs_for(targets, plan, hints, words) if drawn.get(j['key']) != fname(j) or not (ART / fname(j)).exists()]
+        # 重画过的（hints 里有画面描述、图也在）不再动：重画时文件名带版本号，和这里算出的名字对不上，
+        # 以前会被当成"没画"又画一遍，把挑好的那张换掉
+        def settled(j):
+            f = drawn.get(j['key'])
+            return bool(f) and (ART / f).exists() and (f == fname(j) or j['key'] in hints)
+        todo = [j for j in jobs_for(targets, plan, hints, words) if not settled(j)]
     total_jobs = len(jobs_for(targets, plan, hints))
     remaining_after = max(0, len(todo) - LIMIT) if MODE == 'full' else 0
     if MODE == 'full':
