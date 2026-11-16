@@ -1,28 +1,21 @@
 {
  "result": "done",
- "message": "",
- "planned": 3011,
- "words": 3011,
- "drawn": 3631,
- "jobs": 3533,
- "covered": 3810,
- "pairs": 3841,
- "flagged": 78,
+ "drawn": 39,
+ "ui": 39,
  "failed": 0,
- "this_round": 3,
- "complete": true,
- "mode": "redo",
- "spend": 210.47,
+ "message": "界面素材画完了",
+ "mode": "ui",
+ "spend": 210.59,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.094,
-  "draw": 179.7165,
+  "draw": 179.8389,
   "check": 24.6566
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
- "text_model": "gemini-3.5-flash",
- "at": "2026-11-16 14:47:49 UTC"
+ "text_model": null,
+ "at": "2026-11-16 14:55:03 UTC"
 }
