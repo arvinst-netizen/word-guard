@@ -153,7 +153,7 @@
   {
    "id": "pet-dragon-5",
    "size": 384,
-   "prompt": "a cute pet companion character, a dragon: leaf-green body, cream belly with faint horizontal stripes, two tiny cream horns, small orange back spikes, a tail with an orange arrow tip. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with huge spread wings, with a soft golden glow and a few sparkles around it. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "prompt": "a cute pet companion character, a dragon: leaf-green body, cream belly with faint horizontal stripes, two tiny cream horns, small orange back spikes, a tail with an orange arrow tip. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with huge spread wings. No glow, no aura, no halo and no sparkles around it: just the character with a clean outline. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
    "refs": [
     "pet-dragon-4"
    ]
@@ -195,7 +195,7 @@
   {
    "id": "pet-fox-5",
    "size": 384,
-   "prompt": "a cute pet companion character, a fox: carrot-orange body, cream-white belly and muzzle, big triangular ears with pink inside, a bushy tail with a white tip, a small black nose. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with three bushy tails fanned out, with a soft golden glow and a few sparkles around it. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "prompt": "a cute pet companion character, a fox: carrot-orange body, cream-white belly and muzzle, big triangular ears with pink inside, a bushy tail with a white tip, a small black nose. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with three bushy tails fanned out. No glow, no aura, no halo and no sparkles around it: just the character with a clean outline. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
    "refs": [
     "pet-fox-4"
    ]
@@ -237,7 +237,7 @@
   {
    "id": "pet-owl-5",
    "size": 384,
-   "prompt": "a cute pet companion character, a owl: sky-blue feathers, pale cream-white belly with little feather marks, two small ear tufts, big round eyes with pale face discs, a small orange beak. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with huge wide open wings, with a soft golden glow and a few sparkles around it. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
+   "prompt": "a cute pet companion character, a owl: sky-blue feathers, pale cream-white belly with little feather marks, two small ear tufts, big round eyes with pale face discs, a small orange beak. Growth stage 5 of 5: the legendary final version: majestic but still cute, wearing a small golden crown, the red scarf and the golden medal, with huge wide open wings. No glow, no aura, no halo and no sparkles around it: just the character with a clean outline. Full body, facing the viewer, standing upright, feet at the bottom of the picture.",
    "refs": [
     "pet-owl-4"
    ]
