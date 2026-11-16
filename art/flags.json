@@ -40,7 +40,6 @@
 "advanced@ket": "The image is too simple and looks like 'internet' or 'smartphone' rather than 'advanced'.",
 "meter@ket": "The image shows a boy holding a ruler, which is easily confused with 'ruler' or 'measure' instead of specifically representing 'meter'.",
 "penny@ket": "The image contains the number '1' on the coin.",
-"journalist@ket": "The microphone cube has a letter 'G' logo on it.",
 "appointment@ket": "The image is more likely to be guessed as 'doctor' or 'handshake' rather than 'appointment'.",
 "surname@ket": "The image contains text ('lam', 'name' and scribbles).",
 "weekday@ket": "The image contains letters representing the days of the week (M, T, W, T, F, S, S) and 'zzz'.",
@@ -65,7 +64,6 @@
 "obviously@pet": "The image is more likely to be guessed as 'detective', 'footprint', or 'clue' rather than the abstract adverb 'obviously'.",
 "instance@pet": "The concept of 'instance' is too abstract here; children will likely guess 'apple', 'fruit', or 'point'.",
 "lately@pet": "The image depicts marking a single date/deadline, which represents 'schedule' or 'date' rather than the concept of 'lately' (recently).",
-"mall@pet": "The image depicts a small two-story shop or store rather than a large shopping mall.",
 "bank account@pet": "The bank card contains visible numbers, which violates the rule against text/numbers in the image.",
 "essential@pet": "The concept of 'essential' is too abstract here; children will likely guess 'battery', 'charger', or 'charge' instead.",
 "qualified@pet": "The certificate contains letter-like symbols ('AAV') on the ribbon banner.",
@@ -75,13 +73,8 @@
 "translation@pet": "The image contains scribble text ('em~') at the bottom of the phone screen.",
 "niece@pet": "The diagram depicts a mother and father connected to their daughter, which represents 'daughter' or 'family' rather than 'niece'.",
 "northeast@pet": "The image contains the letters 'NE'.",
-"backwards@pet": "The boy is walking and facing in the same direction as the arrow, which depicts walking forwards rather than backwards.",
 "southwest@pet": "The compass contains letters (N, S, E, W), which violates the no-text rule.",
-"lettuce@pet": "The image looks more like a Chinese cabbage (Napa cabbage) than a lettuce due to its white base and upright shape.",
-"advertise@pet": "The image contains the English word 'JUICE!'.",
 "vowel@pet": "The image contains the letters A, E, I, O, and U.",
-"handwriting@pet": "The image contains readable letters and simulated words like 'mening' and 'lemm'.",
 "full-time@pet": "The calendar has an unrealistic 4x3 grid instead of 7 days, and the abstract concept of 'full-time' is extremely difficult to guess from this illustration.",
-"pronunciation@pet": "The image contains letters (p, b) and phonetic symbols, which violates the no-letters rule.",
-"left-hand@pet": "The raised hand is anatomically the boy's right hand, which is confusing for teaching 'left-hand'."
+"pronunciation@pet": "The image contains letters (p, b) and phonetic symbols, which violates the no-letters rule."
 }

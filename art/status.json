@@ -2,27 +2,27 @@
  "result": "done",
  "message": "",
  "planned": 2993,
- "words": 2993,
+ "words": 3011,
  "drawn": 3608,
- "jobs": 3514,
+ "jobs": 3510,
  "covered": 3787,
- "pairs": 3818,
- "flagged": 85,
+ "pairs": 3841,
+ "flagged": 78,
  "failed": 0,
- "this_round": 5,
- "complete": true,
- "mode": "full",
- "spend": 207.11,
+ "this_round": 7,
+ "complete": false,
+ "mode": "redo",
+ "spend": 207.43,
  "budget": 250.0,
  "spend_by": {
   "plan": 6.0581,
-  "draw": 176.6019,
-  "check": 24.4528
+  "draw": 176.8763,
+  "check": 24.4936
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-12 07:07:42 UTC"
+ "at": "2026-11-16 07:12:44 UTC"
 }
