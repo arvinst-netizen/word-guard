@@ -1,7 +1,7 @@
-// 自动生成：python3 scripts/make-pwa.py（版本 03b9042da0）
-// 离线缓存：网页和词表先联网取最新（3 秒取不到就用缓存）；录音、图片文件名带哈希，取过就一直用缓存。
+// 自动生成：python3 scripts/make-pwa.py（版本 6f567f0f5b）
+// 离线缓存：网页和各种清单先联网取最新（网页 3 秒、清单 1 秒取不到就用缓存）；录音、图片文件名带哈希，取过就一直用缓存。
 const CACHE = 'word-guard-v1';
-const FRESH = ['index.html', 'audio/index.json', 'art/index.json', 'art/ui/index.json', 'manifest.webmanifest'];
+const FRESH = ['index.html', 'audio/index.json', 'art/index.json', 'art/reject.json', 'art/ui/index.json', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
@@ -15,7 +15,9 @@ function fresh(req) {
       if (r.ok) c.put(req, r.clone());
       return r;
     });
-    const late = new Promise((res) => setTimeout(() => c.match(req).then((m) => m && res(m)), 3000));
+    // 清单类的小文件只等 1 秒：网慢时马上用上次存的，游戏开机不卡；新的取到后存下来，下次就用上
+    const wait = /\.json$/.test(new URL(req.url).pathname) ? 1000 : 3000;
+    const late = new Promise((res) => setTimeout(() => c.match(req).then((m) => m && res(m)), wait));
     return Promise.race([net.catch(() => c.match(req)), late]).then((r) => r || net);
   });
 }
