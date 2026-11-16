@@ -26418,6 +26418,165 @@
 "scene": "Head-and-shoulders of a proud, smiling boy wearing a neat tuxedo and a crisp bow tie, adjusting his collar with a sparkling star glint nearby."
 }
 }
+},
+"hello": {
+"sig": "6068fb1522",
+"stages": {
+"starters": {
+"scene": "A cute cartoon boy smiling warmly and waving one hand directly at the viewer. Close-up."
+}
+}
+},
+"sorry": {
+"sig": "c63ff7d97e",
+"stages": {
+"starters": {
+"scene": "A cute cartoon girl with a sad, apologetic face, bowing her head slightly with hands clasped together in front of her."
+},
+"ket": {
+"scene": "Close-up of a child's hands offering a freshly taped-together broken toy dinosaur to another child's hands, showing an apologetic gesture."
+}
+}
+},
+"up": {
+"sig": "0631b6c4ee",
+"stages": {
+"movers": {
+"scene": "A bright red balloon floating high up in the sky, far above a small green hill at the bottom."
+},
+"ket": {
+"scene": "Close-up of a finger pressing the glowing up-arrow button on an elevator panel."
+}
+}
+},
+"down": {
+"sig": "e13aa829c8",
+"stages": {
+"movers": {
+"scene": "A heavy round boulder rolling down a steep grassy slope."
+},
+"ket": {
+"scene": "Close-up of a finger pressing the glowing down-arrow button on an elevator panel."
+}
+}
+},
+"inside": {
+"sig": "0a99a5e4ed",
+"stages": {
+"movers": {
+"scene": "A cute yellow chick sitting snugly inside a cracked white eggshell."
+},
+"ket": {
+"scene": "Close-up of a hand placing a shiny red apple inside a brown paper lunch bag."
+}
+}
+},
+"outside": {
+"sig": "e2027f0634",
+"stages": {
+"movers": {
+"scene": "A cute puppy standing outside a small red doghouse, looking back at it."
+},
+"ket": {
+"scene": "Close-up of a wet puppy standing outside a glass door, looking longingly inside."
+}
+}
+},
+"along": {
+"sig": "6e13a0eabd",
+"stages": {
+"ket": {
+"scene": "Close-up of a toy wooden train sliding along a straight wooden track."
+}
+}
+},
+"around": {
+"sig": "067544aadd",
+"stages": {
+"ket": {
+"scene": "Close-up of a colorful toy train track looped in a perfect circle around a single green toy tree."
+}
+}
+},
+"between": {
+"sig": "119d787ef4",
+"stages": {
+"ket": {
+"scene": "Close-up of a bright red apple resting between two thick, upright books."
+}
+}
+},
+"under": {
+"sig": "75ed1c3bd5",
+"stages": {
+"ket": {
+"scene": "Close-up of a cute sleeping cat curled up under a small wooden stool."
+}
+}
+},
+"goodbye": {
+"sig": "900f0d2914",
+"stages": {
+"ket": {
+"scene": "Waist-up close-up of a smiling girl waving goodbye through the window of a yellow bus."
+}
+}
+},
+"behind": {
+"sig": "2145144229",
+"stages": {
+"ket": {
+"scene": "Close-up of a playful puppy peeking out from behind a large green potted plant."
+}
+}
+},
+"near": {
+"sig": "1b9ec4b3fa",
+"stages": {
+"ket": {
+"scene": "Close-up of a small key lying very near to a brass keyhole on a wooden door."
+}
+}
+},
+"across": {
+"sig": "028f944b2f",
+"stages": {
+"ket": {
+"scene": "Close-up of a tiny toy car driving across a narrow wooden bridge over a blue stream."
+}
+}
+},
+"above": {
+"sig": "66196bcae1",
+"stages": {
+"ket": {
+"scene": "Close-up of a glowing lightbulb hanging directly above a closed book on a table."
+}
+}
+},
+"below": {
+"sig": "93867832f7",
+"stages": {
+"ket": {
+"scene": "Close-up of a blue fish swimming in the water below a small wooden fishing dock."
+}
+}
+},
+"opposite": {
+"sig": "6677f5fe45",
+"stages": {
+"ket": {
+"scene": "Close-up of two children's hands playing chess, sitting directly opposite each other across the chessboard."
+}
+}
+},
+"beside": {
+"sig": "bc01683ccb",
+"stages": {
+"ket": {
+"scene": "Close-up of a pair of muddy boots sitting beside a clean white doormat."
+}
+}
 }
 },
 "planner": "gemini-3.5-flash"

@@ -76,5 +76,7 @@
 "southwest@pet": "The compass contains letters (N, S, E, W), which violates the no-text rule.",
 "vowel@pet": "The image contains the letters A, E, I, O, and U.",
 "full-time@pet": "The calendar has an unrealistic 4x3 grid instead of 7 days, and the abstract concept of 'full-time' is extremely difficult to guess from this illustration.",
-"pronunciation@pet": "The image contains letters (p, b) and phonetic symbols, which violates the no-letters rule."
+"pronunciation@pet": "The image contains letters (p, b) and phonetic symbols, which violates the no-letters rule.",
+"mall@pet": "Too cluttered and detailed for a 64x64 icon, with many tiny figures.",
+"backwards@pet": "The boy is facing right and the arrow points right, which represents walking forwards, not backwards."
 }

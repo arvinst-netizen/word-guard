@@ -1,28 +1,28 @@
 {
- "result": "done",
- "message": "",
- "planned": 2993,
+ "result": "more",
+ "message": "sorry@ket：Vertex AI 返回 429：{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
+ "planned": 3011,
  "words": 3011,
- "drawn": 3608,
- "jobs": 3510,
- "covered": 3787,
+ "drawn": 3628,
+ "jobs": 3533,
+ "covered": 3807,
  "pairs": 3841,
- "flagged": 78,
- "failed": 0,
- "this_round": 7,
+ "flagged": 80,
+ "failed": 3,
+ "this_round": 27,
  "complete": false,
- "mode": "redo",
- "spend": 207.43,
+ "mode": "full",
+ "spend": 208.65,
  "budget": 250.0,
  "spend_by": {
-  "plan": 6.0581,
-  "draw": 176.8763,
-  "check": 24.4936
+  "plan": 6.094,
+  "draw": 177.9326,
+  "check": 24.628
  },
  "image_model": [
   "gemini-nano-banana-2.1",
   "1K"
  ],
  "text_model": "gemini-3.5-flash",
- "at": "2026-11-16 07:12:44 UTC"
+ "at": "2026-11-16 07:41:54 UTC"
 }
