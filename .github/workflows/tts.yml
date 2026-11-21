@@ -5,7 +5,7 @@ on:
       mode:
         description: 'sample = 生成试听页挑声音；full = 生成全部单词和例句'
         required: true
-        default: sample
+        default: full
         type: choice
         options: [sample, full]
       voice:
@@ -15,7 +15,7 @@ on:
       rate:
         description: '语速，1 是正常，0.9 稍慢'
         required: false
-        default: '0.9'
+        default: '1.0'
 permissions:
   contents: write
 concurrency: tts
