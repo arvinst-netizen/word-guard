@@ -8,6 +8,7 @@ import type { Outcome, Skill } from '../learning/engine';
 import { pickWeighted, shuffle, type Rng } from '../rng';
 
 export type MonsterVariant = 'normal' | 'fast' | 'big' | 'gold';
+export type StartSkill = 'freeze' | 'reveal' | 'heart';
 
 export interface MonsterState {
   id: number;
@@ -31,6 +32,7 @@ export interface ActiveCall {
   wordId: string;
   wrongs: number;
   hinted: boolean;
+  revealed?: boolean;
   tiles: SpellTile[];
   progress: number;
   blank: boolean[];
@@ -85,6 +87,7 @@ export type BattleEvent =
     }
   | { type: 'flee'; monsterId: number }
   | { type: 'freeze'; seconds: number }
+  | { type: 'reveal'; monsterId: number; tileIndex?: number }
   | { type: 'enrage' }
   | { type: 'end'; result: 'win' | 'lose' };
 
@@ -168,6 +171,8 @@ export class Battle {
   combo = 0;
   bestCombo = 0;
   energy = 0;
+  startSkill: StartSkill = 'freeze';
+  private bonusHearts = 0;
   freezeUntil = 0;
   shield = 0;
   enraged = false;
@@ -194,13 +199,33 @@ export class Battle {
     return this.time < this.freezeUntil;
   }
 
+  selectSkill(skill: StartSkill): void {
+    if (this.time > 0 || this.answers.length > 0) return;
+    this.startSkill = skill;
+    this.bonusHearts = skill === 'heart' ? 1 : 0;
+    this.hearts = this.maxHearts;
+  }
+
   get skillReady(): boolean {
-    return !this.result && this.energy >= 5;
+    if (this.result || this.startSkill === 'heart' || this.energy < 5) return false;
+    if (this.startSkill === 'reveal') return this.call !== null;
+    return true;
   }
 
   useSkill(): void {
     if (!this.skillReady) return;
     this.energy = 0;
+    if (this.startSkill === 'reveal') {
+      const c = this.call!;
+      c.revealed = true;
+      const tileIndex = this.mode === 'spell' ? this.nextTileIndex() : undefined;
+      this.events.push({
+        type: 'reveal',
+        monsterId: c.monsterId,
+        tileIndex: tileIndex !== undefined && tileIndex >= 0 ? tileIndex : undefined,
+      });
+      return;
+    }
     const seconds = 6 + (this.deps.freezeBonus ?? 0);
     this.freezeUntil = this.time + seconds;
     this.events.push({ type: 'freeze', seconds });
@@ -222,7 +247,7 @@ export class Battle {
   }
 
   get maxHearts(): number {
-    return this.level.hearts ?? 3;
+    return (this.level.hearts ?? 3) + this.bonusHearts;
   }
 
   get skill(): Skill {

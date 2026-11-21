@@ -96,3 +96,44 @@ describe('拼写模式', () => {
     expect(battle.answers.at(-1)!.outcome).toBe('recovered');
   });
 });
+
+describe('开局三选一技能', () => {
+  const level = LEVELS.find((l) => l.mode === 'listen')!;
+
+  it('多一颗心：开局血量上限与当前血量 +1，且无主动技能按钮', () => {
+    const { battle } = makeBattle(level, 3);
+    const baseMax = battle.maxHearts;
+    battle.selectSkill('heart');
+    expect(battle.maxHearts).toBe(baseMax + 1);
+    expect(battle.hearts).toBe(baseMax + 1);
+    battle.energy = 5;
+    expect(battle.skillReady).toBe(false);
+  });
+
+  it('提示一只：满 5 能量可免费揭示正确答案，不断连击且仍算一次就对', () => {
+    const { battle } = makeBattle(level, 7);
+    battle.selectSkill('reveal');
+    const call = runUntilCall(battle);
+    battle.energy = 5;
+    battle.combo = 5;
+    expect(battle.skillReady).toBe(true);
+    battle.useSkill();
+    const ev = battle.drainEvents().find((e) => e.type === 'reveal');
+    expect(ev && ev.type === 'reveal' && ev.monsterId).toBe(call.monsterId);
+    expect(battle.energy).toBe(0);
+    expect(battle.combo).toBe(5);
+    expect(call.revealed).toBe(true);
+    battle.tapMonster(call.monsterId);
+    expect(battle.answers.at(-1)).toEqual({ wordId: call.wordId, outcome: 'perfect' });
+  });
+
+  it('冰冻：满 5 能量可停住全场小怪', () => {
+    const { battle } = makeBattle(level, 8);
+    battle.selectSkill('freeze');
+    battle.energy = 5;
+    expect(battle.skillReady).toBe(true);
+    battle.useSkill();
+    expect(battle.frozen).toBe(true);
+    expect(battle.drainEvents().some((e) => e.type === 'freeze')).toBe(true);
+  });
+});

@@ -4,6 +4,7 @@ import {
   TAP_STUN,
   type Battle,
   type BattleEvent,
+  type StartSkill,
   type DefeatGain,
   type MonsterState,
 } from '../../core/battle/battle';
@@ -393,6 +394,10 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private makeSkillButton(): void {
+    this.skillBtn?.destroy();
+    this.skillBtn = undefined;
+    this.skillG = undefined;
+    if (this.battle.startSkill === 'heart') return;
     const { launcher, portrait, W, field } = this.L;
     const sx = portrait ? W / 2 + 214 : launcher.x - 4;
     const sy = portrait ? launcher.y + 20 : Math.min(field.y + field.h - (ctx().engine.data.pet ? 150 : 58), launcher.y + 150);
@@ -400,15 +405,23 @@ export class BattleScene extends Phaser.Scene {
     const c = this.add.container(sx, sy).setDepth(16);
     this.skillG = this.add.graphics();
     c.add(this.skillG);
-    if (uiArtKey('icon-snow')) {
-      c.add(makeIcon(this, 'snow', 0, 0, rad * 1.3));
+    const isReveal = this.battle.startSkill === 'reveal';
+    const iconName = isReveal ? 'star' : 'snow';
+    const artName = isReveal ? 'icon-star' : 'icon-snow';
+    if (uiArtKey(artName)) {
+      c.add(makeIcon(this, iconName, 0, 0, rad * 1.3));
     } else {
-      c.add(makeIcon(this, 'snow', 0, 0, rad * 1.35, PALETTE.ink));
-      c.add(makeIcon(this, 'snow', 0, -1, rad * 1.2, 0xffffff));
+      c.add(makeIcon(this, iconName, 0, 0, rad * 1.35, PALETTE.ink));
+      c.add(makeIcon(this, iconName, 0, -1, rad * 1.2, isReveal ? PALETTE.sun : 0xffffff));
     }
     c.add(
       this.add
-        .text(0, rad + 14, '冰冻', textStyle(portrait ? 20 : 16, PALETTE.ink, undefined, { stroke: '#fff4dc', strokeThickness: 5 }))
+        .text(
+          0,
+          rad + 14,
+          isReveal ? '提示' : '冰冻',
+          textStyle(portrait ? 20 : 16, PALETTE.ink, undefined, { stroke: '#fff4dc', strokeThickness: 5 }),
+        )
         .setOrigin(0.5),
     );
     c.setSize(rad * 2 + 16, rad * 2 + 16);
@@ -433,10 +446,11 @@ export class BattleScene extends Phaser.Scene {
     const rad = this.L.portrait ? 46 : 36;
     const energy = this.battle.energy;
     const ready = this.battle.skillReady;
+    const activeCol = this.battle.startSkill === 'reveal' ? 0xf5a623 : 0x48b8f2;
     g.clear();
     g.fillStyle(PALETTE.ink, 1);
     g.fillCircle(0, 0, rad + 5);
-    g.fillStyle(ready ? 0x48b8f2 : 0x9fb8c4, 1);
+    g.fillStyle(ready ? activeCol : 0x9fb8c4, 1);
     g.fillCircle(0, 0, rad);
     for (let i = 0; i < 5; i++) {
       const a0 = -Math.PI / 2 + (i / 5) * Math.PI * 2 + 0.08;
@@ -480,6 +494,24 @@ export class BattleScene extends Phaser.Scene {
       });
     }
     this.floatText(W / 2, field.y + field.h * 0.4, '冰冻！小怪动不了啦', 0x2f8fd0, 40, 900);
+    this.refreshSkill();
+  }
+
+  private revealFx(monsterId: number, tileIndex?: number): void {
+    const { field, W } = this.L;
+    ctx().platform.sfx.play('streak', 1.4);
+    ctx().platform.haptic?.(45);
+    this.refreshHighlights();
+    const view = this.views.get(monsterId);
+    if (view) {
+      this.tweens.add({ targets: view, scale: 1.12, duration: 150, yoyo: true, repeat: 2 });
+    }
+    if (tileIndex !== undefined) {
+      const tile = this.tiles[tileIndex];
+      if (tile) this.tweens.add({ targets: tile, scale: 1.22, duration: 150, yoyo: true, repeat: 3 });
+    }
+    this.sayCurrent();
+    this.floatText(W / 2, field.y + field.h * 0.4, '提示！就是它', 0xd98218, 40, 850);
     this.refreshSkill();
   }
 
@@ -1125,6 +1157,9 @@ export class BattleScene extends Phaser.Scene {
       case 'freeze':
         this.freezeFx(ev.seconds);
         break;
+      case 'reveal':
+        this.revealFx(ev.monsterId, ev.tileIndex);
+        break;
       case 'enrage':
         this.bossEnrage();
         break;
@@ -1275,7 +1310,7 @@ export class BattleScene extends Phaser.Scene {
     const call = this.battle.call;
     for (const [id, view] of this.views) {
       if (call && id === call.monsterId) {
-        view.setHighlight(this.battle.mode === 'spell' ? (call.hinted ? 'hint' : 'lock') : call.hinted ? 'hint' : 'none');
+        view.setHighlight(this.battle.mode === 'spell' ? (call.hinted || call.revealed ? 'hint' : 'lock') : call.hinted || call.revealed ? 'hint' : 'none');
       } else {
         view.setHighlight('none');
       }
@@ -1455,27 +1490,101 @@ export class BattleScene extends Phaser.Scene {
     const layer = this.makeOverlay();
     const { W, H } = this.L;
     const g = this.add.graphics();
-    const pw = Math.min(560, W - 60);
-    drawBoard(g, W / 2 - pw / 2, H / 2 - 170, pw, 340, 26);
+    const pw = Math.min(620, W - 40);
+    const ph = 490;
+    const topY = H / 2 - ph / 2;
+    drawBoard(g, W / 2 - pw / 2, topY, pw, ph, 26);
     layer.add(g);
-    layer.add(this.add.text(W / 2, H / 2 - 112, this.level.title, textStyle(42)).setOrigin(0.5));
+    layer.add(this.add.text(W / 2, topY + 52, this.level.title, textStyle(38)).setOrigin(0.5));
     layer.add(
       this.add
-        .text(W / 2, H / 2 - 50, this.level.tip, textStyle(26, PALETTE.inkSoft, undefined, { wordWrap: { width: pw - 60 }, align: 'center' }))
+        .text(
+          W / 2,
+          topY + 104,
+          this.level.tip,
+          textStyle(24, PALETTE.inkSoft, undefined, { wordWrap: { width: pw - 56 }, align: 'center' }),
+        )
         .setOrigin(0.5),
     );
     const rule =
       this.level.mode === 'spell'
         ? '每个词只有几次机会，点错字母、用"提示"都算一次'
         : '一题只有一次机会：点错扣半颗心，小怪溜走还会回来';
-    layer.add(this.add.text(W / 2, H / 2 + 6, rule, textStyle(20, PALETTE.inkSoft)).setOrigin(0.5));
+    layer.add(
+      this.add
+        .text(W / 2, topY + 150, rule, textStyle(18, PALETTE.inkSoft, undefined, { wordWrap: { width: pw - 48 }, align: 'center' }))
+        .setOrigin(0.5),
+    );
+
+    layer.add(this.add.text(W / 2, topY + 190, '开局选一个本局技能：', textStyle(22, PALETTE.ink)).setOrigin(0.5));
+
+    const options: { id: StartSkill; name: string; desc: string; col: number }[] = [
+      { id: 'freeze', name: '冰冻', desc: '5连对停怪6秒', col: 0x48b8f2 },
+      { id: 'reveal', name: '提示一只', desc: '5连对免费标答案', col: 0xf5a623 },
+      { id: 'heart', name: '多一颗心', desc: '开局血量 +1', col: 0xe85d5d },
+    ];
+    const gap = 14;
+    const cw = Math.floor((pw - 48 - gap * 2) / 3);
+    const ch = 146;
+    const cy = topY + 286;
+    const cards: { id: StartSkill; bg: Phaser.GameObjects.Graphics; badge: Phaser.GameObjects.Text }[] = [];
+
+    const drawCards = () => {
+      for (const item of cards) {
+        const active = this.battle.startSkill === item.id;
+        item.bg.clear();
+        item.bg.fillStyle(active ? 0xfff8dc : 0xf7efe0, 1);
+        item.bg.fillRoundedRect(-cw / 2, -ch / 2, cw, ch, 18);
+        item.bg.lineStyle(active ? 5 : 3, active ? PALETTE.carrot : 0xd4b996, 1);
+        item.bg.strokeRoundedRect(-cw / 2, -ch / 2, cw, ch, 18);
+        item.badge.setVisible(active);
+      }
+    };
+
+    options.forEach((opt, i) => {
+      const cx = W / 2 + (i - 1) * (cw + gap);
+      const card = this.add.container(cx, cy);
+      const bg = this.add.graphics();
+      card.add(bg);
+      if (opt.id === 'heart') {
+        const hg = this.add.graphics();
+        drawHeart(hg, 0, -28, 1.05, 1);
+        card.add(hg);
+      } else {
+        const icon = makeIcon(this, opt.id === 'reveal' ? 'star' : 'snow', 0, -28, 42, opt.col);
+        card.add(icon);
+      }
+      card.add(this.add.text(0, 14, opt.name, textStyle(22, PALETTE.ink)).setOrigin(0.5));
+      card.add(
+        this.add
+          .text(0, 44, opt.desc, textStyle(15, PALETTE.inkSoft, undefined, { wordWrap: { width: cw - 16 }, align: 'center' }))
+          .setOrigin(0.5),
+      );
+      const badge = this.add
+        .text(cw / 2 - 14, -ch / 2 + 12, '✓', textStyle(22, PALETTE.carrotDark))
+        .setOrigin(0.5);
+      card.add(badge);
+      card.setSize(cw, ch);
+      card.setInteractive({ useHandCursor: true });
+      card.on('pointerdown', () => {
+        ctx().platform.sfx.play('tap');
+        this.battle.selectSkill(opt.id);
+        this.redrawTop();
+        this.makeSkillButton();
+        drawCards();
+      });
+      cards.push({ id: opt.id, bg, badge });
+      layer.add(card);
+    });
+    drawCards();
+
     layer.add(
       makeButton(
         this,
         W / 2,
-        H / 2 + 92,
+        topY + ph - 62,
         240,
-        80,
+        76,
         '开始！',
         () => {
           this.closeOverlay();
