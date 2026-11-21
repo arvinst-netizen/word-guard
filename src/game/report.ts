@@ -1,3 +1,5 @@
+import type { BattleAnswer } from '../core/battle/battle';
+import { wordById } from '../core/content/words';
 import { continueTarget } from '../core/progress';
 import { rankForXp } from '../core/rewards';
 import { computeWeekReport } from '../core/stats';
@@ -212,6 +214,233 @@ export function openWeekReportModal(): void {
   closeBtn.onclick = close;
 
   row.append(shareBtn, closeBtn);
+  shade.append(img, hint, row);
+  for (const ev of ['pointerdown', 'pointerup', 'touchstart', 'touchend', 'mousedown', 'mouseup', 'click']) {
+    shade.addEventListener(ev, (e) => e.stopPropagation());
+  }
+  document.body.appendChild(shade);
+}
+
+
+export function formatDictationText(title: string, answers: BattleAnswer[], nowMs: number): string {
+  const d = new Date(nowMs);
+  const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const byWord = new Map<string, BattleAnswer['outcome']>();
+  for (const a of answers) {
+    const prev = byWord.get(a.wordId);
+    if (!prev || a.outcome === 'missed' || (a.outcome === 'recovered' && prev === 'perfect')) {
+      byWord.set(a.wordId, a.outcome);
+    }
+  }
+  const items = [...byWord.entries()].map(([id, outcome]) => ({ w: wordById(id), outcome }));
+  const perfect = items.filter((x) => x.outcome === 'perfect');
+  const review = items.filter((x) => x.outcome !== 'perfect');
+  const pct = items.length ? Math.round((perfect.length / items.length) * 100) : 0;
+  const lines = [
+    `【单词守卫 · 听写结果单】${title}（${dateStr}）`,
+    `共 ${items.length} 词｜一次拼对 ${perfect.length} 词（${pct}%）`,
+  ];
+  if (review.length) {
+    lines.push('', '需加强：');
+    for (const x of review) {
+      const tag = x.outcome === 'missed' ? '✗' : '△';
+      lines.push(`${tag} ${x.w.en}  ${x.w.short}`);
+    }
+  }
+  if (perfect.length) {
+    lines.push('', '一次拼对：');
+    lines.push(perfect.map((x) => `✓ ${x.w.en}`).join('  '));
+  }
+  return lines.join('\n');
+}
+
+export function renderDictationReportDataUrl(title: string, answers: BattleAnswer[], nowMs: number): string {
+  const byWord = new Map<string, BattleAnswer['outcome']>();
+  for (const a of answers) {
+    const prev = byWord.get(a.wordId);
+    if (!prev || a.outcome === 'missed' || (a.outcome === 'recovered' && prev === 'perfect')) {
+      byWord.set(a.wordId, a.outcome);
+    }
+  }
+  const items = [...byWord.entries()].map(([id, outcome]) => ({ w: wordById(id), outcome }));
+  const perfect = items.filter((x) => x.outcome === 'perfect');
+  const review = items.filter((x) => x.outcome !== 'perfect');
+  const pct = items.length ? Math.round((perfect.length / items.length) * 100) : 0;
+
+  const reviewRows = review.length;
+  const perfectRows = Math.ceil(perfect.length / 2);
+  const cardH = Math.max(
+    720,
+    340 + (reviewRows ? 54 + reviewRows * 52 : 0) + (perfectRows ? 54 + perfectRows * 42 : 0) + 90,
+  );
+
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = cardH;
+  const c = canvas.getContext('2d')!;
+
+  const drawText = (
+    text: string,
+    x: number,
+    y: number,
+    size: number,
+    color = INK,
+    font = FONT_CN,
+    align: CanvasTextAlign = 'left',
+    weight = 600,
+  ) => {
+    c.font = `${weight} ${size}px ${font}`;
+    c.fillStyle = color;
+    c.textAlign = align;
+    c.textBaseline = 'middle';
+    c.fillText(text, x, y);
+  };
+
+  c.fillStyle = '#c9f0ee';
+  c.fillRect(0, 0, W, cardH);
+
+  roundRect(c, 28, 28, W - 56, cardH - 56, 28);
+  c.fillStyle = '#fff9eb';
+  c.fill();
+  c.lineWidth = 5;
+  c.strokeStyle = INK;
+  c.stroke();
+
+  const d = new Date(nowMs);
+  const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  drawText('单词守卫 · 听写结果单', W / 2, 78, 34, INK, FONT_CN, 'center', 700);
+  drawText(`${title}  ·  ${dateStr}`, W / 2, 120, 21, SOFT, FONT_CN, 'center', 600);
+
+  const boxW = (W - 120 - 24) / 3;
+  const stats = [
+    { label: '共听写', val: `${items.length} 词`, col: INK },
+    { label: '一次拼对', val: `${perfect.length} 词`, col: '#3a9d5d' },
+    { label: '正确率', val: `${pct}%`, col: pct >= 85 ? '#3a9d5d' : '#d97724' },
+  ];
+  stats.forEach((s, i) => {
+    const bx = 60 + i * (boxW + 12);
+    roundRect(c, bx, 152, boxW, 108, 18);
+    c.fillStyle = '#f5ecd7';
+    c.fill();
+    c.lineWidth = 3;
+    c.strokeStyle = '#d8c8a8';
+    c.stroke();
+    drawText(s.label, bx + boxW / 2, 184, 18, SOFT, FONT_CN, 'center', 600);
+    drawText(s.val, bx + boxW / 2, 226, 32, s.col, FONT_NUM, 'center', 700);
+  });
+
+  let y = 296;
+  if (review.length) {
+    drawText(`需加强（${review.length} 词）`, 60, y, 22, '#c84b31', FONT_CN, 'left', 700);
+    y += 38;
+    for (const x of review) {
+      roundRect(c, 60, y - 20, W - 120, 42, 12);
+      c.fillStyle = x.outcome === 'missed' ? '#fdecea' : '#fff3dc';
+      c.fill();
+      const tag = x.outcome === 'missed' ? '✗ 没拼出' : '△ 错过/提示';
+      const tagCol = x.outcome === 'missed' ? '#c84b31' : '#c97a16';
+      drawText(x.w.en, 78, y, 24, INK, FONT_NUM, 'left', 700);
+      drawText(x.w.short, 320, y, 20, SOFT, FONT_CN, 'left', 600);
+      drawText(tag, W - 76, y, 18, tagCol, FONT_CN, 'right', 700);
+      y += 52;
+    }
+    y += 14;
+  }
+
+  if (perfect.length) {
+    drawText(`一次拼对（${perfect.length} 词）`, 60, y, 22, '#3a9d5d', FONT_CN, 'left', 700);
+    y += 36;
+    const colW = (W - 132) / 2;
+    perfect.forEach((x, i) => {
+      const colIdx = i % 2;
+      const rowIdx = Math.floor(i / 2);
+      const px = 60 + colIdx * (colW + 12);
+      const py = y + rowIdx * 42;
+      roundRect(c, px, py - 16, colW, 34, 10);
+      c.fillStyle = '#edf8f0';
+      c.fill();
+      drawText(`✓ ${x.w.en}`, px + 14, py, 21, INK, FONT_NUM, 'left', 700);
+      drawText(x.w.short, px + colW - 12, py, 16, SOFT, FONT_CN, 'right', 600);
+    });
+  }
+
+  drawText('单词守卫 · 每天练一点，听写不发愁', W / 2, cardH - 54, 17, SOFT, FONT_CN, 'center', 500);
+  return canvas.toDataURL('image/png');
+}
+
+export function openDictationReportModal(title: string, answers: BattleAnswer[]): void {
+  if (reportOpen || isDialogOpen()) return;
+  reportOpen = true;
+  track('dictation_report', { total: answers.length });
+
+  const nowMs = ctx().platform.now();
+  const url = renderDictationReportDataUrl(title, answers, nowMs);
+  const plainText = formatDictationText(title, answers, nowMs);
+
+  const shade = document.createElement('div');
+  shade.style.cssText =
+    'position:fixed;inset:0;z-index:9999;background:rgba(40,26,14,.72);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;';
+
+  const img = document.createElement('img');
+  img.src = url;
+  img.alt = '听写结果单';
+  img.style.cssText = 'max-width:92vw;max-height:74vh;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.35);';
+
+  const hint = document.createElement('div');
+  hint.textContent = '长按图片可以保存或转发给家长';
+  hint.style.cssText = 'color:#fff;font-size:15px;';
+
+  const row = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:10px;flex-wrap:wrap;justify-content:center;';
+
+  const makeBtn = (label: string, primary: boolean) => {
+    const b = document.createElement('button');
+    b.textContent = label;
+    b.style.cssText = `font-size:16px;padding:10px 18px;border-radius:12px;border:3px solid #4a3426;cursor:pointer;background:${primary ? '#f08a3c' : '#fff'};color:${primary ? '#fff' : '#4a3426'};font-weight:600;`;
+    return b;
+  };
+
+  const close = () => {
+    reportOpen = false;
+    shade.remove();
+  };
+
+  const shareBtn = makeBtn('保存 / 分享图片', true);
+  shareBtn.onclick = async () => {
+    try {
+      const blob = await (await fetch(url)).blob();
+      const file = new File([blob], '单词守卫-听写结果单.png', { type: 'image/png' });
+      const nav = navigator as Navigator & {
+        canShare?: (data: { files: File[] }) => boolean;
+        share?: (data: { files: File[]; title: string }) => Promise<void>;
+      };
+      if (nav.canShare?.({ files: [file] })) {
+        await nav.share?.({ files: [file], title: `单词守卫 · ${title} 听写结果单` });
+        return;
+      }
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = '单词守卫-听写结果单.png';
+      link.click();
+    } catch {
+      hint.textContent = '没保存成功，请长按图片保存';
+    }
+  };
+
+  const copyBtn = makeBtn('复制文字清单', false);
+  copyBtn.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(plainText);
+      hint.textContent = '文字清单已复制，可直接粘贴到微信';
+    } catch {
+      hint.textContent = '复制失败，请长按图片保存';
+    }
+  };
+
+  const closeBtn = makeBtn('关闭', false);
+  closeBtn.onclick = close;
+
+  row.append(shareBtn, copyBtn, closeBtn);
   shade.append(img, hint, row);
   for (const ev of ['pointerdown', 'pointerup', 'touchstart', 'touchend', 'mousedown', 'mouseup', 'click']) {
     shade.addEventListener(ev, (e) => e.stopPropagation());

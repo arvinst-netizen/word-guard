@@ -1,7 +1,13 @@
 import Phaser from 'phaser';
 import { setArtStage } from '../../core/content/art';
-import { COURSES } from '../../core/content/levels';
-import { speakTexts, wordById, type Word } from '../../core/content/words';
+import {
+  ALBUM_THEMES,
+  BOOK_ENTRIES,
+  entriesForTheme,
+  themeDef,
+  type AlbumThemeId,
+} from '../../core/content/themes';
+import { speakTexts, wordById } from '../../core/content/words';
 import type { Mastery } from '../../core/learning/engine';
 import { collectionCounts, wordCardState } from '../../core/rewards';
 import { ctx } from '../context';
@@ -30,24 +36,10 @@ const MASTERY_BADGE: Record<Mastery, [string, number]> = {
 
 const PAGE_KEY = 'wordbook:page';
 const SEEN_KEY = 'wordbook:seenOnly';
+const THEME_KEY = 'wordbook:theme';
 const PAGE_SIZE = 32;
 
-const BOOK_ENTRIES: { w: Word; from: string }[] = (() => {
-  const list: { w: Word; from: string }[] = [];
-  const seen = new Set<string>();
-  for (const course of COURSES) {
-    course.units.forEach((unit, idx) => {
-      const from = course.route === 'cambridge' ? `${course.short} 第 ${idx + 1} 单元` : `${course.short} ${unit.title}`;
-      for (const id of unit.words) {
-        if (!seen.has(id)) {
-          list.push({ w: wordById(id), from });
-          seen.add(id);
-        }
-      }
-    });
-  }
-  return list;
-})();
+type BookView = 'shelf' | 'all' | AlbumThemeId;
 
 export class WordBookScene extends Phaser.Scene {
   private confirmReset = false;
@@ -61,6 +53,15 @@ export class WordBookScene extends Phaser.Scene {
     setArtStage(null);
     this.confirmReset = false;
 
+    const view = ((this.registry.get(THEME_KEY) as BookView | undefined) ?? 'shelf') as BookView;
+    if (view === 'shelf') {
+      this.renderShelf();
+    } else {
+      this.renderVolume(view);
+    }
+  }
+
+  private renderShelf(): void {
     const W = viewW(this);
     const H = viewH(this);
     const portrait = isPortrait(this);
@@ -74,19 +75,174 @@ export class WordBookScene extends Phaser.Scene {
       textColor: PALETTE.ink,
       fontSize: 24,
     });
-    this.add.text(W / 2, topY, '图鉴', textStyle(40)).setOrigin(0.5);
+    this.add.text(W / 2, topY, '图鉴书架', textStyle(40)).setOrigin(0.5);
 
-    const counts: Record<Mastery, number> = { mastered: 0, familiar: 0, learning: 0, new: 0 };
-    for (const { w } of BOOK_ENTRIES) counts[engine.mastery(w.id, 'recognize')]++;
+    makeButton(
+      this,
+      W - (portrait ? 108 : 118),
+      topY,
+      180,
+      50,
+      '看全部词',
+      () => {
+        this.registry.set(THEME_KEY, 'all');
+        this.registry.set(PAGE_KEY, 0);
+        this.scene.restart();
+      },
+      { fill: PALETTE.board, textColor: PALETTE.ink, fontSize: 20 },
+    );
+
     const col = collectionCounts(engine);
     this.add
-      .text(W / 2, portrait ? 112 : 84, `已收集 ${col.lit} / ${BOOK_ENTRIES.length} 张 · 其中金卡 ${col.gold} 张 · 在学 ${counts.learning}`, textStyle(20, PALETTE.inkSoft))
+      .text(
+        W / 2,
+        portrait ? 114 : 86,
+        `共 10 个主题分册 · 已收集 ${col.lit} / ${BOOK_ENTRIES.length} 张 · 金卡 ${col.gold} 张`,
+        textStyle(20, PALETTE.inkSoft),
+      )
+      .setOrigin(0.5);
+
+    const cols = portrait ? 2 : 5;
+    const cw = portrait ? 320 : 230;
+    const ch = portrait ? 148 : 210;
+    const gapX = portrait ? 18 : 16;
+    const gapY = portrait ? 16 : 18;
+    const gridW = cols * cw + (cols - 1) * gapX;
+    const x0 = (W - gridW) / 2;
+    const y0 = portrait ? 152 : 124;
+
+    ALBUM_THEMES.forEach((t, idx) => {
+      const colIdx = idx % cols;
+      const rowIdx = Math.floor(idx / cols);
+      const cx = x0 + colIdx * (cw + gapX);
+      const cy = y0 + rowIdx * (ch + gapY);
+
+      const items = entriesForTheme(t.id);
+      let lit = 0;
+      let gold = 0;
+      for (const { w } of items) {
+        const st = wordCardState(engine, w.id);
+        if (st !== 'none') lit++;
+        if (st === 'gold') gold++;
+      }
+
+      const card = this.add.container(cx, cy);
+      const g = this.add.graphics();
+      drawBoard(g, 0, 0, cw, ch, 18, PALETTE.board);
+      // Colored top/left book spine strip
+      g.fillStyle(t.accent, 1);
+      if (portrait) {
+        g.fillRoundedRect(4, 4, 14, ch - 8, { tl: 14, bl: 14, tr: 0, br: 0 });
+      } else {
+        g.fillRoundedRect(4, 4, cw - 8, 16, { tl: 14, tr: 14, bl: 0, br: 0 });
+      }
+      card.add(g);
+
+      const coverWord = wordById(t.coverWordId);
+      const picX = portrait ? 68 : cw / 2;
+      const picY = portrait ? ch / 2 : 64;
+      const picSize = portrait ? 68 : 66;
+      if (coverWord.picture) {
+        card.add(makePicture(this, picX, picY, coverWord.picture, picSize));
+      } else {
+        card.add(makeIcon(this, 'star', picX, picY, 44, t.accent));
+      }
+
+      const titleX = portrait ? 116 : cw / 2;
+      const titleY = portrait ? 40 : 118;
+      card.add(
+        this.add
+          .text(titleX, titleY, t.title, textStyle(portrait ? 26 : 24, PALETTE.ink))
+          .setOrigin(portrait ? 0 : 0.5, 0.5),
+      );
+
+      const statText = `已收 ${lit} / ${items.length}  ·  ★ ${gold}`;
+      card.add(
+        this.add
+          .text(titleX, portrait ? 76 : 148, statText, textStyle(portrait ? 17 : 15, PALETTE.inkSoft, FONT_PLAIN))
+          .setOrigin(portrait ? 0 : 0.5, 0.5),
+      );
+
+      // Progress bar
+      const barX = portrait ? 116 : 20;
+      const barY = portrait ? 104 : 172;
+      const barW = portrait ? cw - 134 : cw - 40;
+      const barH = 14;
+      const pct = items.length ? Math.min(1, lit / items.length) : 0;
+      const bg = this.add.graphics();
+      bg.fillStyle(0xe2d7be, 1);
+      bg.fillRoundedRect(barX, barY, barW, barH, 7);
+      if (pct > 0) {
+        bg.fillStyle(t.accent, 1);
+        bg.fillRoundedRect(barX, barY, Math.max(12, barW * pct), barH, 7);
+      }
+      card.add(bg);
+
+      card.setSize(cw, ch);
+      card.setInteractive(new Phaser.Geom.Rectangle(0, 0, cw, ch), Phaser.Geom.Rectangle.Contains);
+      card.on('pointerdown', () => {
+        ctx().platform.sfx.play('tap');
+        this.registry.set(THEME_KEY, t.id);
+        this.registry.set(PAGE_KEY, 0);
+        this.scene.restart();
+      });
+    });
+
+    const rows = Math.ceil(ALBUM_THEMES.length / cols);
+    const bottomY = y0 + rows * (ch + gapY) + 12;
+    this.renderFooter(W, H, portrait, x0, gridW, bottomY);
+  }
+
+  private renderVolume(view: 'all' | AlbumThemeId): void {
+    const W = viewW(this);
+    const H = viewH(this);
+    const portrait = isPortrait(this);
+    const engine = ctx().engine;
+    drawBackdrop(this);
+    ctx().platform.music.setMood('calm');
+
+    const topY = portrait ? 60 : 44;
+    makeButton(
+      this,
+      78,
+      topY,
+      126,
+      54,
+      '‹ 书架',
+      () => {
+        this.registry.set(THEME_KEY, 'shelf');
+        this.registry.set(PAGE_KEY, 0);
+        this.scene.restart();
+      },
+      { fill: PALETTE.board, textColor: PALETTE.ink, fontSize: 22 },
+    );
+
+    const volumeEntries = entriesForTheme(view);
+    const titleStr = view === 'all' ? '全部图鉴' : themeDef(view).title;
+    this.add.text(W / 2, topY, titleStr, textStyle(38)).setOrigin(0.5);
+
+    let volLit = 0;
+    let volGold = 0;
+    let volLearning = 0;
+    for (const { w } of volumeEntries) {
+      const st = wordCardState(engine, w.id);
+      if (st !== 'none') volLit++;
+      if (st === 'gold') volGold++;
+      if (engine.mastery(w.id, 'recognize') === 'learning') volLearning++;
+    }
+    this.add
+      .text(
+        W / 2,
+        portrait ? 112 : 84,
+        `已收集 ${volLit} / ${volumeEntries.length} 张 · 其中金卡 ${volGold} 张 · 在学 ${volLearning}`,
+        textStyle(20, PALETTE.inkSoft),
+      )
       .setOrigin(0.5);
 
     const seenOnly = this.registry.get(SEEN_KEY) === true;
     const filtered = seenOnly
-      ? BOOK_ENTRIES.filter(({ w }) => engine.mastery(w.id, 'recognize') !== 'new')
-      : BOOK_ENTRIES;
+      ? volumeEntries.filter(({ w }) => engine.mastery(w.id, 'recognize') !== 'new')
+      : volumeEntries;
     const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
     const page = Math.min(totalPages - 1, Math.max(0, (this.registry.get(PAGE_KEY) as number | undefined) ?? 0));
     this.registry.set(PAGE_KEY, page);
@@ -97,7 +253,7 @@ export class WordBookScene extends Phaser.Scene {
       ? slice[0].from === slice[slice.length - 1].from
         ? slice[0].from
         : `${slice[0].from} – ${slice[slice.length - 1].from}`
-      : '还没有学过的词';
+      : '这一册还没有学过的词';
     const litOnPage = slice.filter(({ w }) => wordCardState(engine, w.id) !== 'none').length;
     const navText = this.add
       .text(W / 2, navY, `${rangeLabel}   第 ${page + 1} / ${totalPages} 页 · 本页 ${litOnPage}/${slice.length}`, textStyle(20, PALETTE.ink))
@@ -126,7 +282,7 @@ export class WordBookScene extends Phaser.Scene {
       topY,
       190,
       50,
-      seenOnly ? '看全部' : '只看学过的',
+      seenOnly ? '看本册全部' : '只看学过的',
       () => {
         this.registry.set(SEEN_KEY, !seenOnly);
         this.registry.set(PAGE_KEY, 0);
@@ -218,6 +374,10 @@ export class WordBookScene extends Phaser.Scene {
 
     const rows = Math.ceil(slice.length / cols);
     y0 = y0 + rows * (ch + gap) + 6;
+    this.renderFooter(W, H, portrait, x0, gridW, y0);
+  }
+
+  private renderFooter(W: number, H: number, portrait: boolean, x0: number, gridW: number, y0: number): void {
     const footerY = Math.min(y0 + 22, H - 40);
     this.add
       .text(

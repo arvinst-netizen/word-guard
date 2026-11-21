@@ -16,6 +16,7 @@ import {
   rankForXp,
 } from '../../core/rewards';
 import { ctx } from '../context';
+import { openDictationReportModal } from '../report';
 import { openPetNameDialog } from '../pet-name';
 import {
   drawBackdrop,
@@ -213,6 +214,13 @@ export class ResultScene extends Phaser.Scene {
           ['选关', () => this.scene.start('levels'), PALETTE.board],
           ['复习错词再战', () => this.reviewThenRetry(level.id, wrongWords.slice(0, 5)), PALETTE.carrot],
         ];
+    if (level.dictation && d.answers.length > 0) {
+      actions.push([
+        '听写结果单',
+        () => openDictationReportModal(level.title, d.answers),
+        PALETTE.good,
+      ]);
+    }
     if (win && canNext && nxt) {
       actions.push([
         nxt.boss ? '打 Boss！' : '下一关',
@@ -221,7 +229,7 @@ export class ResultScene extends Phaser.Scene {
       ]);
     }
 
-    const bw = portrait ? (win ? 190 : 250) : win ? 210 : 270;
+    const bw = actions.length >= 4 ? (portrait ? 156 : 185) : portrait ? (win ? 190 : 250) : win ? 210 : 270;
     const totalW = actions.length * bw + (actions.length - 1) * 20;
     actions.forEach(([label, fn, fill], i) => {
       makeButton(this, W / 2 - totalW / 2 + bw / 2 + i * (bw + 20), btnY, bw, 70, label, fn, {
