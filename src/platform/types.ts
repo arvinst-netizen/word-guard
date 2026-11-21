@@ -29,7 +29,8 @@ export type SfxName =
   | 'escape'
   | 'card'
   | 'tick'
-  | 'record';
+  | 'record'
+  | 'intro';
 
 export interface SfxAdapter {
   muted: boolean;

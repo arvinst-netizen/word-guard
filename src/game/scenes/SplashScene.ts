@@ -6,44 +6,14 @@ import { makeCastle } from '../ui/castle';
 import { makeIcon } from '../ui/icons';
 import { PetView } from '../ui/pet';
 
-export type IntroStyle = 'action' | 'fairy';
-
-export interface SplashSceneData {
-  style?: IntroStyle;
-}
-
-const INTRO_STORAGE_KEY = 'word-guard:intro-style';
-
-export function getIntroStyle(): IntroStyle {
-  try {
-    const param = new URLSearchParams(location.search).get('intro');
-    if (param === 'action' || param === 'fairy') return param;
-    const saved = localStorage.getItem(INTRO_STORAGE_KEY);
-    if (saved === 'action' || saved === 'fairy') return saved;
-  } catch {
-    // ignore storage errors
-  }
-  return 'action';
-}
-
-export function setIntroStyle(style: IntroStyle): void {
-  try {
-    localStorage.setItem(INTRO_STORAGE_KEY, style);
-  } catch {
-    // ignore storage errors
-  }
-}
-
 export class SplashScene extends Phaser.Scene {
   private leaving = false;
-  private style: IntroStyle = 'action';
 
   constructor() {
     super('splash');
   }
 
-  init(data?: SplashSceneData): void {
-    this.style = data?.style ?? getIntroStyle();
+  init(): void {
     this.leaving = false;
   }
 
@@ -52,6 +22,8 @@ export class SplashScene extends Phaser.Scene {
     const W = viewW(this);
     const H = viewH(this);
     const portrait = isPortrait(this);
+    const cx = W / 2;
+    const cy = H / 2;
 
     const finish = () => {
       if (this.leaving) return;
@@ -62,177 +34,12 @@ export class SplashScene extends Phaser.Scene {
       });
     };
 
+    // Start Fairy Starlight musical fanfare & calm background music
+    ctx().platform.music.setMood('calm');
+    ctx().platform.sfx.play('intro');
+
     // Tap anywhere to skip immediately
     this.input.once('pointerdown', finish);
-
-    if (this.style === 'fairy') {
-      this.playFairyIntro(W, H, portrait, finish);
-    } else {
-      this.playActionIntro(W, H, portrait, finish);
-    }
-
-    // Subtle skip hint & style tag
-    const styleLabel = this.style === 'fairy' ? '童话星光风' : '热血塔防风';
-    this.add
-      .text(W / 2, H - (portrait ? 54 : 34), `${styleLabel} · 轻点任意处跳过`, textStyle(18, 0xffffff, FONT_PLAIN))
-      .setOrigin(0.5)
-      .setAlpha(0.78)
-      .setDepth(50);
-  }
-
-  /** 方案 A：热血塔防风 —— 小怪来袭 → 冰蓝星辰魔法击退 → 城堡护盾升起 + 标题震屏登场 */
-  private playActionIntro(W: number, H: number, portrait: boolean, finish: () => void): void {
-    const cx = W / 2;
-    const cy = H / 2;
-
-    // 1. Dynamic twilight-sky backdrop with radial speed lines
-    const bg = this.add.graphics();
-    bg.fillGradientStyle(0x1f3c6e, 0x1f3c6e, 0x4fb8d6, 0x4fb8d6, 1);
-    bg.fillRect(0, 0, W, H);
-
-    const rays = this.add.graphics().setPosition(cx, cy - 30).setAlpha(0.16);
-    for (let i = 0; i < 18; i++) {
-      const a0 = (i / 18) * Math.PI * 2;
-      const a1 = a0 + 0.12;
-      rays.fillStyle(0xffffff, 1);
-      rays.beginPath();
-      rays.moveTo(0, 0);
-      rays.arc(0, 0, Math.max(W, H), a0, a1);
-      rays.closePath();
-      rays.fillPath();
-    }
-    this.tweens.add({ targets: rays, angle: 360, duration: 14000, repeat: -1 });
-
-    // 2. Cute word-sign monsters rush in from left & right
-    const words = ['APPLE', 'STAR', 'MAGIC'];
-    const monsters: Phaser.GameObjects.Container[] = [];
-    const spawnCoords = [
-      { sx: -90, tx: cx - (portrait ? 170 : 250), y: cy + (portrait ? 70 : 40), col: PALETTE.monster[0] },
-      { sx: W + 90, tx: cx + (portrait ? 170 : 250), y: cy + (portrait ? 95 : 55), col: PALETTE.monster[1] },
-      { sx: W + 110, tx: cx + (portrait ? 90 : 150), y: cy - (portrait ? 120 : 95), col: PALETTE.monster[3] },
-    ];
-
-    spawnCoords.forEach((cfg, i) => {
-      const m = this.add.container(cfg.sx, cfg.y).setDepth(12);
-      const mg = this.add.graphics();
-      // Monster body
-      mg.fillStyle(cfg.col, 1);
-      mg.fillCircle(0, 14, 34);
-      mg.lineStyle(4, PALETTE.ink, 1);
-      mg.strokeCircle(0, 14, 34);
-      // Eyes
-      mg.fillStyle(0xffffff, 1);
-      mg.fillCircle(-11, 8, 7);
-      mg.fillCircle(11, 8, 7);
-      mg.fillStyle(PALETTE.ink, 1);
-      mg.fillCircle(-10, 8, 3.5);
-      mg.fillCircle(10, 8, 3.5);
-      // Word sign
-      mg.fillStyle(PALETTE.board, 1);
-      mg.fillRoundedRect(-52, -48, 104, 36, 10);
-      mg.lineStyle(3, PALETTE.ink, 1);
-      mg.strokeRoundedRect(-52, -48, 104, 36, 10);
-      m.add(mg);
-      m.add(this.add.text(0, -30, words[i], textStyle(18, PALETTE.ink, FONT_EN)).setOrigin(0.5));
-      monsters.push(m);
-
-      this.tweens.add({
-        targets: m,
-        x: cfg.tx,
-        duration: 420,
-        delay: i * 70,
-        ease: 'Back.easeOut',
-      });
-    });
-
-    // 3. Ice-blue + golden star slash sweeps across and knocks monsters flying
-    this.time.delayedCall(520, () => {
-      if (this.leaving) return;
-      ctx().platform.sfx.play('streak', 1.45);
-      this.cameras.main.shake(170, 0.011);
-
-      const slash = this.add.graphics().setDepth(20);
-      slash.lineStyle(18, 0x7ce4ff, 0.95);
-      slash.lineBetween(cx - W * 0.45, cy + 160, cx + W * 0.45, cy - 160);
-      slash.lineStyle(7, PALETTE.sun, 1);
-      slash.lineBetween(cx - W * 0.42, cy + 150, cx + W * 0.42, cy - 150);
-      this.tweens.add({
-        targets: slash,
-        alpha: 0,
-        scaleY: 2.2,
-        duration: 380,
-        ease: 'Cubic.easeOut',
-        onComplete: () => slash.destroy(),
-      });
-
-      // Knock monsters flying off screen + star bursts
-      monsters.forEach((m, i) => {
-        const dir = m.x < cx ? -1 : 1;
-        this.tweens.add({
-          targets: m,
-          x: m.x + dir * 420,
-          y: m.y - 180,
-          angle: dir * 320,
-          alpha: 0,
-          scale: 0.4,
-          duration: 460,
-          ease: 'Cubic.easeIn',
-        });
-        for (let k = 0; k < 5; k++) {
-          const sp = makeIcon(this, k % 2 === 0 ? 'snow' : 'star', m.x, m.y, 18 + (k % 3) * 8, k % 2 === 0 ? 0x7ce4ff : PALETTE.sun)
-            .setDepth(22);
-          const ang = (k / 5) * Math.PI * 2 + i;
-          this.tweens.add({
-            targets: sp,
-            x: m.x + Math.cos(ang) * 110,
-            y: m.y + Math.sin(ang) * 110,
-            alpha: 0,
-            scale: 0.2,
-            duration: 500,
-            onComplete: () => sp.destroy(),
-          });
-        }
-      });
-    });
-
-    // 4. Castle rises with shield wave + Title slams in with confetti
-    this.time.delayedCall(820, () => {
-      if (this.leaving) return;
-      ctx().platform.sfx.play('win');
-
-      const rank = rankForXp(ctx().engine.xp);
-      const castleY = cy + (portrait ? 150 : 120);
-      const castle = makeCastle(this, cx, castleY + 80, portrait ? 1.35 : 1.15, Math.min(4, Math.floor(rank.index / 2))).setDepth(14).setAlpha(0);
-      this.tweens.add({
-        targets: castle,
-        y: castleY,
-        alpha: 1,
-        duration: 460,
-        ease: 'Back.easeOut',
-      });
-
-      // Expanding magic shield ring
-      const ring = this.add.circle(cx, castleY - 20, 40, 0x7ce4ff, 0.22).setStrokeStyle(6, PALETTE.sun, 0.9).setDepth(13);
-      this.tweens.add({
-        targets: ring,
-        scale: 3.4,
-        alpha: 0,
-        duration: 680,
-        ease: 'Cubic.easeOut',
-        onComplete: () => ring.destroy(),
-      });
-
-      this.spawnTitleBlock(cx, cy - (portrait ? 110 : 75), portrait, 0xfff4dc);
-      this.spawnConfetti(cx, cy - 60, 26);
-    });
-
-    this.time.delayedCall(2750, finish);
-  }
-
-  /** 方案 B：童话星光风 —— 晨光云海散开 → 城堡与小伙伴浮现 + 金色星轨点亮标题 + 发光字母飘升 */
-  private playFairyIntro(W: number, H: number, portrait: boolean, finish: () => void): void {
-    const cx = W / 2;
-    const cy = H / 2;
 
     // 1. Warm dawn gradient sky
     const bg = this.add.graphics();
@@ -295,10 +102,10 @@ export class SplashScene extends Phaser.Scene {
     // 4. Castle + Pet (or mystery egg) float up smoothly
     this.time.delayedCall(260, () => {
       if (this.leaving) return;
-      ctx().platform.sfx.play('streak', 1.15);
       const rank = rankForXp(ctx().engine.xp);
+      const castleTier = Math.min(4, Math.floor(rank.index / 2));
       const castleY = cy + (portrait ? 155 : 122);
-      const castle = makeCastle(this, cx, castleY + 60, portrait ? 1.32 : 1.15, Math.min(4, Math.floor(rank.index / 2))).setDepth(12).setAlpha(0);
+      const castle = makeCastle(this, cx, castleY + 60, portrait ? 1.32 : 1.15, castleTier).setDepth(12).setAlpha(0);
       this.tweens.add({
         targets: castle,
         y: castleY,
@@ -322,7 +129,7 @@ export class SplashScene extends Phaser.Scene {
     });
 
     // 5. Golden shooting-star arc lights up the title
-    this.time.delayedCall(620, () => {
+    this.time.delayedCall(600, () => {
       if (this.leaving) return;
       const comet = makeIcon(this, 'star', cx - W * 0.36, cy - 20, 36, PALETTE.sun).setDepth(24);
       const targetY = cy - (portrait ? 115 : 80);
@@ -340,7 +147,6 @@ export class SplashScene extends Phaser.Scene {
         onComplete: () => {
           comet.destroy();
           if (this.leaving) return;
-          ctx().platform.sfx.play('win');
           const bloom = this.add.circle(cx, targetY, 30, 0xfff4c2, 0.65).setDepth(19);
           this.tweens.add({
             targets: bloom,
@@ -350,22 +156,28 @@ export class SplashScene extends Phaser.Scene {
             ease: 'Cubic.easeOut',
             onComplete: () => bloom.destroy(),
           });
-          this.spawnTitleBlock(cx, targetY, portrait, 0xfff8e6);
+          this.spawnTitleBlock(cx, targetY, portrait);
         },
       });
     });
 
+    // Subtle skip hint
+    this.add
+      .text(W / 2, H - (portrait ? 54 : 34), '轻点任意处跳过', textStyle(18, PALETTE.inkSoft, FONT_PLAIN))
+      .setOrigin(0.5)
+      .setAlpha(0.75)
+      .setDepth(50);
+
     this.time.delayedCall(2850, finish);
   }
 
-  private spawnTitleBlock(cx: number, cy: number, portrait: boolean, strokeCol: number): void {
+  private spawnTitleBlock(cx: number, cy: number, portrait: boolean): void {
     const titleBox = this.add.container(cx, cy).setDepth(30).setScale(0.3).setAlpha(0);
     const title = this.add
-      .text(0, 0, '单词守卫', textStyle(portrait ? 78 : 74, PALETTE.ink, undefined, { stroke: `#${strokeCol.toString(16).padStart(6, '0')}`, strokeThickness: 12 }))
+      .text(0, 0, '单词守卫', textStyle(portrait ? 78 : 74, PALETTE.ink, undefined, { stroke: '#fff8e6', strokeThickness: 12 }))
       .setOrigin(0.5);
     titleBox.add(title);
 
-    // Gold 2.0 badge
     const bx = title.width / 2 + 24;
     const by = -28;
     const bg = this.add.graphics();
@@ -388,27 +200,5 @@ export class SplashScene extends Phaser.Scene {
       duration: 460,
       ease: 'Back.easeOut',
     });
-  }
-
-  private spawnConfetti(cx: number, cy: number, count: number): void {
-    const colors = [PALETTE.sun, PALETTE.carrot, PALETTE.good, 0x5b8def, 0xf27ea9];
-    for (let i = 0; i < count; i++) {
-      const ang = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3;
-      const dist = 120 + Math.random() * 190;
-      const p = this.add
-        .rectangle(cx, cy, 10 + Math.random() * 8, 6 + Math.random() * 6, colors[i % colors.length])
-        .setDepth(26)
-        .setRotation(Math.random() * Math.PI);
-      this.tweens.add({
-        targets: p,
-        x: cx + Math.cos(ang) * dist,
-        y: cy + Math.sin(ang) * dist + 70,
-        angle: (Math.random() - 0.5) * 360,
-        alpha: 0,
-        duration: 850 + Math.random() * 350,
-        ease: 'Cubic.easeOut',
-        onComplete: () => p.destroy(),
-      });
-    }
   }
 }

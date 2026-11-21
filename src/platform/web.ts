@@ -508,9 +508,45 @@ class WebSfxAdapter implements SfxAdapter {
     this.bus = bus;
   }
 
+  private playFairyIntro(ac: AudioContext): void {
+    this.bus.ensureRunning();
+    const now = ac.currentTime + 0.02;
+    const tone = (freq: number, start: number, dur: number, vol: number, type: OscillatorType = 'sine') => {
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, start);
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.linearRampToValueAtTime(vol, start + Math.min(0.04, dur * 0.25));
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+      osc.connect(gain);
+      gain.connect(this.bus.sfx);
+      osc.start(start);
+      osc.stop(start + dur + 0.03);
+    };
+
+    // Warm dawn pad chord (C4 + G4 + E5)
+    for (const f of [261.63, 392.0, 659.25]) {
+      tone(f, now, 2.35, 0.045, 'sine');
+    }
+    // Ascending music-box / harp pentatonic shimmer
+    const arp = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5, 1318.5, 1567.98];
+    arp.forEach((f, i) => {
+      tone(f, now + 0.08 + i * 0.11, 0.42, 0.09, 'triangle');
+    });
+    // Radiant golden chime chord when comet lights up "单词守卫 2.0" (t ≈ 1.02s)
+    for (const f of [1046.5, 1318.5, 1567.98, 2349.32]) {
+      tone(f, now + 1.02, 1.15, 0.075, 'sine');
+    }
+  }
+
   play(name: SfxName, pitch = 1): void {
     const ac = this.bus.ctx;
     if (this.muted || !ac) return;
+    if (name === 'intro') {
+      this.playFairyIntro(ac);
+      return;
+    }
     const patterns: Record<SfxName, [number, number, OscillatorType][]> = {
       tap: [[660, 0.05, 'triangle']],
       letter: [[880, 0.07, 'triangle']],
@@ -573,6 +609,7 @@ class WebSfxAdapter implements SfxAdapter {
         [784, 0.12, 'triangle'],
       ],
       tick: [[1047, 0.03, 'square']],
+      intro: [],
       record: [
         [659, 0.1, 'triangle'],
         [784, 0.1, 'triangle'],
