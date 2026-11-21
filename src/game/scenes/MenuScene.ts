@@ -25,6 +25,7 @@ import {
 import { track } from '../analytics';
 import { ctx } from '../context';
 import { openFeedbackDialog } from '../feedback';
+import { getIntroStyle, setIntroStyle, type IntroStyle } from './SplashScene';
 import { openPetNameDialog } from '../pet-name';
 import { warmArtFiles } from '../pictures';
 import { drawBackdrop, drawBoard, FONT_EN, isPortrait, PALETTE, setupCamera, textStyle, viewH, viewW } from '../theme';
@@ -239,6 +240,11 @@ export class MenuScene extends Phaser.Scene {
       fill: PALETTE.sun,
       textColor: PALETTE.ink,
       fontSize: 22,
+    });
+    makeButton(this, portrait ? 110 : 528, portrait ? topY + 62 : topY, 108, portrait ? 44 : 52, '片头动画', () => this.openIntroPicker(), {
+      fill: PALETTE.board,
+      textColor: PALETTE.inkSoft,
+      fontSize: portrait ? 18 : 20,
     });
   }
 
@@ -799,5 +805,66 @@ export class MenuScene extends Phaser.Scene {
       );
     };
     render();
+  }
+
+  private openIntroPicker(): void {
+    const W = viewW(this);
+    const H = viewH(this);
+    const current = getIntroStyle();
+    const layer = this.add.container(0, 0).setDepth(80);
+    const shade = this.add.rectangle(W / 2, H / 2, W, H, 0x2a1b0e, 0.55).setInteractive();
+    layer.add(shade);
+
+    const pw = Math.min(540, W - 48);
+    const ph = 310;
+    const g = this.add.graphics();
+    drawBoard(g, W / 2 - pw / 2, H / 2 - ph / 2, pw, ph, 24);
+    layer.add(g);
+
+    layer.add(this.add.text(W / 2, H / 2 - 104, '对比开场动画风格', textStyle(34)).setOrigin(0.5));
+    layer.add(
+      this.add
+        .text(W / 2, H / 2 - 60, '点任意一种立即播放，并设为默认片头', textStyle(20, PALETTE.inkSoft))
+        .setOrigin(0.5),
+    );
+
+    const play = (style: IntroStyle) => {
+      setIntroStyle(style);
+      layer.destroy();
+      this.scene.start('splash', { style });
+    };
+
+    const bw = Math.floor((pw - 64) / 2);
+    layer.add(
+      makeButton(
+        this,
+        W / 2 - bw / 2 - 10,
+        H / 2 + 12,
+        bw,
+        84,
+        current === 'action' ? '✓ 热血塔防风' : '热血塔防风',
+        () => play('action'),
+        { fill: current === 'action' ? PALETTE.carrot : 0x48b8f2, fontSize: 24 },
+      ),
+    );
+    layer.add(
+      makeButton(
+        this,
+        W / 2 + bw / 2 + 10,
+        H / 2 + 12,
+        bw,
+        84,
+        current === 'fairy' ? '✓ 童话星光风' : '童话星光风',
+        () => play('fairy'),
+        { fill: current === 'fairy' ? PALETTE.carrot : 0x8f6ac8, fontSize: 24 },
+      ),
+    );
+    layer.add(
+      makeButton(this, W / 2, H / 2 + 104, 150, 52, '关闭', () => layer.destroy(), {
+        fill: PALETTE.board,
+        textColor: PALETTE.ink,
+        fontSize: 22,
+      }),
+    );
   }
 }

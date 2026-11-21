@@ -9,6 +9,7 @@ import { hasIconLoaded, isArtPic, isIconPic, isTextPic, loadArtManifest, preload
 import { BattleScene } from './game/scenes/BattleScene';
 import { LevelsScene } from './game/scenes/LevelsScene';
 import { MenuScene } from './game/scenes/MenuScene';
+import { SplashScene } from './game/scenes/SplashScene';
 import { PlacementScene } from './game/scenes/PlacementScene';
 import { ResultScene } from './game/scenes/ResultScene';
 import { StatsScene } from './game/scenes/StatsScene';
@@ -84,7 +85,7 @@ async function boot(): Promise<void> {
     },
     input: { activePointers: 3 },
     audio: { noAudio: true },
-    scene: [MenuScene, LevelsScene, BattleScene, ResultScene, WordBookScene, PlacementScene, StatsScene],
+    scene: [SplashScene, MenuScene, LevelsScene, BattleScene, ResultScene, WordBookScene, PlacementScene, StatsScene],
   });
 
   bindUiArtGame(game);
